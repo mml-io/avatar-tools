@@ -132,17 +132,6 @@ switch (mode) {
         minify: false,
         sourcemap: "inline",
         plugins: [...(commonOptions.plugins ?? []), htmlPackingPlugin],
-        //         banner: {
-        //           js: `
-        // (() =>
-        //   new WebSocket(
-        //     (window.location.protocol === "https:" ? "wss://" : "ws://") +
-        //     window.location.host +
-        //     "/client-build"
-        //   ).addEventListener("message", () => location.reload())
-        // )();
-        // `,
-        //         },
       })
       .then((context) => context.watch())
       .catch(() => process.exit(1));
