@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg" href="/client/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avatar Validator</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="nwQuadrant" class="quadrant"></div>
+      <div id="neQuadrant" class="quadrant"></div>
+      <div id="swQuadrant" class="quadrant" onmousedown="event.preventDefault ? event.preventDefault() : event.returnValue = false">
+        <textarea id="swQuadrantLog"></textarea>
+      </div>
+      <div id="seQuadrant" class="quadrant"></div>
+    </div>
+    <script src="TO_REPLACE_AT_BUILD" type="module"></script>
+  </body>
+</html>
