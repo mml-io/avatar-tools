@@ -12,6 +12,7 @@ html {
 }
 
 .quadrant {
+  position: relative;
   width: 50%;
   height: 50%;
   box-sizing: border-box;
@@ -34,7 +35,6 @@ html {
   border-top: 1px solid black;
   border-right: 1px solid black;
   overflow: auto;
-  padding: 12px;
 }
 
 #seQuadrant {
@@ -42,7 +42,56 @@ html {
   border-top: 1px solid black;
 }
 
-#log {
-  width: 100%;
-  height: 100%;
+.button {
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
+  background-color: #333;
+  color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
 }
+
+.button:hover {
+  background-color: #444;
+}
+.button:active {
+  background-color: #555;
+}
+
+.log-element {
+  padding: 5px;
+  background-color: #333;
+  border-top: 1px solid black;
+}
+
+.log-element.info {
+  color: #ffffff;
+}
+
+.log-element.warn {
+  color: #e19e00;
+}
+
+.log-element.error {
+  color: #ff3030;
+}
+
+.step-result {
+  border-top: 1px solid #333;
+}
+
+.step-result.skipped {
+  opacity: 0.5;
+}
+
+.step-result-row {
+  padding: 3px;
+  background-color: #222;
+}
+
+.step-result-inner-logs {
+  padding-left: 10px;
+}
+

@@ -9,11 +9,19 @@
   <body>
     <div id="container">
       <div id="nwQuadrant" class="quadrant"></div>
-      <div id="neQuadrant" class="quadrant"></div>
-      <div id="swQuadrant" class="quadrant" onmousedown="event.preventDefault ? event.preventDefault() : event.returnValue = false">
-        <textarea id="swQuadrantLog"></textarea>
+      <div id="neQuadrant" class="quadrant">
+        <button class="button" id="export-button" style="position: absolute; top: 0; right:0;">Export</button>
+        <label id="debug-checkbox-holder" style="position: absolute; bottom: 0; right:0; background-color: gray; padding: 5px;">
+          <input id="debug-checkbox" type="checkbox" checked>Debug</input>
+        </label>
       </div>
-      <div id="seQuadrant" class="quadrant"></div>
+      <div id="swQuadrant" class="quadrant"></div>
+      <div id="seQuadrant" class="quadrant">
+        <div style="position: absolute; top: 0; right:0;">
+          <button class="button" id="sample-animation-button">Use Sample Animation</button>
+          <button class="button" id="clear-animation-button">Clear Animation</button>
+        </div>
+      </div>
     </div>
     <script src="TO_REPLACE_AT_BUILD" type="module"></script>
   </body>
