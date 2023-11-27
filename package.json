@@ -1,5 +1,5 @@
 {
-  "name": "3d-web-experience",
+  "name": "avatar-tools",
   "private": true,
   "type": "module",
   "engines": {
@@ -14,7 +14,6 @@
     "lint-all": "lerna run --stream lint",
     "lint-fix-all": "lerna run --stream lint-fix",
     "link-all": "lerna exec \"npm link\" --no-private && npm run print-links",
-    "print-links": "echo \"Run this command in the package you would like to link this repo's packages to:\n\"; echo \"npm link\" $(lerna ls --loglevel=error)",
     "version": "lerna version --no-push --force-publish"
   },
   "workspaces": [
