@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@types/three": "0.153.0",
-    "@types/clean-css": "4.2.10",
+    "@types/clean-css": "4.2.11",
     "clean-css": "5.3.2"
   }
 }
