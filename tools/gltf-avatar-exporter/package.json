@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@mml-io/3d-web-client-core": "^0.10.1",
-    "three": "0.153.0"
+    "three": "0.158.0"
   },
   "devDependencies": {
     "@types/three": "0.153.0",
