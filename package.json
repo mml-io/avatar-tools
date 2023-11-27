@@ -18,7 +18,6 @@
   },
   "workspaces": [
     "packages/*",
-    "example/*",
     "tools/*"
   ],
   "devDependencies": {
