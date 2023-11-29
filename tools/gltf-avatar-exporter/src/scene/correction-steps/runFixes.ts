@@ -1,7 +1,8 @@
+import { addMissingBonesCorrectionStep } from "./addMissingBones";
 import { boneDedupingCorrectionStep } from "./boneDeduping";
 import { checkBonesStep } from "./checkBones";
 import { fixBonesScaleCorrectionStep } from "./fixBonesScale";
-import { fixFeetCorrectionStep } from "./fixFeet";
+// import { fixFeetCorrectionStep } from "./fixFeet";
 import { fixMeshScaleCorrectionStep } from "./fixMeshScale";
 import { levelOfDetailDedupingCorrectionStep } from "./lodDeduping";
 import { placeholderMissingTexturesCorrectionStep } from "./placeholderMissingTextures";
@@ -23,6 +24,7 @@ export const correctionSteps = [
   rotateRootCorrectionStep,
   rotatePelvisCorrectionStep,
   // fixFeetCorrectionStep,
+  addMissingBonesCorrectionStep,
   placeholderMissingTexturesCorrectionStep,
   replaceIncompatibleMaterialsCorrectionStep,
   checkBonesStep,
