@@ -1,5 +1,5 @@
-import { CameraManager, CollisionsManager } from "@mml-io/3d-web-client-core";
-import { Fog, PCFSoftShadowMap, Scene, WebGLRenderer } from "three";
+import { Fog, PCFSoftShadowMap, PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 export class QuadrantScene {
   private width: number = window.innerWidth / 2;
@@ -9,9 +9,10 @@ export class QuadrantScene {
   public parentElement: HTMLDivElement;
 
   public scene: Scene = new Scene();
-  private collisionsManager: CollisionsManager = new CollisionsManager(this.scene);
+  public camera: PerspectiveCamera = new PerspectiveCamera(60, this.aspect, 0.01, 1000);
   private renderer: WebGLRenderer = new WebGLRenderer({ antialias: true });
-  private cameraManager: CameraManager;
+
+  private orbitControls: OrbitControls;
 
   constructor(parentDivId: string) {
     this.parentElement = document.getElementById(parentDivId) as HTMLDivElement;
@@ -22,12 +23,16 @@ export class QuadrantScene {
 
     this.scene.fog = new Fog(0x000000, 0.01, 50);
 
-    this.cameraManager = new CameraManager(
-      this.parentElement,
-      this.collisionsManager,
-      Math.PI / 2.3,
-      Math.PI * 0.5,
-    );
+    this.camera.position.set(0, 2, 3);
+    this.camera.lookAt(this.scene.position);
+    this.camera.updateProjectionMatrix();
+
+    this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.orbitControls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+    this.orbitControls.dampingFactor = 0.05;
+    this.orbitControls.minDistance = 1;
+    this.orbitControls.maxDistance = 500;
+    this.orbitControls.maxPolarAngle = Math.PI / 2;
 
     this.parentElement.appendChild(this.renderer.domElement);
     window.addEventListener("resize", this.updateProjection.bind(this));
@@ -39,13 +44,14 @@ export class QuadrantScene {
     this.height = window.innerHeight / 2;
     this.aspect = this.width / this.height;
     this.renderer.setSize(this.width, this.height);
-    if (this.cameraManager) {
-      this.cameraManager.updateAspect(this.aspect);
+    if (this.camera) {
+      this.camera.aspect = this.aspect;
+      this.camera.updateProjectionMatrix();
     }
   }
 
   public update(): void {
-    this.cameraManager.update();
-    this.renderer.render(this.scene, this.cameraManager.camera);
+    this.renderer.render(this.scene, this.camera);
+    this.orbitControls.update();
   }
 }
