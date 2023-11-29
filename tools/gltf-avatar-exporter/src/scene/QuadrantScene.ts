@@ -1,4 +1,13 @@
-import { Fog, PCFSoftShadowMap, PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import {
+  Box3,
+  Fog,
+  Group,
+  PCFSoftShadowMap,
+  PerspectiveCamera,
+  Scene,
+  Vector3,
+  WebGLRenderer,
+} from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 export class QuadrantScene {
@@ -48,6 +57,21 @@ export class QuadrantScene {
       this.camera.aspect = this.aspect;
       this.camera.updateProjectionMatrix();
     }
+  }
+
+  public fitCameraToGroup(group: Group): void {
+    const boundingBox = new Box3().setFromObject(group);
+    const center = boundingBox.getCenter(new Vector3());
+    const size = boundingBox.getSize(new Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const fov = this.camera.fov * (Math.PI / 180);
+    let cameraZ = Math.abs((maxDim / 2) * Math.tan(fov / 2)) + 3;
+    cameraZ /= this.camera.aspect;
+    const target = new Vector3(center.x, center.y, center.z);
+    this.camera.position.set(center.x, center.y + size.y / 3, center.z + cameraZ);
+    this.camera.lookAt(target);
+    this.orbitControls.target.copy(target);
+    this.camera.updateProjectionMatrix();
   }
 
   public update(): void {
