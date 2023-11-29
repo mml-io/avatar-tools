@@ -26,9 +26,11 @@ export function traverseAndLogBone(bone: THREE.Bone, depth = 0) {
     .map((n) => toFixed(n))
     .join(",");
 
-  const targetAsEuler = new THREE.Euler().setFromQuaternion(
-    new THREE.Quaternion().fromArray(target.rot),
-  );
+  const targetQuaternion = new THREE.Quaternion().fromArray(target.rot);
+
+  const targetAsEuler = new THREE.Euler().setFromQuaternion(targetQuaternion);
+
+  const dot = Math.abs(bone.quaternion.dot(targetQuaternion));
 
   console.log(
     `${indent}${bone.name}, ${
@@ -39,7 +41,9 @@ export function traverseAndLogBone(bone: THREE.Bone, depth = 0) {
       3,
     )}, ${targetAsEuler.z.toFixed(3)}, euler: ${bone.rotation.x.toFixed(
       3,
-    )}, ${bone.rotation.y.toFixed(3)}, ${bone.rotation.z.toFixed(3)}`,
+    )}, ${bone.rotation.y.toFixed(3)}, ${bone.rotation.z.toFixed(3)}, dot: ${dot}, ${
+      dot < 0.75 ? "BAD ROTATION!!!" : ""
+    }`,
   );
 
   for (const child of bone.children) {

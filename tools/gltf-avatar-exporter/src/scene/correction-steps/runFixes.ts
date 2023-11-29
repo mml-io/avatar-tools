@@ -1,4 +1,5 @@
 import { boneDedupingCorrectionStep } from "./boneDeduping";
+import { checkBonesStep } from "./checkBones";
 import { fixBonesScaleCorrectionStep } from "./fixBonesScale";
 import { fixMeshScaleCorrectionStep } from "./fixMeshScale";
 import { levelOfDetailDedupingCorrectionStep } from "./lodDeduping";
@@ -22,4 +23,5 @@ export const correctionSteps = [
   rotatePelvisCorrectionStep,
   placeholderMissingTexturesCorrectionStep,
   replaceIncompatibleMaterialsCorrectionStep,
+  checkBonesStep,
 ];

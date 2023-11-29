@@ -50,7 +50,7 @@ export const rotatePelvisCorrectionStep: Step = {
     } else {
       reposeSkinnedMeshes(group);
       return {
-        didApply: false,
+        didApply: true,
         topLevelMessage: {
           level: "error",
           message: "Could not determine known pelvis transform. Cannot rotate pelvis.",

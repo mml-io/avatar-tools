@@ -135,7 +135,7 @@ export class ExportView extends QuadrantScene {
 
   public update() {
     if (this.loadedAnimationState !== null) {
-      this.loadedAnimationState.animationMixer.setTime(Date.now() / 1000);
+      this.loadedAnimationState.animationMixer.setTime(1);
     }
     super.update();
   }

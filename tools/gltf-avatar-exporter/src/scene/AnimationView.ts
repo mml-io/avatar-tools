@@ -71,7 +71,7 @@ export class AnimationView extends QuadrantScene {
 
   public update() {
     if (this.loadedState) {
-      this.loadedState.animationMixer.setTime(Date.now() / 1000);
+      this.loadedState.animationMixer.setTime(1);
     }
     super.update();
   }
