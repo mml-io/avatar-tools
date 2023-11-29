@@ -2,6 +2,8 @@ import { Group, SkinnedMesh, Vector3 } from "three";
 
 import { LoggerView } from "../logger/LoggerView";
 
+import { createBoneHelpers } from "./debug-helpers/createBoneHelpers";
+import { createSkeletonHelpers } from "./debug-helpers/createSkeletonHelpers";
 import { Lights } from "./elements/Lights";
 import { Room } from "./elements/Room";
 import { ModelLoader } from "./ModelLoader";
@@ -12,6 +14,8 @@ export class ImportView extends QuadrantScene {
   private lights: Lights;
   private room: Room;
   private currentModel: Group | null = null;
+  private debugCheckbox: HTMLInputElement;
+  private debugGroup: Group;
 
   constructor(
     private logger: LoggerView,
@@ -22,6 +26,14 @@ export class ImportView extends QuadrantScene {
     this.lights = new Lights(this.camOffset);
     this.scene.add(this.lights.ambientLight);
     this.scene.add(this.lights.mainLight);
+    this.debugGroup = new Group();
+    this.scene.add(this.debugGroup);
+
+    this.debugCheckbox = document.getElementById("import-view-debug-checkbox")! as HTMLInputElement;
+    this.debugCheckbox.addEventListener("change", () => {
+      this.updateDebugVisibility();
+    });
+    this.debugGroup.visible = this.debugCheckbox.checked;
 
     this.room = new Room();
     this.scene.add(this.room);
@@ -52,8 +64,21 @@ export class ImportView extends QuadrantScene {
     });
   }
 
+  private reset() {
+    if (this.currentModel !== null) {
+      this.scene.remove(this.currentModel);
+      this.currentModel = null;
+    }
+    this.debugGroup.clear();
+  }
+
+  private updateDebugVisibility() {
+    this.debugGroup.visible = this.debugCheckbox.checked;
+  }
+
   private async loadModelFromBuffer(buffer: ArrayBuffer, name: string): Promise<void> {
     const { group } = await this.modelLoader.loadFromBuffer(buffer, "");
+    this.reset();
     if (group) {
       group.traverse((child) => {
         if (child.type === "SkinnedMesh") {
@@ -61,6 +86,10 @@ export class ImportView extends QuadrantScene {
           (child as SkinnedMesh).castShadow = true;
         }
       });
+      const skeletonHelpers = createSkeletonHelpers(group);
+      this.debugGroup.add(skeletonHelpers);
+      const boneHelpers = createBoneHelpers(group);
+      this.debugGroup.add(boneHelpers);
       if (this.currentModel !== null) {
         this.scene.remove(this.currentModel);
         this.currentModel = null;

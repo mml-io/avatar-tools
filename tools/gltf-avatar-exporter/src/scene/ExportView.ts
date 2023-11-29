@@ -49,7 +49,7 @@ export class ExportView extends QuadrantScene {
         link.click();
       }
     });
-    this.debugCheckbox = document.getElementById("debug-checkbox")! as HTMLInputElement;
+    this.debugCheckbox = document.getElementById("export-view-debug-checkbox")! as HTMLInputElement;
     this.debugCheckbox.addEventListener("change", () => {
       this.updateDebugVisibility();
     });
@@ -72,6 +72,7 @@ export class ExportView extends QuadrantScene {
     this.buffer = buffer;
     this.name = name;
     const { group } = await this.modelLoader.loadFromBuffer(buffer, "");
+    window.loadedGroup = group;
     if (group) {
       group.traverse((child) => {
         if (child.type === "SkinnedMesh") {

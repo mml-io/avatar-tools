@@ -25,7 +25,7 @@ const commonOptions: esbuild.BuildOptions = {
   },
   bundle: true,
   write: true,
-  sourcemap: true,
+  sourcemap: "inline",
   outdir: "./build/",
   assetNames: "[dir]/[name]-[hash]",
   preserveSymlinks: true,

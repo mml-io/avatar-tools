@@ -5,14 +5,6 @@ import { reposeSkinnedMeshes } from "./reposeSkinnedMeshes";
 import { targetBoneTransformations } from "./targetBoneTransformations";
 import { LogMessage, Step } from "./types";
 
-function toFixed(value: number) {
-  const asFixed = value.toFixed(3);
-  if (asFixed === "-0.000") {
-    return "0.000";
-  }
-  return asFixed;
-}
-
 export const checkBonesStep: Step = {
   name: "checkBones",
   action: (group: Group) => {
@@ -37,22 +29,9 @@ export const checkBonesStep: Step = {
           message: `Bone in imported model not found in target skeleton: ${bone.name}.`,
         });
       }
-      const targetPosStr = target.pos.map((n) => toFixed(n)).join(",");
-      const posString = bone.position
-        .toArray()
-        .map((n) => toFixed(n))
-        .join(",");
-
-      const targetRotStr = target.rot.map((n) => toFixed(n)).join(",");
-      const rotString = bone.quaternion
-        .toArray()
-        .map((n) => toFixed(n))
-        .join(",");
 
       const targetQuaternion = new THREE.Quaternion().fromArray(target.rot);
-
       const targetAsEuler = new THREE.Euler().setFromQuaternion(targetQuaternion);
-
       const targetEulerStr = `${targetAsEuler.x.toFixed(3)}, ${targetAsEuler.y.toFixed(
         3,
       )}, ${targetAsEuler.z.toFixed(3)}`;
@@ -68,29 +47,7 @@ export const checkBonesStep: Step = {
           level: "warn",
           message: `Bone ${bone.name} has a rotation that is not close to the target rotation. Target: ${targetEulerStr}, actual: ${eulerStr}.`,
         });
-        bone.quaternion.copy(targetQuaternion);
-        bone.updateMatrixWorld(true);
       }
-
-      const distance = bone.position.distanceTo(new THREE.Vector3().fromArray(target.pos));
-      if (distance > 0.1) {
-        logs.push({
-          level: "warn",
-          message: `Bone ${bone.name} has a position that is more than 0.1m from the target position. Target: ${targetPosStr}, actual: ${posString}.`,
-        });
-        // bone.position.fromArray(target.pos);
-        // bone.updateMatrixWorld(true);
-      }
-
-      console.log(
-        `${bone.name}, ${
-          targetPosStr === posString ? "EXACTPOS" : `pos: ${posString}, targetPos: ${targetPosStr}`
-        }, ${
-          targetRotStr === rotString ? "EXACTROT" : `rot: ${rotString}, targetRot: ${targetRotStr}`
-        }, targetEuler: ${targetEulerStr}, euler: ${eulerStr}, dot: ${dot}, ${
-          dot < 0.75 ? "BAD ROTATION!!!" : ""
-        }`,
-      );
 
       const targetChildrenNames = new Set(target.children);
       const actualChildrenNames = bone.children
@@ -137,7 +94,7 @@ export const checkBonesStep: Step = {
         didApply: false,
         topLevelMessage: {
           level: "info",
-          message: "All bones found and at approximate target positions and rotations.",
+          message: "All bones found and at approximate target rotations.",
         },
         autoOpenLogs: false,
         logs,
