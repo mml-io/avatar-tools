@@ -25,6 +25,7 @@ html {
 
 #neQuadrant {
   /* Upper Right */
+  color: white;
 }
 
 #swQuadrant {
@@ -63,11 +64,13 @@ html {
 .log-element {
   padding: 5px;
   background-color: #333;
-  border-top: 1px solid black;
+  border-top: 1px solid #111;
+  padding-left: 31px;
 }
 
 .log-element.info {
   color: #ffffff;
+  border-left: 1px solid #333;
 }
 
 .log-element.warn {
@@ -95,3 +98,63 @@ html {
   padding-left: 10px;
 }
 
+#swQuadrant .foldable-log-container {
+  padding-left: 7px;
+  background-color: #333;
+  border-left: 1px solid white;
+}
+
+#swQuadrant .foldable-log-top-container {
+  font-family: monospace;
+  background-color: #333;
+}
+
+/* Styles for foldable containers */
+#swQuadrant .foldable-log-container, 
+#swQuadrant .foldable-log-top-container {
+  padding: 5px;
+  border-top: 1px solid black;
+  border-left: 1px solid white;
+  border-radius: 0px;
+  overflow: hidden;
+}
+
+/* Styles for toggle buttons */
+#swQuadrant .foldable-log-container > button, 
+#swQuadrant .foldable-log-top-container > button {
+  background-color: #333333;
+  color: #eeeeee;
+  padding: 0px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: monospace;
+}
+
+/* Hover styles for toggle button */
+#swQuadrant .foldable-log-container > button:hover, 
+#swQuadrant .foldable-log-top-container > button:hover {
+  background-color: #555555;
+  color: #ffffff;
+}
+
+/* Styles for hidden content */
+#swQuadrant .foldable-log-content {
+  display: none;
+  padding: 3px 0px 3px 7px;
+}
+
+/* Styles for expanded sections */
+#swQuadrant .foldable-log-container.expanded > .foldable-log-content,
+#swQuadrant .foldable-log-top-container.expanded > .foldable-log-content {
+  display: block;
+}
+
+/* Specific rule to hide all nested elements inside a non-expanded top container */
+#swQuadrant .foldable-log-top-container:not(.expanded) .foldable-log-container,
+#swQuadrant .foldable-log-top-container:not(.expanded) .foldable-log-container .foldable-log-content {
+  display: none;
+}

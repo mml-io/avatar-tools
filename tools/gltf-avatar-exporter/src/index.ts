@@ -22,7 +22,24 @@ class App {
       this.logger,
       this.modelLoader,
       (group: Group, name: string) => {
+        this.logger.logFoldableData("skeleton data", ["skeleton data"]);
+        group.traverse((child) => {
+          if (child.type === "Bone") {
+            const bonePosition = child.position.toArray().toString();
+            const boneRotation = child.rotation.toArray().toString();
+            const boneQuaternion = child.quaternion.toArray().toString();
+            const boneScale = child.scale.toArray().toString();
+            this.logger.logFoldableData("skeleton data", [`${child.name}`, `pos: ${bonePosition}`]);
+            this.logger.logFoldableData("skeleton data", [`${child.name}`, `rot: ${boneRotation}`]);
+            this.logger.logFoldableData("skeleton data", [
+              `${child.name}`,
+              `quat: ${boneQuaternion}`,
+            ]);
+            this.logger.logFoldableData("skeleton data", [`${child.name}`, `scale: ${boneScale}`]);
+          }
+        });
         this.exportView.setImportedModelGroup(group, name);
+        this.importView.fitCameraToGroup(group);
       },
     );
     this.exportView = new ExportView(this.logger, this.modelLoader);

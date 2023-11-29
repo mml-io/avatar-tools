@@ -91,6 +91,7 @@ export class ExportView extends QuadrantScene {
       }
       this.currentModel = group;
       this.scene.add(this.currentModel);
+      this.fitCameraToGroup(this.currentModel);
 
       this.setAnimationClip(this.currentAnimationClip);
     } else {
