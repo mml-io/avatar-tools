@@ -86,10 +86,15 @@ export const rotatePelvisCorrectionStep: Step = {
 
     return {
       didApply: true,
+      logs: [
+        {
+          message: "Rotated pelvis and all children and reposed meshes against new skeleton.",
+          level: "info",
+        },
+      ],
       topLevelMessage: {
         level: "info",
-        message:
-          "Detected pelvis was not at expected rotation. Rotated pelvis and all children and reposed meshes against new skeleton.",
+        message: "Detected pelvis was not at expected rotation.",
       },
     };
   },

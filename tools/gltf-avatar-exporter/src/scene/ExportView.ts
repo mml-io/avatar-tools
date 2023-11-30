@@ -1,3 +1,4 @@
+import { TimeManager } from "@mml-io/3d-web-client-core";
 import { AnimationClip, AnimationMixer, Group, SkinnedMesh, Vector3 } from "three";
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter.js";
 
@@ -31,6 +32,7 @@ export class ExportView extends QuadrantScene {
   constructor(
     private logger: LoggerView,
     private modelLoader: ModelLoader,
+    private timeManager: TimeManager,
   ) {
     super("neQuadrant");
     this.lights = new Lights(this.camOffset);
@@ -91,6 +93,7 @@ export class ExportView extends QuadrantScene {
       }
       this.currentModel = group;
       this.scene.add(this.currentModel);
+      this.fitCameraToGroup(this.currentModel);
 
       this.setAnimationClip(this.currentAnimationClip);
     } else {
@@ -135,7 +138,7 @@ export class ExportView extends QuadrantScene {
 
   public update() {
     if (this.loadedAnimationState !== null) {
-      this.loadedAnimationState.animationMixer.setTime(Date.now() / 1000);
+      this.loadedAnimationState.animationMixer.update(this.timeManager.deltaTime);
     }
     super.update();
   }

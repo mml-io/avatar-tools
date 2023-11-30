@@ -102,6 +102,10 @@ export class AnimationView extends QuadrantScene {
     const skeletonHelper = new SkeletonHelper(rootBone);
     this.scene.add(skeletonHelper);
 
+    setTimeout(() => {
+      this.fitCameraToGeometry(skeletonHelper.geometry);
+    }, 1000);
+
     const firstAnimation = animations[0];
     const animationMixer = new AnimationMixer(rootBone);
     animationMixer.clipAction(firstAnimation).play();
