@@ -67,6 +67,7 @@ export class ImportView extends QuadrantScene {
       }
       this.currentModel = group;
       this.scene.add(this.currentModel);
+      setTimeout(() => this.fitCameraToGroup(this.currentModel!), 1000);
     } else {
       console.error("Unable to load model");
       return;

@@ -39,7 +39,6 @@ class App {
           }
         });
         this.exportView.setImportedModelGroup(group, name);
-        this.importView.fitCameraToGroup(group);
       },
     );
     this.exportView = new ExportView(this.logger, this.modelLoader);

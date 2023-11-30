@@ -18,7 +18,7 @@ export class QuadrantScene {
   public parentElement: HTMLDivElement;
 
   public scene: Scene = new Scene();
-  public camera: PerspectiveCamera = new PerspectiveCamera(60, this.aspect, 0.01, 1000);
+  public camera: PerspectiveCamera = new PerspectiveCamera(60, this.aspect, 0.01, 10000);
   private renderer: WebGLRenderer = new WebGLRenderer({ antialias: true });
 
   private orbitControls: OrbitControls;
@@ -32,7 +32,7 @@ export class QuadrantScene {
 
     this.scene.fog = new Fog(0x000000, 0.01, 50);
 
-    this.camera.position.set(0, 2, 3);
+    this.camera.position.set(0, 1, 2);
     this.camera.lookAt(this.scene.position);
     this.camera.updateProjectionMatrix();
 
@@ -60,18 +60,38 @@ export class QuadrantScene {
   }
 
   public fitCameraToGroup(group: Group): void {
-    const boundingBox = new Box3().setFromObject(group);
-    const center = boundingBox.getCenter(new Vector3());
+    const boundingBox = new Box3();
+    boundingBox.makeEmpty();
+    group.traverse((child) => {
+      if (child.type === "SkinnedMesh") {
+        child.updateMatrixWorld();
+        boundingBox.expandByObject(child);
+      }
+    });
     const size = boundingBox.getSize(new Vector3());
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const fov = this.camera.fov * (Math.PI / 180);
-    let cameraZ = Math.abs((maxDim / 2) * Math.tan(fov / 2)) + 3;
-    cameraZ /= this.camera.aspect;
-    const target = new Vector3(center.x, center.y, center.z);
-    this.camera.position.set(center.x, center.y + size.y / 3, center.z + cameraZ);
-    this.camera.lookAt(target);
-    this.orbitControls.target.copy(target);
+    const center = boundingBox.getCenter(new Vector3());
+    const maxSize = Math.max(size.x, size.y, size.z);
+    const fitHeightDistance = maxSize / (2 * Math.atan((Math.PI * this.camera.fov) / 360));
+    const fitWidthDistance = fitHeightDistance / this.camera.aspect;
+    const distance = Math.max(fitHeightDistance, fitWidthDistance);
+    this.scene.fog = new Fog(0x000000, 0.01, distance * 5);
+
+    const direction = this.orbitControls.target
+      .clone()
+      .sub(this.camera.position)
+      .normalize()
+      .multiplyScalar(distance);
+
+    this.orbitControls.maxDistance = distance * 10;
+    this.orbitControls.target.copy(center);
+
+    this.camera.near = distance / 100;
+    this.camera.far = distance * 100;
     this.camera.updateProjectionMatrix();
+
+    this.camera.position.copy(this.orbitControls.target).sub(direction);
+
+    this.orbitControls.update();
   }
 
   public update(): void {
