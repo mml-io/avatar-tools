@@ -41,7 +41,7 @@ class App {
         this.exportView.setImportedModelGroup(group, name);
       },
     );
-    this.exportView = new ExportView(this.logger, this.modelLoader);
+    this.exportView = new ExportView(this.logger, this.modelLoader, this.timeManager);
     this.animationView = new AnimationView(this.modelLoader, (clip) => {
       this.exportView.setAnimationClip(clip);
     });
