@@ -5,6 +5,7 @@ import { getBonesBoundingBox } from "./getBonesBoundingBox";
 import { LogMessage, Step } from "./types";
 
 const scaleCorrection = new THREE.Matrix4().makeScale(0.01, 0.01, 0.01);
+const scaleKCorrection = new THREE.Matrix4().makeScale(0.001, 0.001, 0.001);
 
 export const fixMeshScaleCorrectionStep: Step = {
   name: "fixMeshScale",
@@ -21,6 +22,8 @@ export const fixMeshScaleCorrectionStep: Step = {
       message: `Bones size: x: ${xBonesSize}, y: ${yBonesSize}, z: ${zBonesSize}`,
     };
     const bonesAre100TimesTooLarge = zBonesSize > 10 || yBonesSize > 10;
+    const bonesAre1000TimesTooLarge = zBonesSize > 100 || yBonesSize > 100;
+
     if (!bonesAre100TimesTooLarge) {
       return {
         didApply: false,
@@ -35,7 +38,11 @@ export const fixMeshScaleCorrectionStep: Step = {
     group.traverse((child) => {
       const asSkinnedMesh = child as THREE.SkinnedMesh;
       if (asSkinnedMesh.isSkinnedMesh) {
-        asSkinnedMesh.geometry.applyMatrix4(scaleCorrection);
+        if (bonesAre1000TimesTooLarge) {
+          asSkinnedMesh.geometry.applyMatrix4(scaleKCorrection);
+        } else {
+          asSkinnedMesh.geometry.applyMatrix4(scaleCorrection);
+        }
       }
     });
 
@@ -43,7 +50,9 @@ export const fixMeshScaleCorrectionStep: Step = {
       didApply: true,
       topLevelMessage: {
         level: "info",
-        message: "Detected mesh size was > 10 in y/z. Scaled down to 10% of initial.",
+        message: `Detected mesh size was > ${
+          bonesAre1000TimesTooLarge ? "100" : "10"
+        } in y/z. Scaled down to ${bonesAre1000TimesTooLarge ? "1%" : "10%"} of initial.`,
       },
       logs: [bonesSizeLog],
     };

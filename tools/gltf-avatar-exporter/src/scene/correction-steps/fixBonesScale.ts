@@ -5,6 +5,7 @@ import { getBonesBoundingBox } from "./getBonesBoundingBox";
 import { LogMessage, Step } from "./types";
 
 const scaleCorrection = new THREE.Matrix4().makeScale(0.01, 0.01, 0.01);
+const scaleKCorrection = new THREE.Matrix4().makeScale(0.001, 0.001, 0.001);
 
 export const fixBonesScaleCorrectionStep: Step = {
   name: "fixBonesScale",
@@ -18,6 +19,8 @@ export const fixBonesScaleCorrectionStep: Step = {
       message: `Bones size: x: ${xBonesSize}, y: ${yBonesSize}, z: ${zBonesSize}`,
     };
     const bonesAre100TimesTooLarge = zBonesSize > 10 || yBonesSize > 10;
+    const bonesAre1000TimesTooLarge = zBonesSize > 100 || yBonesSize > 100;
+
     if (!bonesAre100TimesTooLarge) {
       return {
         didApply: false,
@@ -32,7 +35,11 @@ export const fixBonesScaleCorrectionStep: Step = {
     group.traverse((child) => {
       const asBone = child as THREE.Bone;
       if (asBone.isBone) {
-        asBone.position.applyMatrix4(scaleCorrection);
+        if (bonesAre1000TimesTooLarge) {
+          asBone.position.applyMatrix4(scaleKCorrection);
+        } else {
+          asBone.position.applyMatrix4(scaleCorrection);
+        }
         asBone.updateMatrixWorld(true);
       }
     });
@@ -41,7 +48,9 @@ export const fixBonesScaleCorrectionStep: Step = {
       didApply: true,
       topLevelMessage: {
         level: "info",
-        message: "Detected bones were > 10 in y/z. Scaled down to 10% of initial.",
+        message: `Detected bones were > ${
+          bonesAre1000TimesTooLarge ? "100" : "10"
+        } in y/z. Scaled down to ${bonesAre1000TimesTooLarge ? "1%" : "10%"} initial.`,
       },
       logs: [bonesSizeLog],
     };
