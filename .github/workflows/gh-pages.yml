@@ -6,6 +6,12 @@ on:
       - main
   pull_request:
 
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+  checks: write
+
 jobs:
   deploy:
     runs-on: ubuntu-20.04
