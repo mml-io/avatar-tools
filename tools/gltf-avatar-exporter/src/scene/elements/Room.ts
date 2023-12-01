@@ -1,17 +1,17 @@
-import { FrontSide, Group, Mesh, MeshStandardMaterial, PlaneGeometry } from "three";
+import { CircleGeometry, FrontSide, Group, Mesh, MeshStandardMaterial } from "three";
 
 import { CheckerTexture } from "./CheckerTexture";
 
 export class Room extends Group {
-  private readonly floorSize = 200;
-  private readonly floorGeometry = new PlaneGeometry(this.floorSize, this.floorSize, 1, 1);
+  private readonly floorSize = 30;
+  private readonly floorGeometry = new CircleGeometry(this.floorSize, 36);
   private readonly floorMaterial: MeshStandardMaterial;
   private readonly floorMesh: Mesh | null = null;
   private readonly checkerTexture: CheckerTexture;
 
   constructor() {
     super();
-    this.checkerTexture = new CheckerTexture(this.floorSize / 2, this.floorSize / 2);
+    this.checkerTexture = new CheckerTexture(this.floorSize / 1, this.floorSize / 1);
 
     this.floorMaterial = new MeshStandardMaterial({
       color: 0xbcbcbc,

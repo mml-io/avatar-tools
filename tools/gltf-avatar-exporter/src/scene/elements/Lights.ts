@@ -1,7 +1,7 @@
 import { AmbientLight, DirectionalLight, OrthographicCamera, Vector3 } from "three";
 
 export class Lights {
-  public ambientLight: AmbientLight = new AmbientLight(0xffffff, 0.05);
+  public ambientLight: AmbientLight = new AmbientLight(0xffffff, 0.5);
   public mainLight: DirectionalLight;
 
   private shadowResolution: number = 8192;
