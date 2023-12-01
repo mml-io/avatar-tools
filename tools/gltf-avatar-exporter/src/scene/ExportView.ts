@@ -136,9 +136,10 @@ export class ExportView extends QuadrantScene {
     this.debugGroup.visible = this.debugCheckbox.checked;
   }
 
-  public update() {
+  public update(slowMotion: boolean) {
     if (this.loadedAnimationState !== null) {
-      this.loadedAnimationState.animationMixer.update(this.timeManager.deltaTime);
+      const dt = slowMotion ? this.timeManager.deltaTime * 0.25 : this.timeManager.deltaTime;
+      this.loadedAnimationState.animationMixer.update(dt);
     }
     super.update();
   }
