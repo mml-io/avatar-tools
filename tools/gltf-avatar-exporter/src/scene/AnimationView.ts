@@ -19,7 +19,10 @@ export class AnimationView extends QuadrantScene {
     animationMixer: AnimationMixer;
   } | null = null;
   private clearAnimationButton: HTMLButtonElement;
+  private toggleSlowMotionButton: HTMLButtonElement;
   private useSampleAnimationButton: HTMLButtonElement;
+
+  public slowMotion: boolean = false;
 
   constructor(
     private modelLoader: ModelLoader,
@@ -38,6 +41,13 @@ export class AnimationView extends QuadrantScene {
     )! as HTMLButtonElement;
     this.clearAnimationButton.addEventListener("click", () => {
       this.reset();
+    });
+
+    this.toggleSlowMotionButton = document.getElementById(
+      "toggle-slowmotion-button",
+    )! as HTMLButtonElement;
+    this.toggleSlowMotionButton.addEventListener("click", () => {
+      this.slowMotion = !this.slowMotion;
     });
 
     this.useSampleAnimationButton = document.getElementById(

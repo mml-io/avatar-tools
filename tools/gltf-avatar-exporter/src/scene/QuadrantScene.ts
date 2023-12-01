@@ -125,7 +125,7 @@ export class QuadrantScene {
     this.orbitControls.update();
   }
 
-  public update(): void {
+  public update(_slowMotion: boolean = false): void {
     this.renderer.render(this.scene, this.camera);
     this.orbitControls.update();
   }

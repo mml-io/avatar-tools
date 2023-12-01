@@ -62,7 +62,7 @@ class App {
   public update(): void {
     this.timeManager.update();
     this.importView.update();
-    this.exportView.update();
+    this.exportView.update(this.animationView.slowMotion);
     this.animationView.update();
     requestAnimationFrame(() => {
       this.update();
