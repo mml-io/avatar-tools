@@ -33,7 +33,7 @@ export class CheckerTexture extends DataTexture {
     const data = new Uint8Array(size);
 
     for (let i = 0; i <= 12; i += 4) {
-      const c = i === 4 || i === 8 ? 127 : 255;
+      const c = i === 4 || i === 8 ? 70 : 200;
       CheckerTexture.fillData(data, i, c, c, c, 255);
     }
 

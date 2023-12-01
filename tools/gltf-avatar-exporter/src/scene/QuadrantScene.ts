@@ -1,7 +1,6 @@
 import {
   Box3,
   BufferGeometry,
-  Fog,
   Group,
   PCFSoftShadowMap,
   PerspectiveCamera,
@@ -31,8 +30,6 @@ export class QuadrantScene {
     this.renderer.shadowMap.type = PCFSoftShadowMap;
     this.renderer.shadowMap.enabled = true;
     this.renderer.setSize(this.width, this.height);
-
-    this.scene.fog = new Fog(0x000000, 0.01, 50);
 
     this.camera.position.set(0, 1, 2);
     this.camera.lookAt(this.scene.position);
@@ -76,7 +73,6 @@ export class QuadrantScene {
     const fitHeightDistance = maxSize / (2 * Math.atan((Math.PI * this.camera.fov) / 360));
     const fitWidthDistance = fitHeightDistance / this.camera.aspect;
     const distance = Math.max(fitHeightDistance, fitWidthDistance);
-    this.scene.fog = new Fog(0x000000, 0.01, distance * 5);
 
     const offset = new Vector3(0, distance * 0.1, 0);
 
