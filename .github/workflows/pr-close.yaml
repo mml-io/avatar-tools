@@ -5,6 +5,12 @@ on:
   pull_request:
     types: [closed]
 
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+  checks: write
+
 jobs:
   delete_preview:
     runs-on: ubuntu-20.04

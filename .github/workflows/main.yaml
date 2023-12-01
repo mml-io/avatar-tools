@@ -99,6 +99,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./github-pages-publisher/build
+          destination_dir: main
 
   summary:
     name: Summary
