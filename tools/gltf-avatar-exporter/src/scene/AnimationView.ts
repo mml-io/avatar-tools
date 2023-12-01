@@ -1,3 +1,4 @@
+import { TimeManager } from "@mml-io/3d-web-client-core";
 import { AnimationClip, AnimationMixer, Bone, SkeletonHelper, Vector3 } from "three";
 
 // Jump animation for UE5 Manny exported as GLB from UE5
@@ -27,6 +28,7 @@ export class AnimationView extends QuadrantScene {
   constructor(
     private modelLoader: ModelLoader,
     private onAnimationClipLoaded: (clip: AnimationClip | null) => void,
+    private timeManager: TimeManager,
   ) {
     super("seQuadrant");
     this.lights = new Lights(this.camOffset);
@@ -81,7 +83,8 @@ export class AnimationView extends QuadrantScene {
 
   public update() {
     if (this.loadedState) {
-      this.loadedState.animationMixer.setTime(Date.now() / 1000);
+      const dt = this.slowMotion ? this.timeManager.deltaTime * 0.25 : this.timeManager.deltaTime;
+      this.loadedState.animationMixer.update(dt);
     }
     super.update();
   }

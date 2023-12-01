@@ -42,9 +42,13 @@ class App {
       },
     );
     this.exportView = new ExportView(this.logger, this.modelLoader, this.timeManager);
-    this.animationView = new AnimationView(this.modelLoader, (clip) => {
-      this.exportView.setAnimationClip(clip);
-    });
+    this.animationView = new AnimationView(
+      this.modelLoader,
+      (clip) => {
+        this.exportView.setAnimationClip(clip);
+      },
+      this.timeManager,
+    );
     this.disableDragAndDropElsewhere();
   }
 
