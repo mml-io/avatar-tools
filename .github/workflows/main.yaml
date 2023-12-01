@@ -18,6 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          lfs: true
           persist-credentials: false
 
       - name: "NPM Install, Build, and Cache"
@@ -32,6 +33,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          lfs: true
           persist-credentials: false
 
       - name: "Retrieve Dependencies and Build Artifacts"
@@ -49,6 +51,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          lfs: true
           persist-credentials: false
 
       - name: "Retrieve Dependencies and Build Artifacts"
@@ -66,6 +69,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          lfs: true
           persist-credentials: false
 
       - name: "Retrieve Dependencies and Build Artifacts"
@@ -75,9 +79,30 @@ jobs:
       - name: Lint
         run: npm run lint-all
 
+  publish-gh-pages:
+    name: Publish GitHub Pages
+    needs: [build, test, type-check, lint]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          lfs: true
+          persist-credentials: false
+
+      - name: "Retrieve Dependencies and Build Artifacts"
+        id: retrieve-deps-and-build
+        uses: ./.github/actions/retrieve-deps-and-build
+
+      - name: Deploy the build to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./github-pages-publisher/build
+
   summary:
     name: Summary
-    needs: [build, test, type-check, lint]
+    needs: [build, test, type-check, lint, publish-gh-pages]
     runs-on: ubuntu-latest
     steps:
       - name: Summary
@@ -86,3 +111,4 @@ jobs:
           echo "Test: ${{ needs.test.result }}"
           echo "Type Check: ${{ needs.type-check.result }}"
           echo "Lint: ${{ needs.lint.result }}"
+          echo "Publish GitHub Pages: ${{ needs.publish-gh-pages.result }}"
