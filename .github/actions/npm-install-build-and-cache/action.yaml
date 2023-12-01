@@ -46,4 +46,5 @@ runs:
         name: build-artifacts
         path: |
           tools/**/build/*
+          github-pages-publisher/build/*
         if-no-files-found: error

@@ -18,7 +18,8 @@
   },
   "workspaces": [
     "packages/*",
-    "tools/*"
+    "tools/*",
+    "github-pages-publisher"
   ],
   "devDependencies": {
     "@types/jest": "29.5.4",
