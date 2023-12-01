@@ -18,8 +18,8 @@ export const fixBonesScaleCorrectionStep: Step = {
       level: "info",
       message: `Bones size: x: ${xBonesSize}, y: ${yBonesSize}, z: ${zBonesSize}`,
     };
-    const bonesAre100TimesTooLarge = zBonesSize > 10 || yBonesSize > 10;
-    const bonesAre1000TimesTooLarge = zBonesSize > 100 || yBonesSize > 100;
+    const bonesAre100TimesTooLarge = zBonesSize > 100 || yBonesSize > 100;
+    const bonesAre1000TimesTooLarge = zBonesSize > 1000 || yBonesSize > 1000;
 
     if (!bonesAre100TimesTooLarge) {
       return {
