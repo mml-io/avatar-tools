@@ -12,15 +12,15 @@ jobs:
     env:
       PR_PATH: pull/${{github.event.number}}
     steps:
-      - name: Comment on PR
-        uses: hasura/comment-progress@v2.2.0
-        if: github.ref != 'refs/heads/main'
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          number: ${{ github.event.number }}
-          id: deploy-preview
-          message: "Starting deployment of preview ⏳..."
+#      - name: Comment on PR
+#        uses: hasura/comment-progress@v2.2.0
+#        if: github.ref != 'refs/heads/main'
+#        with:
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
+#          repository: ${{ github.repository }}
+#          number: ${{ github.event.number }}
+#          id: deploy-preview
+#          message: "Starting deployment of preview ⏳..."
 
       - name: Set domain
         run: echo "DOMAIN=${{ github.actor }}.github.io" >> $GITHUB_ENV
@@ -59,12 +59,12 @@ jobs:
           publish_dir: ./publish/build
           destination_dir: ${{ env.PR_PATH }}
 
-      - name: Update comment
-        uses: hasura/comment-progress@v2.2.0
-        if: github.ref != 'refs/heads/main'
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          number: ${{ github.event.number }}
-          id: deploy-preview
-          message: "A preview of ${{ github.event.after }} is uploaded and can be seen here:\n\n ✨ ${{ env.BASE_URL }} ✨\n\nChanges may take a few minutes to propagate. Since this is a preview of production, content with `draft: true` will not be rendered. The source is here: https://github.com/${{ github.repository }}/tree/gh-pages/${{ env.PR_PATH }}/"
+#      - name: Update comment
+#        uses: hasura/comment-progress@v2.2.0
+#        if: github.ref != 'refs/heads/main'
+#        with:
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
+#          repository: ${{ github.repository }}
+#          number: ${{ github.event.number }}
+#          id: deploy-preview
+#          message: "A preview of ${{ github.event.after }} is uploaded and can be seen here:\n\n ✨ ${{ env.BASE_URL }} ✨\n\nChanges may take a few minutes to propagate. Since this is a preview of production, content with `draft: true` will not be rendered. The source is here: https://github.com/${{ github.repository }}/tree/gh-pages/${{ env.PR_PATH }}/"
