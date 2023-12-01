@@ -18,6 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          lfs: true
           persist-credentials: false
 
       - name: "NPM Install, Build, and Cache"
@@ -32,6 +33,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          lfs: true
           persist-credentials: false
 
       - name: "Retrieve Dependencies and Build Artifacts"
@@ -49,6 +51,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          lfs: true
           persist-credentials: false
 
       - name: "Retrieve Dependencies and Build Artifacts"
@@ -66,6 +69,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          lfs: true
           persist-credentials: false
 
       - name: "Retrieve Dependencies and Build Artifacts"
@@ -79,10 +83,13 @@ jobs:
     name: Publish GitHub Pages
     needs: [build]
     runs-on: ubuntu-latest
+    env:
+      PR_PATH: pull/${{github.event.number}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          lfs: true
           persist-credentials: false
 
       - name: "Retrieve Dependencies and Build Artifacts"
@@ -90,7 +97,7 @@ jobs:
         uses: ./.github/actions/retrieve-deps-and-build
 
       - name: Set base URL for preview if PR
-        run: echo "BASE_URL=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ env.PR_PATH}}/" >> $GITHUB_ENV
+        run: echo "BASE_URL=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ env.PR_PATH }}/" >> $GITHUB_ENV
 
       - name: Deploy to PR preview
         uses: peaceiris/actions-gh-pages@v3
