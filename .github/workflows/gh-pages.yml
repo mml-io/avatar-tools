@@ -23,8 +23,9 @@ jobs:
         run: |
           curl \
           -X POST \
-          -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/check-runs \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/check-runs \
           -d '{"name":"PR Preview", "head_sha":"${{github.sha}}", "status": "in_progress"}'
 
       - name: Set domain
@@ -69,6 +70,7 @@ jobs:
         run: |
           curl \
           -X POST \
-          -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/check-runs \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/check-runs \
           -d '{"name":"PR Preview", "head_sha":"${{github.sha}}", "status": "completed", "details_url": "${{ env.BASE_URL }}"}'
