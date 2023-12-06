@@ -1,4 +1,5 @@
 import { boneDedupingCorrectionStep } from "./boneDeduping";
+import { connectRootCorrectionStep } from "./connectRoot";
 import { fixBonesScaleCorrectionStep } from "./fixBonesScale";
 import { fixMeshScaleCorrectionStep } from "./fixMeshScale";
 import { levelOfDetailDedupingCorrectionStep } from "./lodDeduping";
@@ -20,6 +21,7 @@ export const correctionSteps = [
   fixMeshScaleCorrectionStep,
   fixBonesScaleCorrectionStep,
   boneDedupingCorrectionStep,
+  connectRootCorrectionStep,
   rotateRootCorrectionStep,
   rotatePelvisCorrectionStep,
   removeVertexColorsCorrectionStep,
