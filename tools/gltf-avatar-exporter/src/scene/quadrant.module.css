@@ -1,0 +1,31 @@
+.quadrant {
+    position: relative;
+    width: 50%;
+    height: 50%;
+    box-sizing: border-box;
+}
+
+.nwQuadrant {
+    /* Upper Left */
+    border-right: 1px solid black;
+}
+
+.neQuadrant {
+    /* Upper Right */
+    color: white;
+}
+
+.swQuadrant {
+    /* Bottom Left */
+    background-color: #121212;
+    color: white;
+    font-family: monospace;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    overflow: auto;
+}
+
+.seQuadrant {
+    /* Bottom Right */
+    border-top: 1px solid black;
+}

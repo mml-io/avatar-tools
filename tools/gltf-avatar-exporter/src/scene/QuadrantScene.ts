@@ -1,22 +1,22 @@
 import {
   Box3,
-  BufferGeometry,
   Group,
   PCFSoftShadowMap,
   PerspectiveCamera,
   Scene,
-  Sphere,
   Vector3,
   WebGLRenderer,
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+import styles from "./quadrant.module.css";
 
 export class QuadrantScene {
   private width: number = window.innerWidth / 2;
   private height: number = window.innerHeight / 2;
   private aspect: number = this.width / this.height;
 
-  public parentElement: HTMLDivElement;
+  public element: HTMLDivElement;
 
   public scene: Scene = new Scene();
   public camera: PerspectiveCamera = new PerspectiveCamera(60, this.aspect, 0.01, 10000);
@@ -24,8 +24,9 @@ export class QuadrantScene {
 
   private orbitControls: OrbitControls;
 
-  constructor(parentDivId: string) {
-    this.parentElement = document.getElementById(parentDivId) as HTMLDivElement;
+  constructor() {
+    this.element = document.createElement("div");
+    this.element.classList.add(styles.quadrant);
 
     this.renderer.shadowMap.type = PCFSoftShadowMap;
     this.renderer.shadowMap.enabled = true;
@@ -42,7 +43,7 @@ export class QuadrantScene {
     this.orbitControls.maxDistance = 500;
     this.orbitControls.maxPolarAngle = Math.PI / 2;
 
-    this.parentElement.appendChild(this.renderer.domElement);
+    this.element.appendChild(this.renderer.domElement);
     window.addEventListener("resize", this.updateProjection.bind(this));
   }
 
@@ -67,50 +68,41 @@ export class QuadrantScene {
         boundingBox.expandByObject(child);
       }
     });
-    const size = boundingBox.getSize(new Vector3());
-    const center = boundingBox.getCenter(new Vector3());
+    this.fitCameraToBoundingBox(boundingBox);
+  }
+
+  public fitCameraToBoundingBox(boundingBox: Box3): void {
+    if (
+      boundingBox.min.distanceTo(new Vector3()) === Infinity ||
+      boundingBox.max.distanceTo(new Vector3()) === Infinity
+    ) {
+      boundingBox.min.set(-1, -1, -1);
+      boundingBox.max.set(1, 1, 1);
+    }
+    // Create bounding box that is centered at the origin, but includes the bounding box
+    const originBoundingBox = new Box3();
+    originBoundingBox.expandByPoint(boundingBox.min);
+    originBoundingBox.expandByPoint(boundingBox.max);
+    originBoundingBox.expandByPoint(new Vector3(-boundingBox.min.x, 0, boundingBox.min.z));
+    originBoundingBox.expandByPoint(new Vector3(-boundingBox.max.x, 0, boundingBox.max.z));
+
+    const size = originBoundingBox.getSize(new Vector3());
     const maxSize = Math.max(size.x, size.y, size.z);
     const fitHeightDistance = maxSize / (2 * Math.atan((Math.PI * this.camera.fov) / 360));
     const fitWidthDistance = fitHeightDistance / this.camera.aspect;
-    const distance = Math.max(fitHeightDistance, fitWidthDistance);
+    const distance = Math.max(fitHeightDistance, fitWidthDistance) * 1.5;
 
-    const offset = new Vector3(0, distance * 0.1, 0);
+    const offset = new Vector3(0, maxSize / 2, 0);
 
     const direction = this.orbitControls.target
+      .set(0, 0, 0)
       .clone()
       .sub(this.camera.position)
       .normalize()
       .multiplyScalar(distance);
 
     this.orbitControls.maxDistance = distance * 10;
-    this.orbitControls.target.copy(center.clone().add(offset));
-
-    this.camera.near = distance / 100;
-    this.camera.far = distance * 100;
-    this.camera.updateProjectionMatrix();
-
-    this.camera.position.copy(this.orbitControls.target.clone().sub(offset)).sub(direction);
-
-    this.orbitControls.update();
-  }
-
-  public fitCameraToGeometry(geometry: BufferGeometry): void {
-    const sphere = geometry.boundingSphere as Sphere;
-    const { center, radius } = sphere;
-    const maxSize = radius * 2.0;
-    const fitHeightDistance = maxSize / (2 * Math.atan((Math.PI * this.camera.fov) / 360));
-    const fitWidthDistance = fitHeightDistance / this.camera.aspect;
-    const distance = Math.max(fitHeightDistance, fitWidthDistance);
-    const offset = new Vector3(0, distance * 0.1, 0);
-
-    const direction = this.orbitControls.target
-      .clone()
-      .sub(this.camera.position)
-      .normalize()
-      .multiplyScalar(distance);
-
-    this.orbitControls.maxDistance = distance * 10;
-    this.orbitControls.target.copy(center.clone().add(offset));
+    this.orbitControls.target.copy(offset);
 
     this.camera.near = distance / 100;
     this.camera.far = distance * 100;

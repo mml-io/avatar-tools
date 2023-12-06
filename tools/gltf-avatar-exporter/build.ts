@@ -1,10 +1,9 @@
 import fs from "fs";
 import path from "path";
 
-import CleanCSS from "clean-css";
 import * as esbuild from "esbuild";
+import cssModulesPlugin from "esbuild-css-modules-plugin";
 import { copy } from "esbuild-plugin-copy";
-
 const buildMode = "--build";
 const watchMode = "--watch";
 
@@ -26,6 +25,7 @@ const commonOptions: esbuild.BuildOptions = {
   bundle: true,
   write: true,
   sourcemap: true,
+  metafile: true,
   outdir: "./build/",
   assetNames: "[dir]/[name]-[hash]",
   preserveSymlinks: true,
@@ -40,6 +40,9 @@ const commonOptions: esbuild.BuildOptions = {
   sourceRoot: "./src",
   publicPath: "/client/",
   plugins: [
+    cssModulesPlugin({
+      inject: true,
+    }),
     copy({
       resolveFrom: "cwd",
       assets: {
@@ -56,24 +59,9 @@ const htmlPackingPlugin: esbuild.Plugin = {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     build.onEnd((_result) => {
       const htmlFilePath = path.join("./public", "index.html");
-      const cssFilePath = path.join("./public", "style.css");
       const faviconFilePath = path.join("./public", "favicon.png");
 
       let htmlContent = fs.readFileSync(htmlFilePath, "utf8");
-
-      if (fs.existsSync(cssFilePath)) {
-        const cssContent = fs.readFileSync(cssFilePath, "utf8");
-        const minifiedCss = new CleanCSS({}).minify(cssContent).styles;
-        const styleTag = `<style>${minifiedCss}</style>`;
-        const headCloseTag = "</head>";
-        const headCloseIndex = htmlContent.indexOf(headCloseTag);
-        if (headCloseIndex !== -1) {
-          htmlContent =
-            htmlContent.slice(0, headCloseIndex) + styleTag + htmlContent.slice(headCloseIndex);
-        } else {
-          htmlContent = styleTag + htmlContent;
-        }
-      }
 
       if (fs.existsSync(faviconFilePath)) {
         const faviconBuffer = fs.readFileSync(faviconFilePath);
@@ -100,15 +88,11 @@ const htmlPackingPlugin: esbuild.Plugin = {
       fs.mkdirSync("./build", { recursive: true });
       fs.writeFileSync("./build/index.html", htmlContent);
 
-      // Delete the original built/copied script and css files
+      // Delete the original built/copied script files
       fs.unlinkSync("./build/index.js");
       console.log("./build/index.js was deleted.");
-      fs.unlinkSync("./build/style.css");
-      console.log("./build/style.css was deleted.");
-      fs.unlinkSync("./build/favicon.svg");
-      console.log("./build/favicon.svg was deleted.");
       fs.unlinkSync("./build/favicon.png");
-      console.log("./build/favicon.svg was deleted.");
+      console.log("./build/favicon.png was deleted.");
     });
   },
 };

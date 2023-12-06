@@ -1,6 +1,7 @@
 import { TimeManager } from "@mml-io/3d-web-client-core";
 import { Group } from "three";
 
+import styles from "./index.module.css";
 import { LoggerView } from "./logger/LoggerView";
 import { AnimationView } from "./scene/AnimationView";
 import { ExportView } from "./scene/ExportView";
@@ -11,33 +12,18 @@ class App {
   private readonly timeManager = new TimeManager();
 
   private modelLoader: ModelLoader = new ModelLoader();
-  private logger: LoggerView = new LoggerView();
+  private logger: LoggerView;
 
   private importView: ImportView;
   private exportView: ExportView;
   private animationView: AnimationView;
 
   constructor() {
+    this.logger = new LoggerView();
     this.importView = new ImportView(
       this.logger,
       this.modelLoader,
-      (group: Group, name: string) => {
-        this.logger.logFoldableData("skeleton data", ["skeleton data"]);
-        group.traverse((child) => {
-          if (child.type === "Bone") {
-            const bonePosition = child.position.toArray().toString();
-            const boneRotation = child.rotation.toArray().toString();
-            const boneQuaternion = child.quaternion.toArray().toString();
-            const boneScale = child.scale.toArray().toString();
-            this.logger.logFoldableData("skeleton data", [`${child.name}`, `pos: ${bonePosition}`]);
-            this.logger.logFoldableData("skeleton data", [`${child.name}`, `rot: ${boneRotation}`]);
-            this.logger.logFoldableData("skeleton data", [
-              `${child.name}`,
-              `quat: ${boneQuaternion}`,
-            ]);
-            this.logger.logFoldableData("skeleton data", [`${child.name}`, `scale: ${boneScale}`]);
-          }
-        });
+      (group: Group | null, name: string) => {
         this.exportView.setImportedModelGroup(group, name);
       },
     );
@@ -49,6 +35,13 @@ class App {
       },
       this.timeManager,
     );
+    const container = document.createElement("div");
+    container.classList.add(styles.container);
+    document.body.append(container);
+    container.append(this.importView.element);
+    container.append(this.exportView.element);
+    container.append(this.logger.element);
+    container.append(this.animationView.element);
     this.disableDragAndDropElsewhere();
   }
 

@@ -1,27 +1,59 @@
-import { Group, SkinnedMesh, Vector3 } from "three";
+import { Group, LoadingManager, SkinnedMesh, Vector3 } from "three";
 
 import { LoggerView } from "../logger/LoggerView";
 
+import { createBoneHelpers } from "./debug-helpers/createBoneHelpers";
+import { createSkeletonHelpers } from "./debug-helpers/createSkeletonHelpers";
 import { Lights } from "./elements/Lights";
 import { Room } from "./elements/Room";
+import { createSkeletonLogFromGroup } from "./log-utils/bone-to-logs";
 import { ModelLoader } from "./ModelLoader";
 import { QuadrantScene } from "./QuadrantScene";
+import styles from "./ui.module.css";
 
 export class ImportView extends QuadrantScene {
   private readonly camOffset: Vector3 = new Vector3(0, 1.2, 0);
   private lights: Lights;
   private room: Room;
   private currentModel: Group | null = null;
+  private debugCheckbox: HTMLInputElement;
+  private debugCheckboxLabel: HTMLLabelElement;
+  private debugGroup: Group;
+  private loadingProgress: HTMLDivElement;
 
   constructor(
     private logger: LoggerView,
     private modelLoader: ModelLoader,
-    private afterLoadCB: (model: Group, name: string) => void,
+    private afterLoadCB: (model: Group | null, name: string) => void,
   ) {
-    super("nwQuadrant");
+    super();
+    this.element.classList.add(styles.nwQuadrant);
+
     this.lights = new Lights(this.camOffset);
     this.scene.add(this.lights.ambientLight);
     this.scene.add(this.lights.mainLight);
+
+    this.debugGroup = new Group();
+    this.scene.add(this.debugGroup);
+
+    this.loadingProgress = document.createElement("div");
+    this.loadingProgress.textContent = "Importing...";
+    this.loadingProgress.style.display = "none";
+    this.loadingProgress.classList.add(styles.loadingProgress);
+    this.element.append(this.loadingProgress);
+
+    this.debugCheckboxLabel = document.createElement("label");
+    this.debugCheckboxLabel.classList.add(styles.debugCheckboxLabel);
+    this.debugCheckboxLabel.textContent = "Debug";
+    this.debugCheckbox = document.createElement("input");
+    this.debugCheckbox.type = "checkbox";
+    this.debugCheckbox.checked = true;
+    this.debugCheckbox.addEventListener("change", () => {
+      this.updateDebugVisibility();
+    });
+    this.debugCheckboxLabel.append(this.debugCheckbox);
+    this.element.append(this.debugCheckboxLabel);
+    this.debugGroup.visible = this.debugCheckbox.checked;
 
     this.room = new Room();
     this.scene.add(this.room);
@@ -29,27 +61,44 @@ export class ImportView extends QuadrantScene {
     this.setupDragEvents();
   }
 
+  private updateDebugVisibility() {
+    this.debugGroup.visible = this.debugCheckbox.checked;
+  }
+
   private setupDragEvents(): void {
-    this.parentElement.addEventListener("dragover", (event) => {
+    this.element.addEventListener("dragover", (event) => {
       event.preventDefault();
     });
 
-    this.parentElement.addEventListener("drop", (event) => {
+    this.element.addEventListener("drop", (event) => {
       event.preventDefault();
-      this.logger.reset();
+      this.reset();
+      this.loadingProgress.style.display = "flex";
       if (event.dataTransfer?.files) {
         const file = event.dataTransfer.files[0];
         // Strip extension from name
         const nameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
         const reader = new FileReader();
         reader.readAsArrayBuffer(file);
-        reader.onloadend = () => {
+        reader.onloadend = async () => {
+          this.reset();
           const data: ArrayBuffer = reader.result as ArrayBuffer;
           this.logger.log(`Loading ${file.name}`);
-          this.loadModelFromBuffer(data, nameWithoutExtension);
+          await this.loadModelFromBuffer(data, nameWithoutExtension);
+          this.loadingProgress.style.display = "none";
         };
       }
     });
+  }
+
+  private reset() {
+    this.logger.reset();
+    if (this.currentModel !== null) {
+      this.scene.remove(this.currentModel);
+    }
+    this.afterLoadCB(null, "reset");
+    this.debugGroup.clear();
+    this.currentModel = null;
   }
 
   private async loadModelFromBuffer(buffer: ArrayBuffer, name: string): Promise<void> {
@@ -61,19 +110,44 @@ export class ImportView extends QuadrantScene {
           (child as SkinnedMesh).castShadow = true;
         }
       });
-      if (this.currentModel !== null) {
-        this.scene.remove(this.currentModel);
-        this.currentModel = null;
-      }
+
+      const skeletonHelpers = createSkeletonHelpers(group);
+      this.debugGroup.add(skeletonHelpers);
+      const boneHelpers = createBoneHelpers(group);
+      this.debugGroup.add(boneHelpers);
+
+      this.logger.logNestedLogMessage(createSkeletonLogFromGroup("Imported Skeleton", group));
       this.currentModel = group;
       this.scene.add(this.currentModel);
-      setTimeout(() => this.fitCameraToGroup(this.currentModel!), 1000);
+      this.fitCameraToGroup(this.currentModel);
     } else {
       console.error("Unable to load model");
       return;
     }
 
-    const { group: pipelineGroup } = await this.modelLoader.loadFromBuffer(buffer, "");
+    const loadingManager = new LoadingManager();
+    let hasAssetsToLoad = false;
+    loadingManager.onStart = () => {
+      hasAssetsToLoad = true;
+    };
+    const didLoad = new Promise<void>((resolve) => {
+      loadingManager.onLoad = () => {
+        resolve();
+      };
+    });
+
+    const { group: pipelineGroup } = await this.modelLoader.loadFromBuffer(
+      buffer,
+      "",
+      loadingManager,
+    );
+
+    // Only wait for loading if there are assets to load
+    if (hasAssetsToLoad) {
+      // Wait for all resources to load - including (embedded) texture blobs
+      await didLoad;
+    }
+
     if (pipelineGroup) {
       this.afterLoadCB(pipelineGroup, name);
     } else {

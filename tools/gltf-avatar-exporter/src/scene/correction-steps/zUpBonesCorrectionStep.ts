@@ -2,7 +2,7 @@ import { Group } from "three";
 import * as THREE from "three";
 
 import { getBonesBoundingBox } from "./getBonesBoundingBox";
-import { Step } from "./types";
+import { LogMessage, Step } from "./types";
 
 const zUpCorrection = new THREE.Matrix4().makeRotationX(-Math.PI / 2);
 
@@ -10,13 +10,18 @@ export const zUpBonesCorrectionStep: Step = {
   name: "zUpBones",
   action: (group: Group) => {
     const bonesBoundingBox = getBonesBoundingBox(group);
+    const xBonesSize = bonesBoundingBox.max.x - bonesBoundingBox.min.x;
     const yBonesSize = bonesBoundingBox.max.y - bonesBoundingBox.min.y;
     const zBonesSize = bonesBoundingBox.max.z - bonesBoundingBox.min.z;
+    const bonesSizeLog: LogMessage = {
+      level: "info",
+      message: `Bones size: x: ${xBonesSize}, y: ${yBonesSize}, z: ${zBonesSize}`,
+    };
     const bonesAreZUp = zBonesSize > yBonesSize;
-
     if (!bonesAreZUp) {
       return {
         didApply: false,
+        logs: [bonesSizeLog],
         topLevelMessage: {
           level: "info",
           message: "Detected bones were y-up (height was in y axis). No correction needed.",
@@ -45,6 +50,7 @@ export const zUpBonesCorrectionStep: Step = {
         level: "info",
         message: "Detected bones were z-up (height was in z axis). Rotated to make height y axis.",
       },
+      logs: [bonesSizeLog],
     };
   },
 };

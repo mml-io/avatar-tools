@@ -74,10 +74,11 @@ export class ModelLoader {
   async loadFromBuffer(
     buffer: ArrayBuffer,
     pathName: string,
+    manager?: THREE.LoadingManager,
   ): Promise<{ group: Group; animations?: Array<AnimationClip> }> {
     if (IsFBXBinary(buffer)) {
       console.log("Loading FBX binary");
-      const group = this.fbxLoader.parse(buffer, pathName);
+      const group = (manager ? new FBXLoader(manager) : this.fbxLoader).parse(buffer, pathName);
       return { group };
     }
 
@@ -85,7 +86,7 @@ export class ModelLoader {
     if (gltfMagic === BINARY_EXTENSION_HEADER_MAGIC) {
       console.log("Loading GLTF binary");
       return new Promise((resolve, reject) => {
-        this.gltfLoader.parse(
+        (manager ? new GLTFLoader(manager) : this.gltfLoader).parse(
           buffer,
           pathName,
           (gltf: GLTF) => {
@@ -101,13 +102,13 @@ export class ModelLoader {
     const text = convertArrayBufferToString(buffer);
     if (isFbxFormatASCII(text)) {
       console.log("Loading FBX text");
-      const group = this.fbxLoader.parse(text, pathName);
+      const group = (manager ? new FBXLoader(manager) : this.fbxLoader).parse(text, pathName);
       return { group };
     }
 
     console.log("Loading GLTF text");
     return new Promise<{ group: Group; animations?: Array<AnimationClip> }>((resolve, reject) => {
-      this.gltfLoader.parse(
+      (manager ? new GLTFLoader(manager) : this.gltfLoader).parse(
         buffer,
         pathName,
         (gltf: GLTF) => {

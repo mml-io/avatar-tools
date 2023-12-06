@@ -9,18 +9,23 @@ import { createBoneHelpers } from "./debug-helpers/createBoneHelpers";
 import { createSkeletonHelpers } from "./debug-helpers/createSkeletonHelpers";
 import { Lights } from "./elements/Lights";
 import { Room } from "./elements/Room";
+import { createSkeletonLogFromGroup } from "./log-utils/bone-to-logs";
 import { ModelLoader } from "./ModelLoader";
 import { QuadrantScene } from "./QuadrantScene";
+import styles from "./ui.module.css";
 
 export class ExportView extends QuadrantScene {
   private readonly camOffset: Vector3 = new Vector3(0, 1.2, 0);
   private lights: Lights;
   private room: Room;
   private currentModel: Group | null = null;
+  private buffer: ArrayBuffer | null = null;
   private exportButton: HTMLButtonElement;
   private debugCheckbox: HTMLInputElement;
-  private buffer: ArrayBuffer | null = null;
+  private debugCheckboxLabel: HTMLLabelElement;
   private debugGroup: Group;
+
+  private loadingProgress: HTMLDivElement;
 
   private currentAnimationClip: AnimationClip | null = null;
   private loadedAnimationState: {
@@ -34,14 +39,25 @@ export class ExportView extends QuadrantScene {
     private modelLoader: ModelLoader,
     private timeManager: TimeManager,
   ) {
-    super("neQuadrant");
+    super();
+    this.element.classList.add(styles.neQuadrant);
+
     this.lights = new Lights(this.camOffset);
     this.scene.add(this.lights.ambientLight);
     this.scene.add(this.lights.mainLight);
+
+    this.loadingProgress = document.createElement("div");
+    this.loadingProgress.textContent = "Processing...";
+    this.loadingProgress.style.display = "none";
+    this.loadingProgress.classList.add(styles.loadingProgress);
+    this.element.append(this.loadingProgress);
+
     this.debugGroup = new Group();
     this.scene.add(this.debugGroup);
 
-    this.exportButton = document.getElementById("export-button")! as HTMLButtonElement;
+    this.exportButton = document.createElement("button");
+    this.exportButton.classList.add(styles.button, styles.exportButton);
+    this.exportButton.textContent = "Export";
     this.exportButton.addEventListener("click", () => {
       if (this.buffer !== null) {
         const blob = new Blob([this.buffer], { type: "application/octet-stream" });
@@ -51,19 +67,28 @@ export class ExportView extends QuadrantScene {
         link.click();
       }
     });
-    this.debugCheckbox = document.getElementById("debug-checkbox")! as HTMLInputElement;
+    this.element.append(this.exportButton);
+
+    this.debugCheckboxLabel = document.createElement("label");
+    this.debugCheckboxLabel.classList.add(styles.debugCheckboxLabel);
+    this.debugCheckboxLabel.textContent = "Debug";
+    this.debugCheckbox = document.createElement("input");
+    this.debugCheckbox.type = "checkbox";
+    this.debugCheckbox.checked = true;
     this.debugCheckbox.addEventListener("change", () => {
       this.updateDebugVisibility();
     });
+    this.debugCheckboxLabel.append(this.debugCheckbox);
+    this.element.append(this.debugCheckboxLabel);
     this.debugGroup.visible = this.debugCheckbox.checked;
 
     this.room = new Room();
     this.scene.add(this.room);
 
-    this.parentElement.addEventListener("dragover", this.preventDragDrop);
-    this.parentElement.addEventListener("drop", this.preventDragDrop);
-    this.parentElement.addEventListener("dragover", this.preventDragDrop);
-    this.parentElement.addEventListener("drop", this.preventDragDrop);
+    this.element.addEventListener("dragover", this.preventDragDrop);
+    this.element.addEventListener("drop", this.preventDragDrop);
+    this.element.addEventListener("dragover", this.preventDragDrop);
+    this.element.addEventListener("drop", this.preventDragDrop);
   }
 
   private preventDragDrop = (event: DragEvent) => {
@@ -75,10 +100,12 @@ export class ExportView extends QuadrantScene {
     this.name = name;
     const { group } = await this.modelLoader.loadFromBuffer(buffer, "");
     if (group) {
+      this.logger.logNestedLogMessage(createSkeletonLogFromGroup("Export Skeleton", group));
       group.traverse((child) => {
-        if (child.type === "SkinnedMesh") {
-          (child as SkinnedMesh).receiveShadow = true;
-          (child as SkinnedMesh).castShadow = true;
+        const asSkinnedMesh = child as SkinnedMesh;
+        if (asSkinnedMesh.isSkinnedMesh) {
+          asSkinnedMesh.receiveShadow = true;
+          asSkinnedMesh.castShadow = true;
         }
       });
 
@@ -111,25 +138,29 @@ export class ExportView extends QuadrantScene {
     this.buffer = null;
   }
 
-  public setImportedModelGroup(group: Group, name: string) {
+  public setImportedModelGroup(group: Group | null, name: string) {
     this.reset();
-    for (const step of correctionSteps) {
-      const stepResult = step.action(group);
-      this.logger.logStepResult(step.name, stepResult);
-    }
+    if (group) {
+      this.loadingProgress.style.display = "flex";
+      for (const step of correctionSteps) {
+        const stepResult = step.action(group);
+        this.logger.logStepResult(step.name, stepResult);
+      }
 
-    new GLTFExporter().parse(
-      group,
-      (gltf) => {
-        this.loadModelFromBuffer(gltf as ArrayBuffer, name);
-      },
-      (err) => {
-        console.error("gltf error", err);
-      },
-      {
-        binary: true,
-      },
-    );
+      new GLTFExporter().parse(
+        group,
+        async (gltf) => {
+          await this.loadModelFromBuffer(gltf as ArrayBuffer, name);
+          this.loadingProgress.style.display = "none";
+        },
+        (err) => {
+          console.error("gltf error", err);
+        },
+        {
+          binary: true,
+        },
+      );
+    }
   }
 
   private updateDebugVisibility() {
