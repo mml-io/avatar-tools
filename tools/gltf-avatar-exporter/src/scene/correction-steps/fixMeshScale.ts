@@ -21,8 +21,8 @@ export const fixMeshScaleCorrectionStep: Step = {
       level: "info",
       message: `Bones size: x: ${xBonesSize}, y: ${yBonesSize}, z: ${zBonesSize}`,
     };
-    const bonesAre100TimesTooLarge = zBonesSize > 100 || yBonesSize > 100;
-    const bonesAre1000TimesTooLarge = zBonesSize > 1000 || yBonesSize > 1000;
+    const bonesAre100TimesTooLarge = zBonesSize > 50 || yBonesSize > 50;
+    const bonesAre1000TimesTooLarge = zBonesSize > 500 || yBonesSize > 500;
 
     if (!bonesAre100TimesTooLarge) {
       return {
