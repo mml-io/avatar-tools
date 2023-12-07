@@ -1,9 +1,10 @@
 import * as THREE from "three";
 import { Group, Texture } from "three";
 
+import { forEachMapKey } from "./materials/forEachMapKey";
 import { Step } from "./types";
 
-function fixMap(texture: Texture, setDefaultColorIfMissing: boolean = false): Texture | null {
+function fixTexture(texture: Texture, setDefaultColorIfMissing: boolean = false): Texture | null {
   if (!texture.image) {
     // Replace with a placeholder texture (all white)
     const placeholderTexture = new THREE.Texture();
@@ -21,178 +22,17 @@ function fixMap(texture: Texture, setDefaultColorIfMissing: boolean = false): Te
   return null;
 }
 
-const lambertMaterialTextureKeys: Array<
-  | "bumpMap"
-  | "displacementMap"
-  | "emissiveMap"
-  | "map"
-  | "lightMap"
-  | "normalMap"
-  | "aoMap"
-  | "specularMap"
-  | "alphaMap"
-  | "envMap"
-> = [
-  "bumpMap",
-  "displacementMap",
-  "emissiveMap",
-  "map",
-  "lightMap",
-  "normalMap",
-  "aoMap",
-  "specularMap",
-  "alphaMap",
-  "envMap",
-];
-
-const standardMaterialTextureKeys: Array<
-  | "map"
-  | "lightMap"
-  | "aoMap"
-  | "emissiveMap"
-  | "bumpMap"
-  | "normalMap"
-  | "displacementMap"
-  | "roughnessMap"
-  | "metalnessMap"
-  | "alphaMap"
-  | "envMap"
-> = [
-  "map",
-  "lightMap",
-  "aoMap",
-  "emissiveMap",
-  "bumpMap",
-  "normalMap",
-  "displacementMap",
-  "roughnessMap",
-  "metalnessMap",
-  "alphaMap",
-  "envMap",
-];
-
-const physicalMaterialTextureKeys: Array<
-  | "clearcoatMap"
-  | "clearcoatRoughnessMap"
-  | "clearcoatNormalMap"
-  | "sheenColorMap"
-  | "sheenRoughnessMap"
-  | "transmissionMap"
-  | "thicknessMap"
-  | "specularIntensityMap"
-  | "specularColorMap"
-  | "iridescenceMap"
-  | "iridescenceThicknessMap"
-  | "anisotropyMap"
-  | "map"
-  | "lightMap"
-  | "aoMap"
-  | "emissiveMap"
-  | "bumpMap"
-  | "normalMap"
-  | "displacementMap"
-  | "roughnessMap"
-  | "metalnessMap"
-  | "alphaMap"
-  | "envMap"
-> = [
-  "clearcoatMap",
-  "clearcoatRoughnessMap",
-  "clearcoatNormalMap",
-  "sheenColorMap",
-  "sheenRoughnessMap",
-  "transmissionMap",
-  "thicknessMap",
-  "specularIntensityMap",
-  "specularColorMap",
-  "iridescenceMap",
-  "iridescenceThicknessMap",
-  "anisotropyMap",
-  "map",
-  "lightMap",
-  "aoMap",
-  "emissiveMap",
-  "bumpMap",
-  "normalMap",
-  "displacementMap",
-  "roughnessMap",
-  "metalnessMap",
-  "alphaMap",
-  "envMap",
-];
-
-const phongMaterialTextureKeys: Array<
-  | "map"
-  | "lightMap"
-  | "aoMap"
-  | "emissiveMap"
-  | "bumpMap"
-  | "normalMap"
-  | "displacementMap"
-  | "specularMap"
-  | "alphaMap"
-  | "envMap"
-> = [
-  "map",
-  "lightMap",
-  "aoMap",
-  "emissiveMap",
-  "bumpMap",
-  "normalMap",
-  "displacementMap",
-  "specularMap",
-  "alphaMap",
-  "envMap",
-];
-
 function fixMaterial(material: THREE.Material): Array<string> {
   const missingTextures: Array<string> = [];
+
   // Identify missing textures (all textures should be embedded so the texture should already be loaded)
-  if (material instanceof THREE.MeshLambertMaterial) {
-    for (const key of lambertMaterialTextureKeys) {
-      const texture = material[key];
-      if (texture) {
-        const fixedMap = fixMap(texture, key === "map");
-        if (fixedMap) {
-          material[key] = fixedMap;
-          missingTextures.push(`${texture.name} (${key})`);
-        }
-      }
+  forEachMapKey(material, (key, texture) => {
+    const fixedTexture = fixTexture(texture, key === "map");
+    if (fixedTexture) {
+      (material as any)[key] = fixedTexture;
+      missingTextures.push(`${texture.name} (${key})`);
     }
-  } else if (material instanceof THREE.MeshStandardMaterial) {
-    for (const key of standardMaterialTextureKeys) {
-      const texture = material[key];
-      if (texture) {
-        const fixedMap = fixMap(texture, key === "map");
-        if (fixedMap) {
-          material[key] = fixedMap;
-          missingTextures.push(`${texture.name} (${key})`);
-        }
-      }
-    }
-  } else if (material instanceof THREE.MeshPhysicalMaterial) {
-    for (const key of physicalMaterialTextureKeys) {
-      const texture = material[key];
-      if (texture) {
-        const fixedMap = fixMap(texture);
-        if (fixedMap) {
-          material[key] = fixedMap;
-          missingTextures.push(`${texture.name} (${key})`);
-        }
-      }
-    }
-  } else if (material instanceof THREE.MeshPhongMaterial) {
-    for (const key of phongMaterialTextureKeys) {
-      const texture = material[key];
-      if (texture) {
-        const fixedMap = fixMap(texture, key === "map");
-        if (fixedMap) {
-          material[key] = fixedMap;
-          missingTextures.push(`${texture.name} (${key})`);
-        }
-      }
-    }
-  }
+  });
   return missingTextures;
 }
 

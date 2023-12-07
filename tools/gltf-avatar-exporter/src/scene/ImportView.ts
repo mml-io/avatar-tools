@@ -1,4 +1,5 @@
 import { Group, LoadingManager, SkinnedMesh, Vector3 } from "three";
+import { TGALoader } from "three/examples/jsm/loaders/TGALoader.js";
 
 import { LoggerView } from "../logger/LoggerView";
 
@@ -102,12 +103,16 @@ export class ImportView extends QuadrantScene {
   }
 
   private async loadModelFromBuffer(buffer: ArrayBuffer, name: string): Promise<void> {
-    const { group } = await this.modelLoader.loadFromBuffer(buffer, "");
+    const importViewLoadingManager = new LoadingManager();
+    importViewLoadingManager.addHandler(/\.tga$/i, new TGALoader(importViewLoadingManager));
+    const { group } = await this.modelLoader.loadFromBuffer(buffer, "", importViewLoadingManager);
+
     if (group) {
       group.traverse((child) => {
-        if (child.type === "SkinnedMesh") {
-          (child as SkinnedMesh).receiveShadow = true;
-          (child as SkinnedMesh).castShadow = true;
+        const asSkinnedMesh = child as SkinnedMesh;
+        if (asSkinnedMesh.isSkinnedMesh) {
+          asSkinnedMesh.receiveShadow = true;
+          asSkinnedMesh.castShadow = true;
         }
       });
 
@@ -126,6 +131,7 @@ export class ImportView extends QuadrantScene {
     }
 
     const loadingManager = new LoadingManager();
+    loadingManager.addHandler(/\.tga$/i, new TGALoader(loadingManager));
     let hasAssetsToLoad = false;
     loadingManager.onStart = () => {
       hasAssetsToLoad = true;
