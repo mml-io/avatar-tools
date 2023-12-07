@@ -8,6 +8,7 @@ import { Lights } from "./elements/Lights";
 import { Room } from "./elements/Room";
 import { ModelLoader } from "./ModelLoader";
 import { QuadrantScene } from "./QuadrantScene";
+import styles from "./ui.module.css";
 
 export class AnimationView extends QuadrantScene {
   private readonly camOffset: Vector3 = new Vector3(0, 1.2, 0);
@@ -24,13 +25,15 @@ export class AnimationView extends QuadrantScene {
   private useSampleAnimationButton: HTMLButtonElement;
 
   public slowMotion: boolean = false;
+  private buttonHolder: HTMLDivElement;
 
   constructor(
     private modelLoader: ModelLoader,
     private onAnimationClipLoaded: (clip: AnimationClip | null) => void,
     private timeManager: TimeManager,
   ) {
-    super("seQuadrant");
+    super();
+    this.element.classList.add(styles.seQuadrant);
     this.lights = new Lights(this.camOffset);
     this.scene.add(this.lights.ambientLight);
     this.scene.add(this.lights.mainLight);
@@ -38,36 +41,43 @@ export class AnimationView extends QuadrantScene {
     this.room = new Room();
     this.scene.add(this.room);
 
-    this.clearAnimationButton = document.getElementById(
-      "clear-animation-button",
-    )! as HTMLButtonElement;
-    this.clearAnimationButton.addEventListener("click", () => {
-      this.reset();
-    });
+    this.buttonHolder = document.createElement("div");
+    this.buttonHolder.classList.add(styles.animationViewButtonHolder);
+    this.element.append(this.buttonHolder);
 
-    this.toggleSlowMotionButton = document.getElementById(
-      "toggle-slowmotion-button",
-    )! as HTMLButtonElement;
-    this.toggleSlowMotionButton.addEventListener("click", () => {
-      this.slowMotion = !this.slowMotion;
-    });
-
-    this.useSampleAnimationButton = document.getElementById(
-      "sample-animation-button",
-    )! as HTMLButtonElement;
+    this.useSampleAnimationButton = document.createElement("button");
+    this.useSampleAnimationButton.classList.add(styles.button);
+    this.useSampleAnimationButton.textContent = "Use Sample Animation";
     this.useSampleAnimationButton.addEventListener("click", () => {
       this.useSampleAnimation();
     });
+    this.buttonHolder.append(this.useSampleAnimationButton);
+
+    this.toggleSlowMotionButton = document.createElement("button");
+    this.toggleSlowMotionButton.classList.add(styles.button);
+    this.toggleSlowMotionButton.textContent = "Toggle Slow Motion";
+    this.toggleSlowMotionButton.addEventListener("click", () => {
+      this.slowMotion = !this.slowMotion;
+    });
+    this.buttonHolder.append(this.toggleSlowMotionButton);
+
+    this.clearAnimationButton = document.createElement("button");
+    this.clearAnimationButton.classList.add(styles.button);
+    this.clearAnimationButton.textContent = "Clear Animation";
+    this.clearAnimationButton.addEventListener("click", () => {
+      this.reset();
+    });
+    this.buttonHolder.append(this.clearAnimationButton);
 
     this.setupDragEvents();
   }
 
   private setupDragEvents(): void {
-    this.parentElement.addEventListener("dragover", (event) => {
+    this.element.addEventListener("dragover", (event) => {
       event.preventDefault();
     });
 
-    this.parentElement.addEventListener("drop", (event) => {
+    this.element.addEventListener("drop", (event) => {
       event.preventDefault();
       if (event.dataTransfer?.files) {
         const file = event.dataTransfer.files[0];
@@ -116,8 +126,9 @@ export class AnimationView extends QuadrantScene {
     this.scene.add(skeletonHelper);
 
     setTimeout(() => {
-      this.fitCameraToGeometry(skeletonHelper.geometry);
-    }, 1000);
+      skeletonHelper.geometry.computeBoundingBox();
+      this.fitCameraToBoundingBox(skeletonHelper.geometry.boundingBox!);
+    }, 100);
 
     const firstAnimation = animations[0];
     const animationMixer = new AnimationMixer(rootBone);

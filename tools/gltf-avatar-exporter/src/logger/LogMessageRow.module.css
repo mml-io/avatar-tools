@@ -1,0 +1,55 @@
+.log-message-row {
+    padding: 5px;
+    background-color: #333;
+    border-top: 1px solid #111;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-row {
+    display: flex;
+    flex-direction: row;
+
+    &.has-children {
+        cursor: pointer;
+    }
+}
+
+.icon-holder {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+
+}
+
+.message {
+    display: block;
+}
+
+.children-holder {
+    display: block;
+}
+
+.info {
+    color: #ffffff;
+}
+
+.warn {
+    color: #e19e00;
+}
+
+.error {
+    color: #ff3030;
+}
+
+.low-visibility {
+    opacity: 0.5;
+}

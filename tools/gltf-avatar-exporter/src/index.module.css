@@ -1,0 +1,14 @@
+body,
+html {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
