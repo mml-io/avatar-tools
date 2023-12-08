@@ -5,7 +5,7 @@ import { forEachMapKey } from "./materials/forEachMapKey";
 import { Step } from "./types";
 
 function fixTexture(texture: Texture, setDefaultColorIfMissing: boolean = false): Texture | null {
-  if (!texture.image) {
+  if (!texture.image || texture.image.data === null) {
     // Replace with a placeholder texture (all white)
     const placeholderTexture = new THREE.Texture();
     placeholderTexture.image = new ImageData(1, 1);
