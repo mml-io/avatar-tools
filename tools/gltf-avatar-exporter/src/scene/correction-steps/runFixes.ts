@@ -4,6 +4,7 @@ import { fixFlippedBitmapTexturesCorrectionStep } from "./fixBitmapTextures";
 import { fixBonesScaleCorrectionStep } from "./fixBonesScale";
 import { fixMeshScaleCorrectionStep } from "./fixMeshScale";
 import { levelOfDetailDedupingCorrectionStep } from "./lodDeduping";
+import { mixamoBonesRenaming } from "./mixamoBonesRenaming";
 import { placeholderMissingTexturesCorrectionStep } from "./placeholderMissingTextures";
 import { removeTransparencyFromMaterialsCorrectionStep } from "./removeTransparencyFromMaterials";
 import { removeVertexColorsCorrectionStep } from "./removeVertexColors";
@@ -22,6 +23,7 @@ export const correctionSteps = [
   fixMeshScaleCorrectionStep,
   fixBonesScaleCorrectionStep,
   boneDedupingCorrectionStep,
+  mixamoBonesRenaming,
   connectRootCorrectionStep,
   rotateRootCorrectionStep,
   rotatePelvisCorrectionStep,

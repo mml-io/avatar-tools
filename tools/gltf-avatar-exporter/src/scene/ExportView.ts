@@ -1,5 +1,5 @@
 import { TimeManager } from "@mml-io/3d-web-client-core";
-import { AnimationClip, AnimationMixer, Group, SkinnedMesh, Vector3 } from "three";
+import { AnimationClip, AnimationMixer, Bone, Group, SkinnedMesh, Vector3 } from "three";
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter.js";
 
 import { LoggerView } from "../logger/LoggerView";
@@ -142,9 +142,24 @@ export class ExportView extends QuadrantScene {
     this.reset();
     if (group) {
       this.loadingProgress.style.display = "flex";
+      let hasMixamoSkeleton = false;
+      group.traverse((child) => {
+        const asBone = child as Bone;
+        if (asBone.isBone) {
+          if (asBone.name.startsWith("mixamorig")) {
+            hasMixamoSkeleton = true;
+          }
+        }
+      });
       for (const step of correctionSteps) {
-        const stepResult = step.action(group);
-        this.logger.logStepResult(step.name, stepResult);
+        let skipStep = false;
+        if (hasMixamoSkeleton === false && step.name === "mixamoBonesRenaming") {
+          skipStep = true;
+        }
+        if (skipStep === false) {
+          const stepResult = step.action(group);
+          this.logger.logStepResult(step.name, stepResult);
+        }
       }
 
       new GLTFExporter().parse(
