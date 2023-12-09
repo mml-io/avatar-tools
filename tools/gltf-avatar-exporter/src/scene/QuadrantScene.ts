@@ -39,9 +39,8 @@ export class QuadrantScene {
     this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
     this.orbitControls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
     this.orbitControls.dampingFactor = 0.05;
-    this.orbitControls.minDistance = 1;
-    this.orbitControls.maxDistance = 500;
-    this.orbitControls.maxPolarAngle = Math.PI / 2;
+    this.orbitControls.minDistance = 0.1;
+    this.orbitControls.maxDistance = 1000;
 
     this.element.appendChild(this.renderer.domElement);
     window.addEventListener("resize", this.updateProjection.bind(this));
