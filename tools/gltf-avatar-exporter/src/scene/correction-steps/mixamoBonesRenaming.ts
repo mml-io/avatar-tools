@@ -206,13 +206,19 @@ export const mixamoBonesRenaming: Step = {
       const asBone = child as THREE.Bone;
       if (asBone.isBone) {
         if (!unrealBones.includes(asBone.name)) {
-          const children =
+          let children =
             asBone.children.length > 0
               ? `Children: ${asBone.children.map((boneChild) => `${boneChild.name} `)}`
-              : "Is LeafBone";
+              : "LeafBone";
+          if (children !== "LeafBone") {
+            asBone.children.forEach((innerChild) => {
+              asBone.parent?.add(innerChild);
+              children = `${innerChild.name} added to ${asBone.parent?.name}`;
+            });
+          }
           logs.push({
             level: "warn",
-            message: `${asBone.name} is not needed for the target Skeleton. ${children}`,
+            message: `${asBone.name} is not needed for the target Skeleton. ${children} `,
           });
         }
       }
