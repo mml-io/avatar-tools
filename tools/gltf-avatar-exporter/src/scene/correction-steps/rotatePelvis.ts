@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { Group } from "three";
 
 import { reposeSkinnedMeshes } from "./reposeSkinnedMeshes";
-import { Step } from "./types";
+import { LogMessage, Step } from "./types";
 
 function isNear(a: number, b: number, epsilon = 0.1) {
   return Math.abs(a - b) < epsilon;
@@ -14,6 +14,8 @@ const HalfPi = Math.PI / 2;
 export const rotatePelvisCorrectionStep: Step = {
   name: "rotatePelvis",
   action: (group: Group) => {
+    const logs: LogMessage[] = [];
+
     const pelvisBone = group.getObjectByName("pelvis") as THREE.Bone;
     if (!pelvisBone) {
       return {
@@ -43,10 +45,26 @@ export const rotatePelvisCorrectionStep: Step = {
       pelvisBone.rotation.x += HalfPi;
       pelvisBone.rotation.y += HalfPi;
       pelvisBone.rotation.z += HalfPi;
+      logs.push({
+        level: "info",
+        message: `rotation was: (-PI/2, -PI/2, 0). Now is: (0, 0, PI/2).`,
+      });
     } else if (isNear(pelvisX, 0) && isNear(pelvisY, HalfPi) && isNear(pelvisZ, 0)) {
       pelvisBone.rotation.x += 0;
       pelvisBone.rotation.y -= HalfPi;
       pelvisBone.rotation.z += HalfPi;
+      logs.push({
+        level: "info",
+        message: `rotation was: (0, PI/2, 0). Now is: (0, 0, PI/2).`,
+      });
+    } else if (isNear(pelvisX, 0) && isNear(pelvisY, 0) && isNear(pelvisZ, 0)) {
+      pelvisBone.rotation.x += 0;
+      pelvisBone.rotation.y += 0;
+      pelvisBone.rotation.z += HalfPi;
+      logs.push({
+        level: "info",
+        message: `rotation was: (0, 0, 0). Now is: (0, 0, PI/2).`,
+      });
     } else {
       reposeSkinnedMeshes(group);
       return {
@@ -84,17 +102,17 @@ export const rotatePelvisCorrectionStep: Step = {
 
     reposeSkinnedMeshes(group);
 
+    logs.push({
+      level: "info",
+      message: "Rotated pelvis and all children and reposed meshes against new skeleton.",
+    });
+
     return {
       didApply: true,
-      logs: [
-        {
-          message: "Rotated pelvis and all children and reposed meshes against new skeleton.",
-          level: "info",
-        },
-      ],
+      logs: logs,
       topLevelMessage: {
         level: "info",
-        message: "Detected pelvis was not at expected rotation.",
+        message: "Detected pelvis was not at expected rotation (0, 0, PI/2)",
       },
     };
   },
