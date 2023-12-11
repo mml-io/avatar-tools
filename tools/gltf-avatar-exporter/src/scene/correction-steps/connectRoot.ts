@@ -6,16 +6,29 @@ import { LogMessage, Step } from "./types";
 export const connectRootCorrectionStep: Step = {
   name: "connectRoot",
   action: (group: Group) => {
-    const rootBone = group.getObjectByName("root") as THREE.Bone;
+    let rootBone = group.getObjectByName("root") as THREE.Bone;
+
     if (!rootBone) {
-      return {
-        didApply: false,
-        topLevelMessage: {
-          level: "error",
-          message: "Could not find root bone. Cannot connect root.",
-        },
-      };
+      const pelvisBone = group.getObjectByName("pelvis");
+      const pelvisParent = pelvisBone?.parent;
+
+      if (!pelvisBone || !pelvisParent) {
+        return {
+          didApply: false,
+          topLevelMessage: {
+            level: "error",
+            message: "Could not find root bone or pelvis. Cannot connect root.",
+          },
+        };
+      }
+
+      rootBone = new THREE.Bone();
+      rootBone.name = "root";
+      rootBone.add(pelvisBone);
+
+      pelvisParent.add(rootBone);
     }
+
     const logs: Array<LogMessage> = [];
     group.traverse((child) => {
       const asSkinnedMesh = child as THREE.SkinnedMesh;
@@ -25,7 +38,7 @@ export const connectRootCorrectionStep: Step = {
           skeleton.bones.push(rootBone);
           logs.push({
             level: "info",
-            message: `Added root bone to ${asSkinnedMesh.name}.`,
+            message: `Added ${rootBone.name} bone to ${asSkinnedMesh.name} mesh.`,
           });
         }
       }
