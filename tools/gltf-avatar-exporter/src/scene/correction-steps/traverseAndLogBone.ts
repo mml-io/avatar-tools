@@ -13,7 +13,17 @@ function toFixed(value: number) {
 export function traverseAndLogBone(bone: THREE.Bone, depth = 0) {
   // print with indentation
   const indent = "-".repeat(depth);
-  const target = targetBoneTransformations[bone.name]!;
+  if (!bone) {
+    console.error(`Error. Undefined bone`);
+    return;
+  }
+  const target = targetBoneTransformations[bone.name];
+
+  if (target === null || typeof target === "undefined") {
+    console.error(`Error finding targetBoneTransformations for ${bone.name}`);
+    return;
+  }
+
   const targetPosStr = target.pos.map((n) => toFixed(n)).join(",");
   const posString = bone.position
     .toArray()
