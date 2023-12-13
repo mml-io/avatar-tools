@@ -1,0 +1,933 @@
+{
+  "version": "6.0",
+  "nxVersion": "16.10.0",
+  "deps": {
+    "@types/jest": "29.5.4",
+    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "@typescript-eslint/parser": "^6.5.0",
+    "concurrently": "^8.2.1",
+    "esbuild": "0.19.2",
+    "esbuild-jest": "0.5.0",
+    "esbuild-plugin-copy": "2.1.1",
+    "esbuild-css-modules-plugin": "3.1.0",
+    "jju": "^1.4.0",
+    "@types/jju": "^1.4.2",
+    "tmp": "^0.2.1",
+    "@types/tmp": "^0.2.3",
+    "eslint": "^8.48.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "29.6.4",
+    "jest-environment-jsdom": "29.6.4",
+    "lerna": "7.2.0",
+    "prettier": "^3.0.3",
+    "rimraf": "^5.0.1",
+    "ts-node": "^10.9.1",
+    "tsx": "3.12.8",
+    "typescript": "^5.2.2"
+  },
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": ".eslintignore",
+        "hash": "11873851757399954237"
+      },
+      {
+        "file": ".eslintrc",
+        "hash": "7727646187949489562"
+      },
+      {
+        "file": ".gitattributes",
+        "hash": "8983895535351922957"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/bug_report.yml",
+        "hash": "12059328620923332474"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/config.yml",
+        "hash": "2055367691499360235"
+      },
+      {
+        "file": ".github/ISSUE_TEMPLATE/feature_request.yml",
+        "hash": "1038793672806161163"
+      },
+      {
+        "file": ".github/PULL_REQUEST_TEMPLATE.md",
+        "hash": "11202483355372342396"
+      },
+      {
+        "file": ".github/actions/npm-install-build-and-cache/action.yaml",
+        "hash": "4409580178641793149"
+      },
+      {
+        "file": ".github/actions/retrieve-deps-and-build/action.yaml",
+        "hash": "18354601519628113376"
+      },
+      {
+        "file": ".github/dependabot.yml",
+        "hash": "14455052080591810894"
+      },
+      {
+        "file": ".github/workflows/main.yaml",
+        "hash": "17605608836206993226"
+      },
+      {
+        "file": ".github/workflows/pr-close.yaml",
+        "hash": "7128474885186356990"
+      },
+      {
+        "file": ".github/workflows/pr.yaml",
+        "hash": "15794597930723426784"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "11988939966706050787"
+      },
+      {
+        "file": ".nvmrc",
+        "hash": "14230950843324998330"
+      },
+      {
+        "file": ".nx/cache/10400970602225912748/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/10400970602225912748/outputs/tools/gltf-avatar-exporter/public/favicon.png",
+        "hash": "6014048521853908856"
+      },
+      {
+        "file": ".nx/cache/10400970602225912748/outputs/tools/gltf-avatar-exporter/public/index.html",
+        "hash": "1745661668145044787"
+      },
+      {
+        "file": ".nx/cache/10400970602225912748/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/10400970602225912748/terminalOutput",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/10400970602225912748.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/12023794673059318112/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/12023794673059318112/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/12023794673059318112/terminalOutput",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/12023794673059318112.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/1265858866643833319/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/1265858866643833319/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/1265858866643833319/terminalOutput",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/1265858866643833319.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/1426303090995443845/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/1426303090995443845/outputs/tools/gltf-avatar-exporter/public/favicon.png",
+        "hash": "6014048521853908856"
+      },
+      {
+        "file": ".nx/cache/1426303090995443845/outputs/tools/gltf-avatar-exporter/public/index.html",
+        "hash": "1745661668145044787"
+      },
+      {
+        "file": ".nx/cache/1426303090995443845/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/1426303090995443845/terminalOutput",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/1426303090995443845.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/14648494277455244876/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/14648494277455244876/outputs/tools/gltf-avatar-exporter/public/favicon.png",
+        "hash": "6014048521853908856"
+      },
+      {
+        "file": ".nx/cache/14648494277455244876/outputs/tools/gltf-avatar-exporter/public/index.html",
+        "hash": "1745661668145044787"
+      },
+      {
+        "file": ".nx/cache/14648494277455244876/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/14648494277455244876/terminalOutput",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/14648494277455244876.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/15149361556641179343/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/15149361556641179343/outputs/tools/gltf-avatar-exporter/public/favicon.png",
+        "hash": "6014048521853908856"
+      },
+      {
+        "file": ".nx/cache/15149361556641179343/outputs/tools/gltf-avatar-exporter/public/index.html",
+        "hash": "1745661668145044787"
+      },
+      {
+        "file": ".nx/cache/15149361556641179343/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/15149361556641179343/terminalOutput",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/15149361556641179343.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/15230275459830550586/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/15230275459830550586/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/15230275459830550586/terminalOutput",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/15230275459830550586.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/17623091945008844284/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/17623091945008844284/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/17623091945008844284/terminalOutput",
+        "hash": "16154446184262261662"
+      },
+      {
+        "file": ".nx/cache/17623091945008844284.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/17632857403905283679/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/17632857403905283679/outputs/tools/gltf-avatar-exporter/public/favicon.png",
+        "hash": "6014048521853908856"
+      },
+      {
+        "file": ".nx/cache/17632857403905283679/outputs/tools/gltf-avatar-exporter/public/index.html",
+        "hash": "1745661668145044787"
+      },
+      {
+        "file": ".nx/cache/17632857403905283679/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/17632857403905283679/terminalOutput",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/17632857403905283679.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/177476754531298612/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/177476754531298612/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/177476754531298612/terminalOutput",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/177476754531298612.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/2405600698346869823/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/2405600698346869823/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/2405600698346869823/terminalOutput",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/2405600698346869823.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/3035584093602373018/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/3035584093602373018/outputs/tools/gltf-avatar-exporter/public/favicon.png",
+        "hash": "6014048521853908856"
+      },
+      {
+        "file": ".nx/cache/3035584093602373018/outputs/tools/gltf-avatar-exporter/public/index.html",
+        "hash": "1745661668145044787"
+      },
+      {
+        "file": ".nx/cache/3035584093602373018/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/3035584093602373018/terminalOutput",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/3035584093602373018.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/3745019777939697945/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/3745019777939697945/outputs/tools/gltf-avatar-exporter/public/favicon.png",
+        "hash": "6014048521853908856"
+      },
+      {
+        "file": ".nx/cache/3745019777939697945/outputs/tools/gltf-avatar-exporter/public/index.html",
+        "hash": "1745661668145044787"
+      },
+      {
+        "file": ".nx/cache/3745019777939697945/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/3745019777939697945/terminalOutput",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/3745019777939697945.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/6128908446491766677/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/6128908446491766677/outputs/tools/gltf-avatar-exporter/public/favicon.png",
+        "hash": "6014048521853908856"
+      },
+      {
+        "file": ".nx/cache/6128908446491766677/outputs/tools/gltf-avatar-exporter/public/index.html",
+        "hash": "1745661668145044787"
+      },
+      {
+        "file": ".nx/cache/6128908446491766677/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/6128908446491766677/terminalOutput",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/6128908446491766677.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/6545289857911655479/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/6545289857911655479/outputs/tools/gltf-avatar-exporter/public/favicon.png",
+        "hash": "6014048521853908856"
+      },
+      {
+        "file": ".nx/cache/6545289857911655479/outputs/tools/gltf-avatar-exporter/public/index.html",
+        "hash": "1745661668145044787"
+      },
+      {
+        "file": ".nx/cache/6545289857911655479/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/6545289857911655479/terminalOutput",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/6545289857911655479.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/7010873066697226773/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/7010873066697226773/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/7010873066697226773/terminalOutput",
+        "hash": "11605528168042994568"
+      },
+      {
+        "file": ".nx/cache/7010873066697226773.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/7541508650829177745/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/7541508650829177745/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/7541508650829177745/terminalOutput",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/7541508650829177745.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/9195207886918374264/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/9195207886918374264/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/9195207886918374264/terminalOutput",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/9195207886918374264.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/9738149657824377306/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/9738149657824377306/outputs/tools/gltf-avatar-exporter/public/favicon.png",
+        "hash": "6014048521853908856"
+      },
+      {
+        "file": ".nx/cache/9738149657824377306/outputs/tools/gltf-avatar-exporter/public/index.html",
+        "hash": "1745661668145044787"
+      },
+      {
+        "file": ".nx/cache/9738149657824377306/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/9738149657824377306/terminalOutput",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/9738149657824377306.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/d/server-process.json",
+        "hash": "14904758019252528191"
+      },
+      {
+        "file": ".nx/cache/file-map.json",
+        "hash": "16840747606180021227"
+      },
+      {
+        "file": ".nx/cache/lockfile.hash",
+        "hash": "17161429337090480282"
+      },
+      {
+        "file": ".nx/cache/nx_files.nxt",
+        "hash": "14685489846579192497"
+      },
+      {
+        "file": ".nx/cache/parsed-lock-file.json",
+        "hash": "12328050046017267046"
+      },
+      {
+        "file": ".nx/cache/project-graph.json",
+        "hash": "5299479577643157020"
+      },
+      {
+        "file": ".nx/cache/run.json",
+        "hash": "9224626062402639136"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/10400970602225912748",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/11531128800668898996",
+        "hash": "15692726979249637236"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/12023794673059318112",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/12654320502305282648",
+        "hash": "4948307426722667319"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/1265858866643833319",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/1426303090995443845",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/14648494277455244876",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/15149361556641179343",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/15230275459830550586",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/17623091945008844284",
+        "hash": "16154446184262261662"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/17632857403905283679",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/177476754531298612",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/2405600698346869823",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/3035584093602373018",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/3745019777939697945",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/3963566677856435886",
+        "hash": "3018562104513650239"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/6128908446491766677",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/6545289857911655479",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/7010873066697226773",
+        "hash": "11605528168042994568"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/7541508650829177745",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/8137336338862826250",
+        "hash": "3018562104513650239"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/9195207886918374264",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/9738149657824377306",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "1378064718830249402"
+      },
+      {
+        "file": "README.md",
+        "hash": "4198028645583728474"
+      },
+      {
+        "file": "check-node-version.js",
+        "hash": "2891373549130865046"
+      },
+      {
+        "file": "lerna.json",
+        "hash": "514906884597270509"
+      },
+      {
+        "file": "nx.json",
+        "hash": "7567328167960976924"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "6737596667310756941"
+      },
+      {
+        "file": "package.json",
+        "hash": "10294983922392578792"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "3878721733251470725"
+      },
+      {
+        "file": "utils/build-library.ts",
+        "hash": "6621216762988425575"
+      },
+      {
+        "file": "utils/dtsPlugin.ts",
+        "hash": "11091514271514841289"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/15481478789043307447",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/15481478789043307447/outputs/tools/gltf-avatar-exporter/public/index.html",
+        "hash": "1745661668145044787"
+      },
+      {
+        "file": ".nx/cache/15481478789043307447/terminalOutput",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/15481478789043307447/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/15481478789043307447/outputs/tools/gltf-avatar-exporter/public/favicon.png",
+        "hash": "6014048521853908856"
+      },
+      {
+        "file": ".nx/cache/15481478789043307447.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/15481478789043307447/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/15710064130098455403",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/15710064130098455403.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/15710064130098455403/terminalOutput",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/15710064130098455403/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/15710064130098455403/source",
+        "hash": "13770636462285809734"
+      }
+    ],
+    "projectFileMap": {
+      "@mml-io/gltf-avatar-exporter": [
+        {
+          "file": "tools/gltf-avatar-exporter/build.ts",
+          "hash": "11527299092136508421"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/package.json",
+          "hash": "13169907083992091665",
+          "deps": [
+            "npm:@mml-io/3d-web-client-core",
+            "npm:three",
+            "npm:@types/three"
+          ]
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/public/favicon.png",
+          "hash": "6014048521853908856"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/public/index.html",
+          "hash": "1745661668145044787"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/assets/SampleJumpAnimation.glb",
+          "hash": "10868234467526926443"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/declaration.d.ts",
+          "hash": "967046819287790409"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/index.module.css",
+          "hash": "13225482684843453513"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/index.ts",
+          "hash": "16181674133688874408"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/logger/LogMessageRow.module.css",
+          "hash": "11484436852224402815"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/logger/LogMessageRow.ts",
+          "hash": "3104114839546531962"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/logger/LoggerView.ts",
+          "hash": "8293962360946128749"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/AnimationView.ts",
+          "hash": "6927535931280336565"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/ExportView.ts",
+          "hash": "14787043599527906252"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/ImportView.ts",
+          "hash": "7452310563703445125"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/ModelLoader.ts",
+          "hash": "18114327705484033654"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/QuadrantScene.ts",
+          "hash": "5645897729529119897"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/boneDeduping.ts",
+          "hash": "3021027656672973536"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/connectRoot.ts",
+          "hash": "17265342733710083957"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/fixBitmapTextures.ts",
+          "hash": "15034091597782336200"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/fixBonesScale.ts",
+          "hash": "5866571637977355705"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/fixMeshScale.ts",
+          "hash": "8671589568092542151"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/getBonesBoundingBox.ts",
+          "hash": "4999501830269374815"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/getMeshesBoundingBox.ts",
+          "hash": "7498511761003457941"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/globalBonesRenaming.ts",
+          "hash": "15591347353805299300"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/lodDeduping.ts",
+          "hash": "14335376766435004654"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/materials/forEachMapKey.ts",
+          "hash": "14040641056849766609"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/materials/lambertToStandard.ts",
+          "hash": "12270772030115542802"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/materials/mapKeys.ts",
+          "hash": "9709121377517028066"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/materials/phongToStandard.ts",
+          "hash": "419830902510945466"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/mixamoBonesRenaming.ts",
+          "hash": "2491779082220712906"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/placeholderMissingTextures.ts",
+          "hash": "15329154710781968491"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/removeTransparencyFromMaterials.ts",
+          "hash": "13252158199314710262"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/removeVertexColors.ts",
+          "hash": "12803430150551650263"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/replaceIncompatibleMaterials.ts",
+          "hash": "8656133274617746576"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/reposeSkinnedMeshes.ts",
+          "hash": "2864729385805471383"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/rotatePelvis.ts",
+          "hash": "2583640916410316416"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/rotateRoot.ts",
+          "hash": "9654615543192104185"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/rotateWholeGroup.ts",
+          "hash": "6384090334579921350"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/runFixes.ts",
+          "hash": "638353641367457103"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/targetBoneTransformations.ts",
+          "hash": "13512478996159646092"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/traverseAndLogBone.ts",
+          "hash": "4201402157701858789"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/types.ts",
+          "hash": "2993691983571347873"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/zUpBonesCorrectionStep.ts",
+          "hash": "11970714960909719261"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/zUpMeshCorrectionStep.ts",
+          "hash": "1164293181625785905"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/debug-helpers/createBoneHelpers.ts",
+          "hash": "17512075420662726292"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/debug-helpers/createSkeletonHelpers.ts",
+          "hash": "14067395878626055273"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/elements/CheckerTexture.ts",
+          "hash": "16395859709382557177"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/elements/Lights.ts",
+          "hash": "7512365116406476381"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/elements/Room.ts",
+          "hash": "2514671477921622727"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/log-utils/bone-to-logs.ts",
+          "hash": "1402444165105242590"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/quadrant.module.css",
+          "hash": "2885711736452718999"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/ui.module.css",
+          "hash": "5266035367843545374"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/tsconfig.json",
+          "hash": "17918204908727950519"
+        }
+      ],
+      "github-pages-publisher": [
+        {
+          "file": "github-pages-publisher/index.html",
+          "hash": "1718947053964859673"
+        },
+        {
+          "file": "github-pages-publisher/package.json",
+          "hash": "1662813038454896491",
+          "deps": [
+            "@mml-io/gltf-avatar-exporter"
+          ]
+        },
+        {
+          "file": "github-pages-publisher/publish.sh",
+          "hash": "176858413621061936"
+        },
+        {
+          "file": "github-pages-publisher/winbat.bat",
+          "hash": "13212550347270902444"
+        }
+      ]
+    }
+  }
+}

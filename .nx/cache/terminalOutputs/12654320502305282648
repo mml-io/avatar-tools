@@ -1,0 +1,10 @@
+
+> build
+> ./publish.sh
+
+'.' is not recognized as an internal or external command,
+operable program or batch file.
+npm ERR! Lifecycle script `build` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: github-pages-publisher 
+npm ERR!   at location: C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher 

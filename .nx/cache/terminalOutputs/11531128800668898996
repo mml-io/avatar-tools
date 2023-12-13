@@ -1,0 +1,10 @@
+
+> @mml-io/gltf-avatar-exporter@0.1.0 build
+> rimraf ./build && tsx ./build.ts --build
+
+'rimraf' is not recognized as an internal or external command,
+operable program or batch file.
+npm ERR! Lifecycle script `build` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: @mml-io/gltf-avatar-exporter@0.1.0 
+npm ERR!   at location: C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\tools\gltf-avatar-exporter 

@@ -1,0 +1,32 @@
+{
+  "run": {
+    "command": "cli run --stream build",
+    "startTime": "2023-12-13T09:37:53.876Z",
+    "endTime": "2023-12-13T09:38:04.371Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "@mml-io/gltf-avatar-exporter:build",
+      "target": "build",
+      "projectName": "@mml-io/gltf-avatar-exporter",
+      "hash": "15481478789043307447",
+      "startTime": "2023-12-13T09:37:53.880Z",
+      "endTime": "2023-12-13T09:37:57.901Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    },
+    {
+      "taskId": "github-pages-publisher:build",
+      "target": "build",
+      "projectName": "github-pages-publisher",
+      "hash": "15710064130098455403",
+      "startTime": "2023-12-13T09:37:57.902Z",
+      "endTime": "2023-12-13T09:38:04.371Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}

@@ -14,6 +14,7 @@ import { rotateRootCorrectionStep } from "./rotateRoot";
 import { rotateWholeGroupCorrectionStep } from "./rotateWholeGroup";
 import { zUpBonesCorrectionStep } from "./zUpBonesCorrectionStep";
 import { zUpMeshCorrectionStep } from "./zUpMeshCorrectionStep";
+import { bonesRenaming } from "./globalBonesRenaming";
 
 export const correctionSteps = [
   levelOfDetailDedupingCorrectionStep,
@@ -23,7 +24,8 @@ export const correctionSteps = [
   fixMeshScaleCorrectionStep,
   fixBonesScaleCorrectionStep,
   boneDedupingCorrectionStep,
-  mixamoBonesRenaming,
+  //mixamoBonesRenaming,
+  bonesRenaming,
   connectRootCorrectionStep,
   rotateRootCorrectionStep,
   rotatePelvisCorrectionStep,

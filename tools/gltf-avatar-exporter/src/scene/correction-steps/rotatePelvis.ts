@@ -28,7 +28,6 @@ export const rotatePelvisCorrectionStep: Step = {
     }
 
     const { x: pelvisX, y: pelvisY, z: pelvisZ } = pelvisBone.rotation;
-
     const targetX = 0;
     const targetY = 0;
     const targetZ = HalfPi;
@@ -75,6 +74,13 @@ export const rotatePelvisCorrectionStep: Step = {
         },
       };
     }
+    //test
+    //pelvisBone.rotation.x = 7.85;
+    //pelvisBone.rotation.z = 18.85;
+    pelvisBone.rotation.x = HalfPi;
+    pelvisBone.rotation.z = 0;
+    pelvisBone.rotation.y = 0;
+
     pelvisBone.updateMatrixWorld(true);
 
     function traverseAndTransposeBone(bone: THREE.Bone) {

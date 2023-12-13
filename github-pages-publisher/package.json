@@ -2,7 +2,7 @@
   "name": "github-pages-publisher",
   "private": true,
   "scripts": {
-    "build": "./publish.sh"
+    "build": "winbat.bat"
   },
   "devDependencies": {
     "@mml-io/gltf-avatar-exporter": "file:../tools/gltf-avatar-exporter"

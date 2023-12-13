@@ -1,0 +1,6 @@
+
+> @mml-io/gltf-avatar-exporter@0.1.0 build
+> rimraf ./build && tsx ./build.ts --build
+
+./build/index.js was deleted.
+./build/favicon.png was deleted.

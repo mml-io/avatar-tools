@@ -165,12 +165,16 @@ export const mixamoBonesRenaming: Step = {
   action: (group: THREE.Group) => {
     const logs: LogMessage[] = [];
 
-    const addRootBone: boolean = false;
+    const addRootBone: boolean = true;
 
     if (addRootBone) {
       const rootBone = new THREE.Bone();
       rootBone.name = "root";
-      rootBone.rotation.x = -Math.PI * 0.5;
+      //rootBone.rotation.x = -Math.PI * 0.5;
+      //rootBone.rotation.z = Math.PI /2;
+      //rootBone.scale.set(1,1,1);
+
+
       let hipsBone = null;
       group.traverse((child) => {
         const asBone = child as THREE.Bone;
