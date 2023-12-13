@@ -239,6 +239,46 @@
         "hash": "4664556114322093609"
       },
       {
+        "file": ".nx/cache/15481478789043307447/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/15481478789043307447/outputs/tools/gltf-avatar-exporter/public/favicon.png",
+        "hash": "6014048521853908856"
+      },
+      {
+        "file": ".nx/cache/15481478789043307447/outputs/tools/gltf-avatar-exporter/public/index.html",
+        "hash": "1745661668145044787"
+      },
+      {
+        "file": ".nx/cache/15481478789043307447/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/15481478789043307447/terminalOutput",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/15481478789043307447.commit",
+        "hash": "4664556114322093609"
+      },
+      {
+        "file": ".nx/cache/15710064130098455403/code",
+        "hash": "1838281907459330133"
+      },
+      {
+        "file": ".nx/cache/15710064130098455403/source",
+        "hash": "13770636462285809734"
+      },
+      {
+        "file": ".nx/cache/15710064130098455403/terminalOutput",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/15710064130098455403.commit",
+        "hash": "4664556114322093609"
+      },
+      {
         "file": ".nx/cache/17623091945008844284/code",
         "hash": "1838281907459330133"
       },
@@ -484,7 +524,7 @@
       },
       {
         "file": ".nx/cache/file-map.json",
-        "hash": "16840747606180021227"
+        "hash": "7251598990153675065"
       },
       {
         "file": ".nx/cache/lockfile.hash",
@@ -500,7 +540,7 @@
       },
       {
         "file": ".nx/cache/project-graph.json",
-        "hash": "5299479577643157020"
+        "hash": "6447928633326006636"
       },
       {
         "file": ".nx/cache/run.json",
@@ -540,6 +580,14 @@
       },
       {
         "file": ".nx/cache/terminalOutputs/15230275459830550586",
+        "hash": "14043329953285906339"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/15481478789043307447",
+        "hash": "13302869484176639253"
+      },
+      {
+        "file": ".nx/cache/terminalOutputs/15710064130098455403",
         "hash": "14043329953285906339"
       },
       {
@@ -611,6 +659,18 @@
         "hash": "2891373549130865046"
       },
       {
+        "file": "github-pages-publisher/index.html",
+        "hash": "1718947053964859673"
+      },
+      {
+        "file": "github-pages-publisher/publish.sh",
+        "hash": "176858413621061936"
+      },
+      {
+        "file": "github-pages-publisher/winbat.bat",
+        "hash": "13212550347270902444"
+      },
+      {
         "file": "lerna.json",
         "hash": "514906884597270509"
       },
@@ -637,54 +697,6 @@
       {
         "file": "utils/dtsPlugin.ts",
         "hash": "11091514271514841289"
-      },
-      {
-        "file": ".nx/cache/terminalOutputs/15481478789043307447",
-        "hash": "13302869484176639253"
-      },
-      {
-        "file": ".nx/cache/15481478789043307447/outputs/tools/gltf-avatar-exporter/public/index.html",
-        "hash": "1745661668145044787"
-      },
-      {
-        "file": ".nx/cache/15481478789043307447/terminalOutput",
-        "hash": "13302869484176639253"
-      },
-      {
-        "file": ".nx/cache/15481478789043307447/code",
-        "hash": "1838281907459330133"
-      },
-      {
-        "file": ".nx/cache/15481478789043307447/outputs/tools/gltf-avatar-exporter/public/favicon.png",
-        "hash": "6014048521853908856"
-      },
-      {
-        "file": ".nx/cache/15481478789043307447.commit",
-        "hash": "4664556114322093609"
-      },
-      {
-        "file": ".nx/cache/15481478789043307447/source",
-        "hash": "13770636462285809734"
-      },
-      {
-        "file": ".nx/cache/terminalOutputs/15710064130098455403",
-        "hash": "14043329953285906339"
-      },
-      {
-        "file": ".nx/cache/15710064130098455403.commit",
-        "hash": "4664556114322093609"
-      },
-      {
-        "file": ".nx/cache/15710064130098455403/terminalOutput",
-        "hash": "14043329953285906339"
-      },
-      {
-        "file": ".nx/cache/15710064130098455403/code",
-        "hash": "1838281907459330133"
-      },
-      {
-        "file": ".nx/cache/15710064130098455403/source",
-        "hash": "13770636462285809734"
       }
     ],
     "projectFileMap": {
@@ -757,6 +769,10 @@
         {
           "file": "tools/gltf-avatar-exporter/src/scene/QuadrantScene.ts",
           "hash": "5645897729529119897"
+        },
+        {
+          "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/addMissingBones.ts",
+          "hash": "18235086687112682402"
         },
         {
           "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/boneDeduping.ts",
@@ -856,7 +872,7 @@
         },
         {
           "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/traverseAndLogBone.ts",
-          "hash": "4201402157701858789"
+          "hash": "17336734378720512988"
         },
         {
           "file": "tools/gltf-avatar-exporter/src/scene/correction-steps/types.ts",
@@ -905,27 +921,6 @@
         {
           "file": "tools/gltf-avatar-exporter/tsconfig.json",
           "hash": "17918204908727950519"
-        }
-      ],
-      "github-pages-publisher": [
-        {
-          "file": "github-pages-publisher/index.html",
-          "hash": "1718947053964859673"
-        },
-        {
-          "file": "github-pages-publisher/package.json",
-          "hash": "1662813038454896491",
-          "deps": [
-            "@mml-io/gltf-avatar-exporter"
-          ]
-        },
-        {
-          "file": "github-pages-publisher/publish.sh",
-          "hash": "176858413621061936"
-        },
-        {
-          "file": "github-pages-publisher/winbat.bat",
-          "hash": "13212550347270902444"
         }
       ]
     }
