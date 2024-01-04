@@ -75,11 +75,9 @@ export const rotatePelvisCorrectionStep: Step = {
       };
     }
     //test
-    //pelvisBone.rotation.x = 7.85;
-    //pelvisBone.rotation.z = 18.85;
-    pelvisBone.rotation.x = HalfPi;
-    pelvisBone.rotation.z = 0;
-    pelvisBone.rotation.y = 0;
+    //pelvisBone.rotation.x = HalfPi;
+    //pelvisBone.rotation.z = 0;
+    //pelvisBone.rotation.y = 0;
 
     pelvisBone.updateMatrixWorld(true);
 

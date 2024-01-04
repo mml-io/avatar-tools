@@ -1,0 +1,33 @@
+
+> build
+> winbat.bat
+
+
+C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher>REM Set the working directory to the location of this script 
+
+C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher>cd C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher\ 
+
+C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher>REM Create the build directory 
+
+C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher>REM if not exist ".\build\tools" mkdir ".\build\tools" 
+
+C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher>mkdir ".\build\tools"  
+A subdirectory or file .\build\tools already exists.
+
+C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher>REM Copy the index.html file that references the different tools into the build directory 
+
+C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher>copy ".\index.html" ".\build\index.html" 
+        1 file(s) copied.
+
+C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher>REM Copy the files for each tool into the build directory 
+
+C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher>xcopy /E /I "..\tools\gltf-avatar-exporter\build" ".\build\tools\gltf-avatar-exporter" 
+Overwrite C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher\build\tools\gltf-avatar-exporter\index.css (Yes/No/All)? y
+..\tools\gltf-avatar-exporter\build\index.css
+Overwrite C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher\build\tools\gltf-avatar-exporter\index.css.map (Yes/No/All)? y
+..\tools\gltf-avatar-exporter\build\index.css.map
+Overwrite C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher\build\tools\gltf-avatar-exporter\index.html (Yes/No/All)? y
+..\tools\gltf-avatar-exporter\build\index.html
+Overwrite C:\Users\FelipePesantez\development\unreal\pipeline\avatar-tools\github-pages-publisher\build\tools\gltf-avatar-exporter\index.js.map (Yes/No/All)? y
+..\tools\gltf-avatar-exporter\build\index.js.map
+4 File(s) copied

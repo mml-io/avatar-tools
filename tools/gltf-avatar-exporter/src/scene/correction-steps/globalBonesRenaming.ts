@@ -145,11 +145,68 @@ const mixamoBonesNamingMap = new Map([
   ["mixamorigRightToeBase", "ankle_fwd_r"],
 ]);
 
+const vrmBoneNamesMap = new Map<string, string>([
+	["Root","root"],
+	["J_Bip_C_Hips","pelvis"],
+	["J_Bip_C_Spine","spine_01"],
+	["J_Bip_C_Chest","spine_02"],
+	["J_Bip_C_UpperChest","spine_03"],
+	["J_Bip_C_Neck","neck_01"],
+	["J_Bip_C_Head","head"],
+	["J_Bip_L_Shoulder","clavicle_l"],
+	["J_Bip_L_UpperArm","upperarm_l"],
+	["J_Bip_L_LowerArm","lowerarm_l"],
+	["J_Bip_L_Hand","hand_l"],
+	["J_Bip_L_Index1","index_metacarpal_l"],
+	["J_Bip_L_Little1","pinky_metacarpal_l"],
+	["J_Bip_L_Middle1","middle_metacarpal_l"],
+	["J_Bip_L_Ring1","ring_metacarpal_l"],
+	["J_Bip_L_Thumb1","thumb_01_l"],
+	["J_Bip_L_Index2","index_01_l"],
+	["J_Bip_L_Index3","index_02_l"],
+	["J_Bip_L_Little2","pinky_01_l"],
+	["J_Bip_L_Little3","pinky_02_l"],
+	["J_Bip_L_Middle2","middle_01_l"],
+	["J_Bip_L_Middle3","middle_02_l"],
+	["J_Bip_L_Ring2","ring_01_l"],
+	["J_Bip_L_Ring3","ring_02_l"],
+	["J_Bip_L_Thumb2","thumb_02_l"],
+	["J_Bip_L_Thumb3","thumb_03_l"],
+	["J_Bip_R_Shoulder","clavicle_r"],
+	["J_Bip_R_UpperArm","upperarm_r"],
+	["J_Bip_R_LowerArm","lowerarm_r"],
+	["J_Bip_R_Hand","hand_r"],
+	["J_Bip_R_Index1","index_metacarpal_r"],
+	["J_Bip_R_Little1","pinky_metacarpal_r"],
+	["J_Bip_R_Middle1","middle_metacarpal_r"],
+	["J_Bip_R_Ring1","ring_metacarpal_r"],
+	["J_Bip_R_Thumb1","thumb_01_r"],
+	["J_Bip_R_Index2","index_01_r"],
+	["J_Bip_R_Index3","index_02_r"],
+	["J_Bip_R_Little2","pinky_01_r"],
+	["J_Bip_R_Little3","pinky_02_r"],
+	["J_Bip_R_Middle2","middle_01_r"],
+	["J_Bip_R_Middle3","middle_02_r"],
+	["J_Bip_R_Ring2","ring_01_r"],
+	["J_Bip_R_Ring3","ring_02_r"],
+	["J_Bip_R_Thumb2","thumb_02_r"],
+	["J_Bip_R_Thumb3","thumb_03_r"],
+	["J_Bip_L_UpperLeg","thigh_l"],
+	["J_Bip_L_LowerLeg","calf_l"],
+	["J_Bip_L_Foot","foot_l"],
+	["J_Bip_L_ToeBase","ball_l"],
+	["J_Bip_R_UpperLeg","thigh_r"],
+	["J_Bip_R_LowerLeg","calf_r"],
+	["J_Bip_R_Foot","foot_r"],
+	["J_Bip_R_ToeBase","ball_r"],
+
+]);
+
 export const bonesRenaming: Step = {
   name: "globalBonesRenaming",
   action: (group: THREE.Group) => {
     const logs: LogMessage[] = [];
-
+    
     const addRootBone: boolean = false;
 
     if (addRootBone) {
@@ -162,6 +219,7 @@ export const bonesRenaming: Step = {
         if (asBone.isBone && child.name === "mixamorigHips") {
           hipsBone = child;
         }
+
       });
       if (hipsBone) {
         rootBone.add(hipsBone);
@@ -172,32 +230,58 @@ export const bonesRenaming: Step = {
         });
       }
     }
-
+    
 
   let boneNames: Map<string, string> = boneNamesMap;
+  let hasUnrealSkeleton: boolean = false;
 
   //Find skeleton type
   group.traverse((object) => {
           if (object instanceof THREE.Bone) {
-              if (object.name.startsWith("mixamo")){
+              if (object.name === "root" || object.name === "pelvis"){
+                hasUnrealSkeleton = true;
+                return;
+              }
+              else if (object.name.startsWith("mixamo")){
                 boneNames = mixamoBonesNamingMap;
+                return;
+              }
+              else if (object.name.startsWith("J_Bip")){
+                boneNames = vrmBoneNamesMap;
+                return;
               }
           }
       });
     
   //newNames = boneNamesMap;
-  group.traverse((object) => {
-      if (object instanceof THREE.Bone) {
-          const newName = boneNames.get(object.name);
-          if (newName) {
-              object.name = newName;
-              logs.push({
-                  level: "info",
-                  message: `${object.name} -> ${newName}`,
-              });
-          }
-      }
-  });
+  //if it doesn't have a Unreal Skeleton
+  if (!hasUnrealSkeleton){
+    group.traverse((object) => {
+        if (object instanceof THREE.Bone) {
+            const newName = boneNames.get(object.name);
+            if (newName) {
+                object.name = newName;
+                logs.push({
+                    level: "info",
+                    message: `${object.name} -> ${newName}`,
+                });
+            }
+            //test orient
+
+            const newOrientation = new THREE.Quaternion().setFromAxisAngle(
+              new THREE.Vector3(1, 0, 0), 
+              THREE.MathUtils.degToRad(90) // Adjust this angle as needed
+            );
+            object.quaternion.multiplyQuaternions(newOrientation, object.quaternion);
+
+
+            // const [x, y, z, w] = object.quaternion.toArray();
+            // object.quaternion.set(x, -y, z ,w);
+            // object.updateMatrixWorld(true);
+            //test orient
+        }
+    });
+}
 
   if (logs.length === 0) {
     return {
