@@ -1,4 +1,5 @@
 import { boneDedupingCorrectionStep } from "./boneDeduping";
+import { bonesRenaming } from "./bonesRenaming";
 import { connectRootCorrectionStep } from "./connectRoot";
 import { fixFlippedBitmapTexturesCorrectionStep } from "./fixBitmapTextures";
 import { fixBonesScaleCorrectionStep } from "./fixBonesScale";
@@ -22,6 +23,7 @@ export const correctionSteps = [
   fixMeshScaleCorrectionStep,
   fixBonesScaleCorrectionStep,
   boneDedupingCorrectionStep,
+  bonesRenaming,
   connectRootCorrectionStep,
   rotateRootCorrectionStep,
   rotatePelvisCorrectionStep,

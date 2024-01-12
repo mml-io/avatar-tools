@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { Group } from "three";
 
 import { getBonesBoundingBox } from "./getBonesBoundingBox";
+import { getMeshesBoundingBox } from "./getMeshesBoundingBox";
 import { LogMessage, Step } from "./types";
 
 const scaleCorrection = new THREE.Matrix4().makeScale(0.01, 0.01, 0.01);
@@ -21,13 +22,23 @@ export const fixMeshScaleCorrectionStep: Step = {
       level: "info",
       message: `Bones size: x: ${xBonesSize}, y: ${yBonesSize}, z: ${zBonesSize}`,
     };
+
+    const meshesBoundingBox = getMeshesBoundingBox(group);
+    const xMeshesSize = meshesBoundingBox.max.x - meshesBoundingBox.min.x;
+    const yMeshesSize = meshesBoundingBox.max.y - meshesBoundingBox.min.y;
+    const zMeshesSize = meshesBoundingBox.max.z - meshesBoundingBox.min.z;
+    const meshesSizeLog: LogMessage = {
+      level: "info",
+      message: `Meshes size: x: ${xMeshesSize}, y: ${yMeshesSize}, z: ${zMeshesSize}`,
+    };
+
     const bonesAre100TimesTooLarge = zBonesSize > 50 || yBonesSize > 50;
     const bonesAre1000TimesTooLarge = zBonesSize > 500 || yBonesSize > 500;
 
     if (!bonesAre100TimesTooLarge) {
       return {
         didApply: false,
-        logs: [bonesSizeLog],
+        logs: [bonesSizeLog, meshesSizeLog],
         topLevelMessage: {
           level: "info",
           message: "Detected bones size was < 10 in y/z. No correction needed.",
@@ -54,7 +65,7 @@ export const fixMeshScaleCorrectionStep: Step = {
           bonesAre1000TimesTooLarge ? "100" : "10"
         } in y/z. Scaled down to ${bonesAre1000TimesTooLarge ? "1%" : "10%"} of initial.`,
       },
-      logs: [bonesSizeLog],
+      logs: [bonesSizeLog, meshesSizeLog],
     };
   },
 };

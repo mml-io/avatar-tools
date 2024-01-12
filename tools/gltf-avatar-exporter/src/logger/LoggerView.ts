@@ -50,7 +50,6 @@ export class LoggerView {
   }
 
   public logNestedLogMessage(nestedLogMessage: NestedLogMessage) {
-    console.log("logNestedLogMessage", nestedLogMessage);
     const logRow = new LogMessageRow(nestedLogMessage.level, nestedLogMessage.message);
     if (nestedLogMessage.messages) {
       logRow.addNestedLogMessages(nestedLogMessage.messages);
