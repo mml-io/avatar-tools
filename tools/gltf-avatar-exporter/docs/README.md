@@ -2,7 +2,11 @@
 
 ## About this guide:
 
-This guide aims to show you how to use the [**`gltf-avatar-exporter`**](https://mml-io.github.io/avatar-tools/main/tools/gltf-avatar-exporter/) Avatar Tool to rig any character of your choice from [Mixamo](https://www.mixamo.com) using [Blender](https://www.blender.org/download/) and the [Auto Rig Pro](https://blendermarket.com/products/auto-rig-pro) plugin, to get the character ready to be used in any M-Squared or Unreal experiences, and then how to use the [MML Editor](https://mmleditor.com) to create an `MML Character Description` with your brand new rigged model.
+This guide aims to show you how to use the [**`gltf-avatar-exporter`**](https://mml-io.github.io/avatar-tools/main/tools/gltf-avatar-exporter/) Avatar Tool to rig any character of your choice using [Blender](https://www.blender.org/download/) and the [Auto Rig Pro](https://blendermarket.com/products/auto-rig-pro) plugin, to get the character ready to be used in any M-Squared or Unreal experiences, and then how to use the [MML Editor](https://mmleditor.com) to create an `MML Character Description` with your brand new rigged model.
+
+This documentation shows this process using an asset picked from [Mixamo](https://www.mixamo.com) as an example not only for being a well-known 3D character source but also as an opportunity to illustrate how to unparent a character's mesh from its current armature to create a new rig.
+
+In case you're following this guide with a character that has no armature (just the 3D mesh with no skeleton, vertex groups, or modifiers), then steps `1` to `7` of the guide may be skipped.
 
 The software versions being used while writing this guide are:
 - Blender: `v3.6.5`
