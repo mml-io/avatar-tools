@@ -11,9 +11,23 @@ export const reposeBonesCorrectionStep: Step = {
     group.traverse((child) => {
       const asSkinnedMesh = child as THREE.SkinnedMesh;
       if (asSkinnedMesh.isSkinnedMesh) {
-        console.log("reposing", asSkinnedMesh.name);
+        const inverses = [...asSkinnedMesh.skeleton.boneInverses];
         asSkinnedMesh.skeleton.pose();
         asSkinnedMesh.skeleton.calculateInverses();
+        const newInverses = asSkinnedMesh.skeleton.boneInverses;
+        let allInversesEqual = true;
+        for (let i = 0; i < inverses.length; i++) {
+          if (!inverses[i].equals(newInverses[i])) {
+            allInversesEqual = false;
+            break;
+          }
+        }
+        if (!allInversesEqual) {
+          logs.push({
+            level: "info",
+            message: `Reposed skeleton for ${asSkinnedMesh.name}`,
+          });
+        }
       }
     });
 
@@ -22,7 +36,7 @@ export const reposeBonesCorrectionStep: Step = {
         didApply: false,
         topLevelMessage: {
           level: "info",
-          message: "No geometries with duplicate material ids found.",
+          message: "No skeletons were reposed.",
         },
       };
     }
@@ -31,7 +45,7 @@ export const reposeBonesCorrectionStep: Step = {
       didApply: true,
       topLevelMessage: {
         level: "info",
-        message: "Merged geometry groups",
+        message: "Skeleton(s) were reposed",
       },
       logs,
     };
