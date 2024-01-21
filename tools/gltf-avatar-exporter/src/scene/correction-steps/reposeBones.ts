@@ -45,7 +45,7 @@ export const reposeBonesCorrectionStep: Step = {
       didApply: true,
       topLevelMessage: {
         level: "info",
-        message: "Skeleton(s) were reposed",
+        message: "Skeletons were reposed",
       },
       logs,
     };
