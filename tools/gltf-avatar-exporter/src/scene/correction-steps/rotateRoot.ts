@@ -53,7 +53,7 @@ export const rotateRootCorrectionStep: Step = {
         if (asBone.isBone) {
           const tempPosY = asBone.position.y;
           asBone.position.y = asBone.position.z;
-          asBone.position.z = tempPosY;
+          asBone.position.z = -tempPosY;
 
           const [x, y, z, w] = asBone.quaternion.toArray();
           asBone.quaternion.set(x, -y, -z, w);
