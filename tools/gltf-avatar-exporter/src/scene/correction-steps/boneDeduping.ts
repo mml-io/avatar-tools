@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import { Group } from "three";
 
-import { reposeSkinnedMeshes } from "./reposeSkinnedMeshes";
 import { Step } from "./types";
 
 export const boneDedupingCorrectionStep: Step = {
@@ -48,8 +47,6 @@ export const boneDedupingCorrectionStep: Step = {
         skeleton.bones = replacedBones;
       }
     });
-
-    reposeSkinnedMeshes(group);
 
     return {
       didApply: true,

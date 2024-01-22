@@ -47,6 +47,13 @@ export const rotatePelvisCorrectionStep: Step = {
       pelvisBone.rotation.x += 0;
       pelvisBone.rotation.y -= HalfPi;
       pelvisBone.rotation.z += HalfPi;
+    } else if (isNear(pelvisX, 0) && isNear(pelvisY, -HalfPi) && isNear(pelvisZ, 0)) {
+      pelvisBone.rotation.x += 0;
+      pelvisBone.rotation.y += HalfPi;
+      pelvisBone.rotation.z += HalfPi;
+      const tempPosY = pelvisBone.position.y;
+      pelvisBone.position.y = pelvisBone.position.z;
+      pelvisBone.position.z = -tempPosY;
     } else {
       reposeSkinnedMeshes(group);
       return {
