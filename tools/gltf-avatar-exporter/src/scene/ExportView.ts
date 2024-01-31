@@ -1,4 +1,3 @@
-import { TimeManager } from "@mml-io/3d-web-client-core";
 import { AnimationClip, AnimationMixer, Group, SkinnedMesh, Vector3 } from "three";
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter.js";
 
@@ -12,6 +11,7 @@ import { Room } from "./elements/Room";
 import { createSkeletonLogFromGroup } from "./log-utils/bone-to-logs";
 import { ModelLoader } from "./ModelLoader";
 import { QuadrantScene } from "./QuadrantScene";
+import { TimeManager } from "./TimeManager";
 import styles from "./ui.module.css";
 
 export class ExportView extends QuadrantScene {

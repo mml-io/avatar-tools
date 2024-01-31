@@ -1,7 +1,7 @@
 import { AmbientLight, DirectionalLight, OrthographicCamera, Vector3 } from "three";
 
 export class Lights {
-  public ambientLight: AmbientLight = new AmbientLight(0xffffff, 0.5);
+  public ambientLight: AmbientLight = new AmbientLight(0xffffff, 3);
   public mainLight: DirectionalLight;
 
   private shadowResolution: number = 8192;
@@ -20,7 +20,7 @@ export class Lights {
   constructor(private cameraOffset: Vector3) {
     this.lookAt = new Vector3().copy(new Vector3()).add(this.cameraOffset);
 
-    this.mainLight = new DirectionalLight(0xffffff, 1.0);
+    this.mainLight = new DirectionalLight(0xffffff, 3);
     this.mainLight.position.set(2, 4, 2);
     this.mainLight.shadow.normalBias = 0.05;
     this.mainLight.shadow.radius = 1.5;
