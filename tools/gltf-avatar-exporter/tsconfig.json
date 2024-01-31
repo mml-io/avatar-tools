@@ -10,6 +10,7 @@
     "sourceMap": true,
     "allowJs": true,
     "strictNullChecks": true,
+    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,

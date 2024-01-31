@@ -1,4 +1,3 @@
-import { TimeManager } from "@mml-io/3d-web-client-core";
 import { Group } from "three";
 
 import styles from "./index.module.css";
@@ -7,6 +6,7 @@ import { AnimationView } from "./scene/AnimationView";
 import { ExportView } from "./scene/ExportView";
 import { ImportView } from "./scene/ImportView";
 import { ModelLoader } from "./scene/ModelLoader";
+import { TimeManager } from "./scene/TimeManager";
 
 class App {
   private readonly timeManager = new TimeManager();

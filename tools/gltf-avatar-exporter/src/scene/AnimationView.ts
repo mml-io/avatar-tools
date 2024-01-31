@@ -1,4 +1,3 @@
-import { TimeManager } from "@mml-io/3d-web-client-core";
 import { AnimationClip, AnimationMixer, Bone, SkeletonHelper, Vector3 } from "three";
 
 // Jump animation for UE5 Manny exported as GLB from UE5
@@ -8,6 +7,7 @@ import { Lights } from "./elements/Lights";
 import { Room } from "./elements/Room";
 import { ModelLoader } from "./ModelLoader";
 import { QuadrantScene } from "./QuadrantScene";
+import { TimeManager } from "./TimeManager";
 import styles from "./ui.module.css";
 
 export class AnimationView extends QuadrantScene {
