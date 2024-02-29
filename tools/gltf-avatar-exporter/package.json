@@ -14,9 +14,9 @@
     "lint-fix": "eslint \"./{src,test}/**/*.{js,jsx,ts,tsx}\" --fix"
   },
   "dependencies": {
-    "three": "0.161.0"
+    "three": "0.162.0"
   },
   "devDependencies": {
-    "@types/three": "0.160.0"
+    "@types/three": "0.162.0"
   }
 }
