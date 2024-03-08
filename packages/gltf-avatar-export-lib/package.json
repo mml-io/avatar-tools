@@ -1,0 +1,27 @@
+{
+  "name": "gltf-avatar-export-lib",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "/build"
+  ],
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "clean": "echo noop",
+    "pre:build": "npm run build",
+    "build": "tsx ./build.ts --build",
+    "iterate": "tsx ./build.ts --watch",
+    "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --max-warnings 0",
+    "lint-fix": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --fix"
+  },
+  "dependencies": {
+    "three": "0.161.0"
+  },
+  "devDependencies": {
+    "@types/three": "0.160.0"
+  }
+}
+

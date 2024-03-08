@@ -14,7 +14,8 @@
     "lint-fix": "eslint \"./{src,test}/**/*.{js,jsx,ts,tsx}\" --fix"
   },
   "dependencies": {
-    "three": "0.161.0"
+    "three": "0.161.0",
+    "gltf-avatar-export-lib": "file:../../packages/gltf-avatar-export-lib"
   },
   "devDependencies": {
     "@types/three": "0.160.0"

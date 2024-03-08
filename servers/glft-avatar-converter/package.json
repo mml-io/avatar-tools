@@ -1,0 +1,36 @@
+{
+  "name": "@mml-io/gltf-avatar-converter-server",
+  "private": true,
+  "version": "0.1.0",
+  "files": [
+    "/build"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "rimraf ./build && tsx ./build.ts --build",
+    "iterate": "tsx ./build.ts --watch",
+    "iterate:start": "node --enable-source-maps ./build/index.js",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint \"./{src,test}/**/*.{js,jsx,ts,tsx}\" --max-warnings 0",
+    "lint-fix": "eslint \"./{src,test}/**/*.{js,jsx,ts,tsx}\" --fix"
+  },
+  "dependencies": {
+    "three": "0.161.0",
+    "env-cmd": "10.1.0",
+    "@sinclair/typebox": "0.32.14",
+    "chokidar": "3.5.3",
+    "cors": "2.8.5",
+    "express": "4.18.2",
+    "http-proxy": "1.18.1",
+    "ws": "8.16.0",
+    "gltf-avatar-export-lib": "file:../../packages/gltf-avatar-export-lib",
+    "filereader": "0.10.3"
+  },
+  "devDependencies": {
+    "@types/three": "0.160.0",
+    "@types/cors": "2.8.17",
+    "@types/express": "4.17.21",
+    "@types/http-proxy": "1.17.14",
+    "@types/node": "20.11.5"
+  }
+}
