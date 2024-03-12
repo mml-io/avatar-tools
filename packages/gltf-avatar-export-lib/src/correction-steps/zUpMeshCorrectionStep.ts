@@ -35,7 +35,6 @@ export const zUpMeshCorrectionStep: Step = {
     group.traverse((child) => {
       const asSkinnedMesh = child as THREE.SkinnedMesh;
       if (asSkinnedMesh.isSkinnedMesh) {
-        console.log("asSkinnedMesh", asSkinnedMesh);
         asSkinnedMesh.geometry.applyMatrix4(zUpCorrection);
       }
     });

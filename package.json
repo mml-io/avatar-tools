@@ -8,6 +8,7 @@
   "scripts": {
     "preinstall": "node check-node-version.js",
     "build": "lerna run --stream build",
+    "convert": "node ./clis/glft-avatar-exporter/build/index.cjs",
     "iterate": "npm run build && lerna run --parallel --stream iterate",
     "type-check-all": "lerna run --stream type-check",
     "test-all": "lerna run --parallel --stream --no-bail test",
@@ -18,6 +19,7 @@
   },
   "workspaces": [
     "packages/*",
+    "clis/*",
     "tools/*",
     "github-pages-publisher"
   ],

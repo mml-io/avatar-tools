@@ -8,13 +8,11 @@ function fixTexture(texture: Texture, setDefaultColorIfMissing: boolean = false)
   if (!texture.image || texture.image.data === null) {
     // Replace with a placeholder texture (all white)
     const placeholderTexture = new THREE.Texture();
-    placeholderTexture.image = new ImageData(1, 1);
     // Set the pixel to a purple color so that it's easy to spot
     if (setDefaultColorIfMissing) {
-      placeholderTexture.image.data[0] = 255;
-      placeholderTexture.image.data[1] = 0;
-      placeholderTexture.image.data[2] = 255;
-      placeholderTexture.image.data[3] = 255;
+      placeholderTexture.image = new ImageData(new Uint8ClampedArray([255, 0, 255, 255]), 1, 1);
+    } else {
+      placeholderTexture.image = new ImageData(1, 1);
     }
     placeholderTexture.needsUpdate = true;
     return placeholderTexture;

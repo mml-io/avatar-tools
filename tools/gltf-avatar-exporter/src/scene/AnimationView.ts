@@ -1,3 +1,4 @@
+import { ModelLoader } from "gltf-avatar-export-lib";
 import { AnimationClip, AnimationMixer, Bone, SkeletonHelper, Vector3 } from "three";
 
 // Jump animation for UE5 Manny exported as GLB from UE5
@@ -5,7 +6,6 @@ import sampleJumpAnimationBase64 from "../assets/SampleJumpAnimation.glb";
 
 import { Lights } from "./elements/Lights";
 import { Room } from "./elements/Room";
-import { ModelLoader } from "./ModelLoader";
 import { QuadrantScene } from "./QuadrantScene";
 import { TimeManager } from "./TimeManager";
 import styles from "./ui.module.css";
