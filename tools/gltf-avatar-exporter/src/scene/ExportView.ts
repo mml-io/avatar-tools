@@ -1,15 +1,14 @@
+import { correctionSteps, ModelLoader } from "gltf-avatar-export-lib";
 import { AnimationClip, AnimationMixer, Group, SkinnedMesh, Vector3 } from "three";
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter.js";
 
 import { LoggerView } from "../logger/LoggerView";
 
-import { correctionSteps } from "./correction-steps/runFixes";
 import { createBoneHelpers } from "./debug-helpers/createBoneHelpers";
 import { createSkeletonHelpers } from "./debug-helpers/createSkeletonHelpers";
 import { Lights } from "./elements/Lights";
 import { Room } from "./elements/Room";
 import { createSkeletonLogFromGroup } from "./log-utils/bone-to-logs";
-import { ModelLoader } from "./ModelLoader";
 import { QuadrantScene } from "./QuadrantScene";
 import { TimeManager } from "./TimeManager";
 import styles from "./ui.module.css";

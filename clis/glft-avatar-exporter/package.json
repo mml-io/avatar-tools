@@ -1,5 +1,5 @@
 {
-  "name": "@mml-io/gltf-avatar-exporter",
+  "name": "@mml-io/gltf-avatar-exporter-cli",
   "private": true,
   "version": "0.1.0",
   "files": [
@@ -9,13 +9,16 @@
   "scripts": {
     "build": "rimraf ./build && tsx ./build.ts --build",
     "iterate": "tsx ./build.ts --watch",
+    "iterate:start": "node --enable-source-maps ./build/index.js",
     "type-check": "tsc --noEmit",
     "lint": "eslint \"./{src,test}/**/*.{js,jsx,ts,tsx}\" --max-warnings 0",
     "lint-fix": "eslint \"./{src,test}/**/*.{js,jsx,ts,tsx}\" --fix"
   },
   "dependencies": {
     "three": "0.161.0",
-    "gltf-avatar-export-lib": "file:../../packages/gltf-avatar-export-lib"
+    "@napi-rs/canvas": "0.1.51",
+    "gltf-avatar-export-lib": "file:../../packages/gltf-avatar-export-lib",
+    "yargs": "17.7.2"
   },
   "devDependencies": {
     "@types/three": "0.160.0"

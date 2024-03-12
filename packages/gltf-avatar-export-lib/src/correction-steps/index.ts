@@ -16,6 +16,8 @@ import { rotateWholeGroupCorrectionStep } from "./rotateWholeGroup";
 import { zUpBonesCorrectionStep } from "./zUpBonesCorrectionStep";
 import { zUpMeshCorrectionStep } from "./zUpMeshCorrectionStep";
 
+export * from "./types";
+
 export const correctionSteps = [
   levelOfDetailDedupingCorrectionStep,
   mergeGeometryGroupsCorrectionStep,

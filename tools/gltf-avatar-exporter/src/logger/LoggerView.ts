@@ -1,4 +1,5 @@
-import { StepResult } from "../scene/correction-steps/types";
+import { StepResult } from "gltf-avatar-export-lib";
+
 import styles from "../scene/quadrant.module.css";
 
 import { LogMessageRow, NestedLogMessage } from "./LogMessageRow";

@@ -3,11 +3,12 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "scripts": {
     "preinstall": "node check-node-version.js",
     "build": "lerna run --stream build",
+    "convert": "node ./clis/glft-avatar-exporter/build/index.js",
     "iterate": "npm run build && lerna run --parallel --stream iterate",
     "type-check-all": "lerna run --stream type-check",
     "test-all": "lerna run --parallel --stream --no-bail test",
@@ -18,22 +19,21 @@
   },
   "workspaces": [
     "packages/*",
+    "clis/*",
     "tools/*",
     "github-pages-publisher"
   ],
   "devDependencies": {
     "@types/jest": "29.5.11",
+    "@types/jju": "^1.4.5",
+    "@types/tmp": "^0.2.6",
     "@typescript-eslint/eslint-plugin": "^6.20.0",
     "@typescript-eslint/parser": "^6.20.0",
     "concurrently": "^8.2.2",
     "esbuild": "0.20.0",
+    "esbuild-css-modules-plugin": "3.1.0",
     "esbuild-jest": "0.5.0",
     "esbuild-plugin-copy": "2.1.1",
-    "esbuild-css-modules-plugin": "3.1.0",
-    "jju": "^1.4.0",
-    "@types/jju": "^1.4.5",
-    "tmp": "^0.2.1",
-    "@types/tmp": "^0.2.6",
     "eslint": "^8.56.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-config-prettier": "^9.1.0",
@@ -43,9 +43,11 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
+    "jju": "^1.4.0",
     "lerna": "8.0.2",
     "prettier": "^3.2.4",
     "rimraf": "^5.0.5",
+    "tmp": "^0.2.1",
     "ts-node": "^10.9.2",
     "tsx": "4.7.0",
     "typescript": "^5.3.3"
