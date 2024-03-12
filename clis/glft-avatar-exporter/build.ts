@@ -46,10 +46,11 @@ const nativeNodeModulesPlugin = {
         const tmpPath = fs.mkdtempSync("tmp-require");
         try {
           const filePath = path.join(path.resolve(tmpPath), "tmp.node");
+          console.log("filePath", filePath);
           fs.writeFileSync(filePath, Buffer.from("${onLoadArgs.path}", "base64"));
           module.exports = require(filePath);
         } finally {
-          fs.rmSync(tmpPath, { recursive: true });
+          // fs.rmSync(tmpPath, { recursive: true });
         }
       `,
       };
