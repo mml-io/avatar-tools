@@ -35,15 +35,3 @@ you can use the tool to process avatars using the following command from the roo
 ```bash
 npm run convert -- -i <input file> -o <output file>
 ```
-
-Alternatively, you can invoke the `gltf-avatar-exporter-cli` package directly using the following command:
-
-```bash
-node ./clis/gltf-avatar-exporter-cli/build/index.cjs -i <input file> -o <output file>
-```
-
-Or move/rename the `index.cjs` file to a location of your choice and run it from there using:
-
-```bash
-node <path to index.cjs> -i <input file> -o <output file>
-```
