@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "scripts": {
     "preinstall": "node check-node-version.js",
@@ -53,8 +53,6 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@nx/nx-win32-x64-msvc": "^18.0.8",
-    "canvas": "^2.11.2",
-    "lightningcss-win32-x64-msvc": "^1.24.0"
+    "canvas": "^2.11.2"
   }
 }
