@@ -1,3 +1,4 @@
+import { ModelLoader } from "gltf-avatar-export-lib";
 import { Group, LoadingManager, SkinnedMesh, Vector3 } from "three";
 import { TGALoader } from "three/examples/jsm/loaders/TGALoader.js";
 
@@ -8,7 +9,6 @@ import { createSkeletonHelpers } from "./debug-helpers/createSkeletonHelpers";
 import { Lights } from "./elements/Lights";
 import { Room } from "./elements/Room";
 import { createSkeletonLogFromGroup } from "./log-utils/bone-to-logs";
-import { ModelLoader } from "./ModelLoader";
 import { QuadrantScene } from "./QuadrantScene";
 import styles from "./ui.module.css";
 

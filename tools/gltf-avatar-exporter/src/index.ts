@@ -1,3 +1,4 @@
+import { ModelLoader } from "gltf-avatar-export-lib";
 import { Group } from "three";
 
 import styles from "./index.module.css";
@@ -5,7 +6,6 @@ import { LoggerView } from "./logger/LoggerView";
 import { AnimationView } from "./scene/AnimationView";
 import { ExportView } from "./scene/ExportView";
 import { ImportView } from "./scene/ImportView";
-import { ModelLoader } from "./scene/ModelLoader";
 import { TimeManager } from "./scene/TimeManager";
 
 class App {
