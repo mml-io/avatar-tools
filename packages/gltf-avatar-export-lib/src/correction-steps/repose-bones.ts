@@ -1,11 +1,11 @@
 import * as THREE from "three";
 import { Group } from "three";
 
-import { LogMessage, Step } from "./types";
+import { LogMessage, Step, StepResult } from "./types";
 
-export const reposeBonesCorrectionStep: Step = {
-  name: "reposeBones",
-  action: (group: Group) => {
+export const reposeBonesCorrectionStep = {
+  name: "repose-bones",
+  action: (group: Group): StepResult => {
     const logs: Array<LogMessage> = [];
 
     group.traverse((child) => {
@@ -50,4 +50,4 @@ export const reposeBonesCorrectionStep: Step = {
       logs,
     };
   },
-};
+} as const;

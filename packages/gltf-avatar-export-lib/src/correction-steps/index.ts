@@ -1,24 +1,25 @@
-import { boneDedupingCorrectionStep } from "./boneDeduping";
-import { connectRootCorrectionStep } from "./connectRoot";
-import { fixFlippedBitmapTexturesCorrectionStep } from "./fixBitmapTextures";
-import { fixBonesScaleCorrectionStep } from "./fixBonesScale";
-import { fixMeshScaleCorrectionStep } from "./fixMeshScale";
-import { levelOfDetailDedupingCorrectionStep } from "./lodDeduping";
-import { mergeGeometryGroupsCorrectionStep } from "./mergeGeometryGroups";
-import { placeholderMissingTexturesCorrectionStep } from "./placeholderMissingTextures";
-import { removeTransparencyFromMaterialsCorrectionStep } from "./removeTransparencyFromMaterials";
-import { removeVertexColorsCorrectionStep } from "./removeVertexColors";
-import { replaceIncompatibleMaterialsCorrectionStep } from "./replaceIncompatibleMaterials";
-import { reposeBonesCorrectionStep } from "./reposeBones";
-import { rotatePelvisCorrectionStep } from "./rotatePelvis";
-import { rotateRootCorrectionStep } from "./rotateRoot";
-import { rotateWholeGroupCorrectionStep } from "./rotateWholeGroup";
-import { zUpBonesCorrectionStep } from "./zUpBonesCorrectionStep";
-import { zUpMeshCorrectionStep } from "./zUpMeshCorrectionStep";
+import { boneDedupingCorrectionStep } from "./bone-deduping";
+import { connectRootCorrectionStep } from "./connect-root";
+import { fixBonesScaleCorrectionStep } from "./fix-bones-scale";
+import { fixFlippedBitmapTexturesCorrectionStep } from "./fix-flipped-bitmap-textures";
+import { fixMeshScaleCorrectionStep } from "./fix-mesh-scale";
+import { levelOfDetailDedupingCorrectionStep } from "./level-of-detail-deduping";
+import { mergeGeometryGroupsCorrectionStep } from "./merge-geometry-groups";
+import { placeholderMissingTexturesCorrectionStep } from "./placeholder-missing-textures";
+import { removeTransparencyFromMaterialsCorrectionStep } from "./remove-transparency-from-materials";
+import { removeVertexColorsCorrectionStep } from "./remove-vertex-colors";
+import { replaceIncompatibleMaterialsCorrectionStep } from "./replace-incompatible-materials";
+import { reposeBonesCorrectionStep } from "./repose-bones";
+import { rotatePelvisCorrectionStep } from "./rotate-pelvis";
+import { rotateRootCorrectionStep } from "./rotate-root";
+import { rotateWholeGroupCorrectionStep } from "./rotate-whole-group";
+import { Step } from "./types";
+import { zUpBonesCorrectionStep } from "./z-up-bones";
+import { zUpMeshCorrectionStep } from "./z-up-mesh";
 
 export * from "./types";
 
-export const correctionSteps = [
+const rawCorrectionSteps = [
   levelOfDetailDedupingCorrectionStep,
   mergeGeometryGroupsCorrectionStep,
   boneDedupingCorrectionStep,
@@ -36,4 +37,12 @@ export const correctionSteps = [
   placeholderMissingTexturesCorrectionStep,
   replaceIncompatibleMaterialsCorrectionStep,
   removeTransparencyFromMaterialsCorrectionStep,
-];
+] as const;
+
+export const correctionSteps: ReadonlyArray<Readonly<Step>> = rawCorrectionSteps;
+
+export type CorrectionStepName = (typeof correctionSteps)[number]["name"];
+
+export const correctionStepNames: Array<CorrectionStepName> = correctionSteps.map(
+  (step) => step.name,
+);

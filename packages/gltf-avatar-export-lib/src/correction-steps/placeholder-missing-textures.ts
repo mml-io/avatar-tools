@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { Group, Texture } from "three";
 
 import { forEachMapKey } from "./materials/forEachMapKey";
-import { Step } from "./types";
+import { StepResult } from "./types";
 
 function fixTexture(texture: Texture, setDefaultColorIfMissing: boolean = false): Texture | null {
   if (!texture.image || texture.image.data === null) {
@@ -34,9 +34,9 @@ function fixMaterial(material: THREE.Material): Array<string> {
   return missingTextures;
 }
 
-export const placeholderMissingTexturesCorrectionStep: Step = {
-  name: "placeholderMissingTextures",
-  action: (group: Group) => {
+export const placeholderMissingTexturesCorrectionStep = {
+  name: "placeholder-missing-textures",
+  action: (group: Group): StepResult => {
     const missingTextureNames: Array<string> = [];
 
     group.traverse((child) => {
@@ -86,4 +86,4 @@ export const placeholderMissingTexturesCorrectionStep: Step = {
       })),
     };
   },
-};
+} as const;

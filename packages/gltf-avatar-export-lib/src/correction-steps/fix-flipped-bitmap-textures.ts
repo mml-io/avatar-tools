@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { Group, Texture } from "three";
 
 import { forEachMapKey } from "./materials/forEachMapKey";
-import { Step } from "./types";
+import { StepResult } from "./types";
 
 function fixTexture(texture: Texture): Texture | null {
   if (
@@ -52,9 +52,9 @@ function fixMaterial(material: THREE.Material): Array<string> {
   return flippedTextures;
 }
 
-export const fixFlippedBitmapTexturesCorrectionStep: Step = {
-  name: "fixFlippedBitmapTextures",
-  action: (group: Group) => {
+export const fixFlippedBitmapTexturesCorrectionStep = {
+  name: "fix-flipped-bitmap-textures",
+  action: (group: Group): StepResult => {
     const flippedTextureNames: Array<string> = [];
 
     group.traverse((child) => {
@@ -104,4 +104,4 @@ export const fixFlippedBitmapTexturesCorrectionStep: Step = {
       })),
     };
   },
-};
+} as const;

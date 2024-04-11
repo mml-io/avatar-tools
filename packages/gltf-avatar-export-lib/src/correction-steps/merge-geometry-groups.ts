@@ -4,11 +4,11 @@ import { Group } from "three";
 // eslint-disable-next-line import/no-unresolved
 import * as BufferGeometryUtils from "three/addons/utils/BufferGeometryUtils.js";
 
-import { LogMessage, Step } from "./types";
+import { LogMessage, Step, StepResult } from "./types";
 
-export const mergeGeometryGroupsCorrectionStep: Step = {
-  name: "mergeGeometryGroups",
-  action: (group: Group) => {
+export const mergeGeometryGroupsCorrectionStep = {
+  name: "merge-geometry-groups",
+  action: (group: Group): StepResult => {
     const logs: Array<LogMessage> = [];
 
     group.traverse((child) => {
@@ -57,4 +57,4 @@ export const mergeGeometryGroupsCorrectionStep: Step = {
       logs,
     };
   },
-};
+} as const;

@@ -1,11 +1,11 @@
 import * as THREE from "three";
 import { Group } from "three";
 
-import { LogMessage, Step } from "./types";
+import { LogMessage, Step, StepResult } from "./types";
 
-export const removeVertexColorsCorrectionStep: Step = {
-  name: "removeVertexColors",
-  action: (group: Group) => {
+export const removeVertexColorsCorrectionStep = {
+  name: "remove-vertex-colors",
+  action: (group: Group): StepResult => {
     const logs: Array<LogMessage> = [];
     group.traverse((child) => {
       const asSkinnedMesh = child as THREE.SkinnedMesh;
@@ -41,4 +41,4 @@ export const removeVertexColorsCorrectionStep: Step = {
       logs: logs,
     };
   },
-};
+} as const;

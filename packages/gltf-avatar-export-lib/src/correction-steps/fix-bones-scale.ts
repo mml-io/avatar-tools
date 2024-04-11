@@ -2,14 +2,14 @@ import * as THREE from "three";
 import { Group } from "three";
 
 import { getBonesBoundingBox } from "./getBonesBoundingBox";
-import { LogMessage, Step } from "./types";
+import { LogMessage, Step, StepResult } from "./types";
 
 const scaleCorrection = new THREE.Matrix4().makeScale(0.01, 0.01, 0.01);
 const scaleKCorrection = new THREE.Matrix4().makeScale(0.001, 0.001, 0.001);
 
-export const fixBonesScaleCorrectionStep: Step = {
-  name: "fixBonesScale",
-  action: (group: Group) => {
+export const fixBonesScaleCorrectionStep = {
+  name: "fix-bones-scale",
+  action: (group: Group): StepResult => {
     const bonesBoundingBox = getBonesBoundingBox(group);
     const xBonesSize = bonesBoundingBox.max.x - bonesBoundingBox.min.x;
     const yBonesSize = bonesBoundingBox.max.y - bonesBoundingBox.min.y;
@@ -55,4 +55,4 @@ export const fixBonesScaleCorrectionStep: Step = {
       logs: [bonesSizeLog],
     };
   },
-};
+} as const;

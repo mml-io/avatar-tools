@@ -34,3 +34,9 @@ you can use the tool to process avatars using the following command from the roo
 ```bash
 npm run convert -- -i <input file> -o <output file>
 ```
+
+The CLI tool supports skipping [correction steps](./packages/gltf-avatar-export-lib/src/correction-steps/) by name:
+```bash
+# Skip the "remove-transparency-from-materials" step
+npm run convert -- -i <input file> -o <output file> --skip-remove-transparency-from-materials
+```

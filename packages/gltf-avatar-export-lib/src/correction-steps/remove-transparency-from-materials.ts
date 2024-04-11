@@ -1,35 +1,26 @@
 import * as THREE from "three";
 import { Group } from "three";
 
-import { convertLambertToStandard } from "./materials/lambertToStandard";
-import { convertPhongToStandard } from "./materials/phongToStandard";
-import { Step } from "./types";
+import { StepResult } from "./types";
 
 function fixMaterial(material: THREE.Material): [string, THREE.Material] | null {
-  if (material instanceof THREE.MeshLambertMaterial) {
-    return [
-      "Replacing incompatible MeshLambertMaterial with MeshStandardMaterial",
-      convertLambertToStandard(material),
-    ];
-  } else if (material instanceof THREE.MeshPhongMaterial) {
-    return [
-      "Replacing incompatible MeshPhongMaterial with MeshStandardMaterial",
-      convertPhongToStandard(material),
-    ];
-  } else if (material instanceof THREE.MeshPhysicalMaterial) {
-    if (material.clearcoat) {
+  if (
+    material instanceof THREE.MeshLambertMaterial ||
+    material instanceof THREE.MeshStandardMaterial ||
+    material instanceof THREE.MeshPhysicalMaterial
+  ) {
+    if (material.transparent) {
       const cloned = material.clone();
-      cloned.clearcoat = 0;
-      return ["Removed clearcoat from MeshPhysicalMaterial", cloned];
+      cloned.transparent = false;
+      return ["Disabled transparency", cloned];
     }
-    return null;
   }
   return null;
 }
 
-export const replaceIncompatibleMaterialsCorrectionStep: Step = {
-  name: "replaceIncompatibleMaterials",
-  action: (group: Group) => {
+export const removeTransparencyFromMaterialsCorrectionStep = {
+  name: "remove-transparency-from-materials",
+  action: (group: Group): StepResult => {
     const logs: Array<string> = [];
 
     group.traverse((child) => {
@@ -65,7 +56,7 @@ export const replaceIncompatibleMaterialsCorrectionStep: Step = {
         didApply: false,
         topLevelMessage: {
           level: "info",
-          message: "No incompatible materials detected.",
+          message: "No materials with transparency detected.",
         },
       };
     }
@@ -74,7 +65,7 @@ export const replaceIncompatibleMaterialsCorrectionStep: Step = {
       didApply: true,
       topLevelMessage: {
         level: "info",
-        message: "Detected incompatible materials or material properties.",
+        message: "Detected materials with transparency.",
       },
       logs: logs.map((message) => ({
         level: "warn",
@@ -82,4 +73,4 @@ export const replaceIncompatibleMaterialsCorrectionStep: Step = {
       })),
     };
   },
-};
+} as const;
