@@ -90,4 +90,4 @@ export const targetBoneTransformations: {
   ik_hand_r: { pos: [0.0, 0.0, 0.0], rot: [0.0, 0.0, 0.0, 1.0] },
   interaction: { pos: [0.0, 0.0, 0.0], rot: [0.0, 0.0, 0.0, 1.0] },
   center_of_mass: { pos: [0.0, 0.0, 0.0], rot: [0.0, 0.0, 0.0, 1.0] },
-};
+} as const;

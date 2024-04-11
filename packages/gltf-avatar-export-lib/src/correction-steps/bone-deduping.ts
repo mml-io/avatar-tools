@@ -1,11 +1,11 @@
 import * as THREE from "three";
 import { Group } from "three";
 
-import { Step } from "./types";
+import { StepResult } from "./types";
 
-export const boneDedupingCorrectionStep: Step = {
-  name: "boneDeduping",
-  action: (group: Group) => {
+export const boneDedupingCorrectionStep = {
+  name: "bone-deduping",
+  action: (group: Group): StepResult => {
     const toRemove: Array<THREE.Bone> = [];
     const bonesByName = new Map<string, THREE.Bone>();
     group.traverse((child) => {
@@ -57,4 +57,4 @@ export const boneDedupingCorrectionStep: Step = {
       },
     };
   },
-};
+} as const;

@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { Group } from "three";
 
 import { reposeSkinnedMeshes } from "./reposeSkinnedMeshes";
-import { Step } from "./types";
+import { StepResult } from "./types";
 
 function isNear(a: number, b: number, epsilon = 0.1) {
   return Math.abs(a - b) < epsilon;
@@ -11,9 +11,9 @@ function isNear(a: number, b: number, epsilon = 0.1) {
 const HalfPi = Math.PI / 2;
 
 // TODO - there are some cases where this doesn't work - and the added rotation potentially overcorrects.
-export const rotatePelvisCorrectionStep: Step = {
-  name: "rotatePelvis",
-  action: (group: Group) => {
+export const rotatePelvisCorrectionStep = {
+  name: "rotate-pelvis",
+  action: (group: Group): StepResult => {
     const pelvisBone = group.getObjectByName("pelvis") as THREE.Bone;
     if (!pelvisBone) {
       return {
@@ -105,4 +105,4 @@ export const rotatePelvisCorrectionStep: Step = {
       },
     };
   },
-};
+} as const;

@@ -13,6 +13,6 @@ export type StepResult = {
 };
 
 export type Step = {
-  name: string;
+  readonly name: string;
   action: (group: Group) => StepResult;
 };

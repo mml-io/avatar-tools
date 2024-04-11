@@ -1,11 +1,11 @@
 import * as THREE from "three";
 import { Group } from "three";
 
-import { LogMessage, Step } from "./types";
+import { LogMessage, Step, StepResult } from "./types";
 
-export const levelOfDetailDedupingCorrectionStep: Step = {
-  name: "levelOfDetailDeduping",
-  action: (group: Group) => {
+export const levelOfDetailDedupingCorrectionStep = {
+  name: "level-of-detail-deduping",
+  action: (group: Group): StepResult => {
     const skinnedMeshByName = new Map<string, THREE.SkinnedMesh>();
     const skinnedMeshByLODName = new Map<
       string,
@@ -90,4 +90,4 @@ export const levelOfDetailDedupingCorrectionStep: Step = {
       logs,
     };
   },
-};
+} as const;

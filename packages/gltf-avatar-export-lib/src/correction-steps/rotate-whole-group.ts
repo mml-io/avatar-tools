@@ -1,10 +1,10 @@
 import { Group } from "three";
 
-import { Step } from "./types";
+import { StepResult } from "./types";
 
-export const rotateWholeGroupCorrectionStep: Step = {
-  name: "rotateWholeGroup",
-  action: (group: Group) => {
+export const rotateWholeGroupCorrectionStep = {
+  name: "rotate-whole-group",
+  action: (group: Group): StepResult => {
     if (group.rotation.x === 0 && group.rotation.y === 0 && group.rotation.z === 0) {
       return {
         didApply: false,
@@ -25,4 +25,4 @@ export const rotateWholeGroupCorrectionStep: Step = {
       topLevelMessage: { level: "info", message: "Rotated whole imported group to 0,0,0" },
     };
   },
-};
+} as const;

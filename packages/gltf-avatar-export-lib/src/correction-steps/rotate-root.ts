@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { Group } from "three";
 
-import { Step } from "./types";
+import { StepResult } from "./types";
 
 function isNear(a: number, b: number, epsilon = 0.1) {
   return Math.abs(a - b) < epsilon;
@@ -9,9 +9,9 @@ function isNear(a: number, b: number, epsilon = 0.1) {
 
 const HalfPi = Math.PI / 2;
 
-export const rotateRootCorrectionStep: Step = {
-  name: "rotateRoot",
-  action: (group: Group) => {
+export const rotateRootCorrectionStep = {
+  name: "rotate-root",
+  action: (group: Group): StepResult => {
     const rootBone = group.getObjectByName("root") as THREE.Bone;
     if (!rootBone) {
       return {
@@ -78,4 +78,4 @@ export const rotateRootCorrectionStep: Step = {
       };
     }
   },
-};
+} as const;

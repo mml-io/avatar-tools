@@ -1,17 +1,14 @@
-import * as THREE from "three";
 import { Group } from "three";
+import * as THREE from "three";
 
 import { getBonesBoundingBox } from "./getBonesBoundingBox";
-import { LogMessage, Step } from "./types";
+import { LogMessage, Step, StepResult } from "./types";
 
 const zUpCorrection = new THREE.Matrix4().makeRotationX(-Math.PI / 2);
 
-export const zUpMeshCorrectionStep: Step = {
-  name: "zUpMesh",
-  action: (group: Group) => {
-    /*
-     Detect the bone sizes to determine if we need to apply the scaling to the mesh. The mesh itself might be too small
-    */
+export const zUpBonesCorrectionStep = {
+  name: "z-up-bones",
+  action: (group: Group): StepResult => {
     const bonesBoundingBox = getBonesBoundingBox(group);
     const xBonesSize = bonesBoundingBox.max.x - bonesBoundingBox.min.x;
     const yBonesSize = bonesBoundingBox.max.y - bonesBoundingBox.min.y;
@@ -20,8 +17,8 @@ export const zUpMeshCorrectionStep: Step = {
       level: "info",
       message: `Bones size: x: ${xBonesSize}, y: ${yBonesSize}, z: ${zBonesSize}`,
     };
-    const meshIsZUp = zBonesSize > yBonesSize;
-    if (!meshIsZUp) {
+    const bonesAreZUp = zBonesSize > yBonesSize;
+    if (!bonesAreZUp) {
       return {
         didApply: false,
         logs: [bonesSizeLog],
@@ -33,9 +30,17 @@ export const zUpMeshCorrectionStep: Step = {
     }
 
     group.traverse((child) => {
-      const asSkinnedMesh = child as THREE.SkinnedMesh;
-      if (asSkinnedMesh.isSkinnedMesh) {
-        asSkinnedMesh.geometry.applyMatrix4(zUpCorrection);
+      const asBone = child as THREE.Bone;
+      if (asBone.isBone) {
+        if (child.name === "root") {
+          /*
+           If the skeleton is Z-up, apply the matrix transformation to the immediate children of the root bone. This is
+           cleaner that rotating the root itself.
+          */
+          child.children.forEach((innerChild) => {
+            innerChild.applyMatrix4(zUpCorrection);
+          });
+        }
       }
     });
 
@@ -43,9 +48,9 @@ export const zUpMeshCorrectionStep: Step = {
       didApply: true,
       topLevelMessage: {
         level: "info",
-        message: "Detected mesh was z-up (height was in z axis). Rotated to make height y axis.",
+        message: "Detected bones were z-up (height was in z axis). Rotated to make height y axis.",
       },
       logs: [bonesSizeLog],
     };
   },
-};
+} as const;

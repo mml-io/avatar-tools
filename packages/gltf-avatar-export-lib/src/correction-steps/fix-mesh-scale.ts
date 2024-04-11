@@ -2,14 +2,14 @@ import * as THREE from "three";
 import { Group } from "three";
 
 import { getBonesBoundingBox } from "./getBonesBoundingBox";
-import { LogMessage, Step } from "./types";
+import { LogMessage, Step, StepResult } from "./types";
 
 const scaleCorrection = new THREE.Matrix4().makeScale(0.01, 0.01, 0.01);
 const scaleKCorrection = new THREE.Matrix4().makeScale(0.001, 0.001, 0.001);
 
-export const fixMeshScaleCorrectionStep: Step = {
-  name: "fixMeshScale",
-  action: (group: Group) => {
+export const fixMeshScaleCorrectionStep = {
+  name: "fix-mesh-scale",
+  action: (group: Group): StepResult => {
     /*
      Detect the bone sizes to determine if we need to apply the scaling to the mesh. The mesh itself might be too small
     */
@@ -57,4 +57,4 @@ export const fixMeshScaleCorrectionStep: Step = {
       logs: [bonesSizeLog],
     };
   },
-};
+} as const;

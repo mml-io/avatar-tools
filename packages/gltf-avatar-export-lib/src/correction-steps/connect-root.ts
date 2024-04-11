@@ -1,11 +1,11 @@
 import * as THREE from "three";
 import { Group } from "three";
 
-import { LogMessage, Step } from "./types";
+import { LogMessage, Step, StepResult } from "./types";
 
-export const connectRootCorrectionStep: Step = {
-  name: "connectRoot",
-  action: (group: Group) => {
+export const connectRootCorrectionStep = {
+  name: "connect-root",
+  action: (group: Group): StepResult => {
     const rootBone = group.getObjectByName("root") as THREE.Bone;
     if (!rootBone) {
       return {
@@ -50,4 +50,4 @@ export const connectRootCorrectionStep: Step = {
       logs,
     };
   },
-};
+} as const;
