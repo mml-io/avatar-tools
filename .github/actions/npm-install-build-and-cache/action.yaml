@@ -45,6 +45,8 @@ runs:
       with:
         name: build-artifacts
         path: |
+          packages/**/build/*
+          clis/**/build/*
           tools/**/build/*
           github-pages-publisher/build/*
         if-no-files-found: error
