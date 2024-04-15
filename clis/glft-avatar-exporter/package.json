@@ -17,6 +17,7 @@
   "dependencies": {
     "three": "0.161.0",
     "@napi-rs/canvas": "0.1.51",
+    "jimp": "0.22.12",
     "gltf-avatar-export-lib": "file:../../packages/gltf-avatar-export-lib",
     "yargs": "17.7.2"
   },

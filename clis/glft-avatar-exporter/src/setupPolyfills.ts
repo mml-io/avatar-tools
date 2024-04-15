@@ -2,6 +2,7 @@ import { BinaryLike } from "node:crypto";
 import process from "process";
 
 import { Canvas, Image, ImageData, loadImage } from "@napi-rs/canvas";
+import Jimp from "jimp";
 
 /*
  Blobs are accessed using global names - they must be accessible to code paths that create classes that read blobs
@@ -200,8 +201,28 @@ function createElement(elementName: string) {
 
   (canvas as any).convertToBlob = async (options?: { type: string; quality?: number }) => {
     const type = options?.type || "image/png";
-    const buffer = canvas.toBuffer(type as any, options?.quality);
-    const blob = new PolyfillBlobClass([new Uint8Array(buffer)], {
+    const asPngBuffer = canvas.toBuffer("image/png");
+
+    if (type === "image/jpeg" || type === "image/jpg") {
+      /*
+       If the requested type is jpeg, convert the image from png to jpeg using Jimp (avoids encoding quality issues
+       with canvas)
+      */
+      return new Promise((resolve, reject) => {
+        Jimp.read(asPngBuffer, async (err, image) => {
+          if (err) {
+            return reject(err);
+          }
+          const jpegBuffer = await image.getBufferAsync(Jimp.MIME_JPEG);
+          const blob = new PolyfillBlobClass([new Uint8Array(jpegBuffer)], {
+            type: type,
+          });
+          resolve(blob);
+        });
+      });
+    }
+
+    const blob = new PolyfillBlobClass([new Uint8Array(asPngBuffer)], {
       type: type,
     });
     return Promise.resolve(blob);
