@@ -5,32 +5,14 @@ import fs from "fs";
 import process from "process";
 
 import { ModelLoader } from "@mml-io/model-loader";
-import { correctionSteps, correctionStepNames } from "gltf-avatar-export-lib";
-import { LoadingManager } from "three";
+import { Bone, Group, LoadingManager, Object3D, Skeleton, SkinnedMesh } from "three";
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter.js";
 import { TGALoader } from "three/examples/jsm/loaders/TGALoader.js";
 import { setupPolyfills } from "threejs-nodejs-polyfills";
-import { Options } from "yargs";
 import yargs from "yargs/yargs";
 
 // A lot of classes used for texture loading and saving must be polyfilled as they are not present in Node
 setupPolyfills(global);
-
-function stepNameToSkipArgName(stepName: string): string {
-  return `skip-${stepName}`;
-}
-
-const optionsForCorrectionSteps = correctionStepNames.reduce<{ [key: string]: Options }>(
-  (acc, stepName) => {
-    acc[stepNameToSkipArgName(stepName)] = {
-      type: "boolean",
-      default: false,
-      describe: `Skip the ${stepName} step`,
-    };
-    return acc;
-  },
-  {},
-);
 
 const argv = yargs(process.argv)
   // @ts-expect-error - strictOptions is not in the types
@@ -38,7 +20,6 @@ const argv = yargs(process.argv)
   .options({
     input: { type: "string", alias: "i", demandOption: true },
     output: { type: "string", alias: "o", demandOption: true },
-    ...optionsForCorrectionSteps,
   })
   .usage("Usage: $0 -i [input file] -o [output file]").argv;
 
@@ -65,7 +46,7 @@ fs.readFile(argv.input, function (readFileErr, fileBuffer) {
       });
 
       const modelLoader = new ModelLoader(loadingManager);
-      const { group } = await modelLoader.loadFromBuffer(asArrayBuffer, "");
+      const { group, animations } = await modelLoader.loadFromBuffer(asArrayBuffer, "");
 
       // Only wait for loading if there are assets to load
       if (hasAssetsToLoad) {
@@ -73,17 +54,44 @@ fs.readFile(argv.input, function (readFileErr, fileBuffer) {
         await didLoad;
       }
 
-      for (const step of correctionSteps) {
-        if (argv[stepNameToSkipArgName(step.name)]) {
-          continue;
+      const outputGroup = new Group();
+
+      // Find the root bones in the file (without querying by name)
+      const rootBones: Array<Bone> = [];
+      function findRootBones(child: Object3D) {
+        const asBone = child as Bone;
+        if (asBone.isBone) {
+          rootBones.push(asBone);
+        } else {
+          child.children.forEach(findRootBones);
         }
-        step.action(group);
+      }
+      findRootBones(group);
+
+      /*
+       For each root bone create a skeleton containing all of the bones and a
+       skinned mesh that uses that skeleton. This is necessary for the
+       GLTFExporter to recognize the bone objects as bones.
+      */
+      for (const rootBone of rootBones) {
+        const allBones: Array<Bone> = [];
+        rootBone.traverse((child) => {
+          const asBone = child as Bone;
+          if (asBone.isBone) {
+            allBones.push(asBone);
+          }
+        });
+
+        const emptySkinnedMesh = new SkinnedMesh();
+        const skeleton = new Skeleton([rootBone, ...allBones]);
+        emptySkinnedMesh.bind(skeleton);
+        outputGroup.add(rootBone);
+        outputGroup.add(emptySkinnedMesh);
       }
 
       new GLTFExporter().parse(
-        group,
+        outputGroup,
         async (gltf) => {
-          // process data
           const buff = Buffer.from(gltf as ArrayBuffer);
           fs.writeFile(argv.output, buff, (writeFileErr) => {
             if (writeFileErr) {
@@ -99,6 +107,7 @@ fs.readFile(argv.input, function (readFileErr, fileBuffer) {
           process.exit(1);
         },
         {
+          animations,
           binary: true,
         },
       );
