@@ -1,4 +1,4 @@
-import { ModelLoader } from "gltf-avatar-export-lib";
+import { ModelLoader } from "@mml-io/model-loader";
 import { AnimationClip, AnimationMixer, Bone, SkeletonHelper, Vector3 } from "three";
 
 // Jump animation for UE5 Manny exported as GLB from UE5
@@ -28,7 +28,6 @@ export class AnimationView extends QuadrantScene {
   private buttonHolder: HTMLDivElement;
 
   constructor(
-    private modelLoader: ModelLoader,
     private onAnimationClipLoaded: (clip: AnimationClip | null) => void,
     private timeManager: TimeManager,
   ) {
@@ -111,7 +110,8 @@ export class AnimationView extends QuadrantScene {
 
   private async loadModelFromBuffer(buffer: ArrayBuffer): Promise<void> {
     this.reset();
-    const { group, animations } = await this.modelLoader.loadFromBuffer(buffer, "");
+    const modelLoader = new ModelLoader();
+    const { group, animations } = await modelLoader.loadFromBuffer(buffer, "");
     if (!animations || animations.length === 0) {
       console.error("Unable to find animations");
       return;

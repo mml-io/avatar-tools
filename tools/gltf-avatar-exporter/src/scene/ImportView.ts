@@ -1,4 +1,4 @@
-import { ModelLoader } from "gltf-avatar-export-lib";
+import { ModelLoader } from "@mml-io/model-loader";
 import { Group, LoadingManager, SkinnedMesh, Vector3 } from "three";
 import { TGALoader } from "three/examples/jsm/loaders/TGALoader.js";
 
@@ -24,7 +24,6 @@ export class ImportView extends QuadrantScene {
 
   constructor(
     private logger: LoggerView,
-    private modelLoader: ModelLoader,
     private afterLoadCB: (model: Group | null, name: string) => void,
   ) {
     super();
@@ -105,7 +104,8 @@ export class ImportView extends QuadrantScene {
   private async loadModelFromBuffer(buffer: ArrayBuffer, name: string): Promise<void> {
     const importViewLoadingManager = new LoadingManager();
     importViewLoadingManager.addHandler(/\.tga$/i, new TGALoader(importViewLoadingManager));
-    const { group } = await this.modelLoader.loadFromBuffer(buffer, "", importViewLoadingManager);
+    const modelLoader = new ModelLoader(importViewLoadingManager);
+    const { group } = await modelLoader.loadFromBuffer(buffer, "");
 
     if (group) {
       group.traverse((child) => {
@@ -142,11 +142,8 @@ export class ImportView extends QuadrantScene {
       };
     });
 
-    const { group: pipelineGroup } = await this.modelLoader.loadFromBuffer(
-      buffer,
-      "",
-      loadingManager,
-    );
+    const exportViewModelLoader = new ModelLoader(loadingManager);
+    const { group: pipelineGroup } = await exportViewModelLoader.loadFromBuffer(buffer, "");
 
     // Only wait for loading if there are assets to load
     if (hasAssetsToLoad) {

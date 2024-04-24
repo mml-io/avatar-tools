@@ -1,15 +1,17 @@
 import fs from "fs";
 import process from "process";
 
-import { correctionSteps, correctionStepNames, ModelLoader } from "gltf-avatar-export-lib";
+import { ModelLoader } from "@mml-io/model-loader";
+import { correctionSteps, correctionStepNames } from "gltf-avatar-export-lib";
 import { LoadingManager } from "three";
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter.js";
 import { TGALoader } from "three/examples/jsm/loaders/TGALoader.js";
+import { setupPolyfills } from "threejs-nodejs-polyfills";
 import { Options } from "yargs";
 import yargs from "yargs/yargs";
 
 // A lot of classes used for texture loading and saving must be polyfilled as they are not present in Node
-import "./setupPolyfills";
+setupPolyfills(global);
 
 function stepNameToSkipArgName(stepName: string): string {
   return `skip-${stepName}`;
@@ -47,7 +49,6 @@ fs.readFile(argv.input, function (readFileErr, fileBuffer) {
     try {
       const asArrayBuffer = fileBuffer.buffer.slice(0);
 
-      const modelLoader = new ModelLoader();
       const loadingManager = new LoadingManager();
       loadingManager.addHandler(/\.tga$/i, new TGALoader(loadingManager));
       let hasAssetsToLoad = false;
@@ -60,7 +61,8 @@ fs.readFile(argv.input, function (readFileErr, fileBuffer) {
         };
       });
 
-      const { group } = await modelLoader.loadFromBuffer(asArrayBuffer, "", loadingManager);
+      const modelLoader = new ModelLoader(loadingManager);
+      const { group } = await modelLoader.loadFromBuffer(asArrayBuffer, "");
 
       // Only wait for loading if there are assets to load
       if (hasAssetsToLoad) {
@@ -80,9 +82,7 @@ fs.readFile(argv.input, function (readFileErr, fileBuffer) {
         async (gltf) => {
           // process data
           const buff = Buffer.from(gltf as ArrayBuffer);
-          const base64data = buff.toString("base64");
-
-          fs.writeFile(argv.output, base64data, "base64", (writeFileErr) => {
+          fs.writeFile(argv.output, buff, (writeFileErr) => {
             if (writeFileErr) {
               console.error("Error writing file", writeFileErr);
               process.exit(1);
