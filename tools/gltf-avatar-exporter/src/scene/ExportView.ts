@@ -1,4 +1,5 @@
-import { correctionSteps, ModelLoader } from "gltf-avatar-export-lib";
+import { ModelLoader } from "@mml-io/model-loader";
+import { correctionSteps } from "gltf-avatar-export-lib";
 import { AnimationClip, AnimationMixer, Group, SkinnedMesh, Vector3 } from "three";
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter.js";
 
@@ -35,7 +36,6 @@ export class ExportView extends QuadrantScene {
 
   constructor(
     private logger: LoggerView,
-    private modelLoader: ModelLoader,
     private timeManager: TimeManager,
   ) {
     super();
@@ -97,7 +97,8 @@ export class ExportView extends QuadrantScene {
   public async loadModelFromBuffer(buffer: ArrayBuffer, name: string): Promise<void> {
     this.buffer = buffer;
     this.name = name;
-    const { group } = await this.modelLoader.loadFromBuffer(buffer, "");
+    const modelLoader = new ModelLoader();
+    const { group } = await modelLoader.loadFromBuffer(buffer, "");
     if (group) {
       this.logger.logNestedLogMessage(createSkeletonLogFromGroup("Export Skeleton", group));
       group.traverse((child) => {

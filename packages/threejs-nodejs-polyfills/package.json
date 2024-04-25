@@ -1,5 +1,5 @@
 {
-  "name": "gltf-avatar-export-lib",
+  "name": "threejs-nodejs-polyfills",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -18,10 +18,8 @@
     "lint-fix": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --fix"
   },
   "dependencies": {
-    "three": "0.163.0"
-  },
-  "devDependencies": {
-    "@types/three": "0.163.0"
+    "@napi-rs/canvas": "0.1.52",
+    "jimp": "0.22.12"
   }
 }
 

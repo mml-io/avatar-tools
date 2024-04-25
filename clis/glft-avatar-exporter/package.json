@@ -15,13 +15,12 @@
     "lint-fix": "eslint \"./{src,test}/**/*.{js,jsx,ts,tsx}\" --fix"
   },
   "dependencies": {
-    "three": "0.161.0",
-    "@napi-rs/canvas": "0.1.51",
-    "jimp": "0.22.12",
+    "three": "0.163.0",
+    "@mml-io/model-loader": "0.14.0",
     "gltf-avatar-export-lib": "file:../../packages/gltf-avatar-export-lib",
     "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@types/three": "0.160.0"
+    "@types/three": "0.163.0"
   }
 }

@@ -1,4 +1,3 @@
-import { ModelLoader } from "gltf-avatar-export-lib";
 import { Group } from "three";
 
 import styles from "./index.module.css";
@@ -11,7 +10,6 @@ import { TimeManager } from "./scene/TimeManager";
 class App {
   private readonly timeManager = new TimeManager();
 
-  private modelLoader: ModelLoader = new ModelLoader();
   private logger: LoggerView;
 
   private importView: ImportView;
@@ -20,21 +18,13 @@ class App {
 
   constructor() {
     this.logger = new LoggerView();
-    this.importView = new ImportView(
-      this.logger,
-      this.modelLoader,
-      (group: Group | null, name: string) => {
-        this.exportView.setImportedModelGroup(group, name);
-      },
-    );
-    this.exportView = new ExportView(this.logger, this.modelLoader, this.timeManager);
-    this.animationView = new AnimationView(
-      this.modelLoader,
-      (clip) => {
-        this.exportView.setAnimationClip(clip);
-      },
-      this.timeManager,
-    );
+    this.importView = new ImportView(this.logger, (group: Group | null, name: string) => {
+      this.exportView.setImportedModelGroup(group, name);
+    });
+    this.exportView = new ExportView(this.logger, this.timeManager);
+    this.animationView = new AnimationView((clip) => {
+      this.exportView.setAnimationClip(clip);
+    }, this.timeManager);
     const container = document.createElement("div");
     container.classList.add(styles.container);
     document.body.append(container);
