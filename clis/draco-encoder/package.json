@@ -1,12 +1,12 @@
 {
-  "name": "@mml-io/gltf-avatar-exporter-cli",
+  "name": "@mml-io/draco-encoder-cli",
   "private": true,
   "version": "0.1.0",
   "files": [
     "/build"
   ],
   "bin": {
-    "gltf-avatar-exporter": "./build/index.js"
+    "draco-encoder": "./build/index.js"
   },
   "type": "module",
   "scripts": {
@@ -19,7 +19,10 @@
   },
   "dependencies": {
     "three": "0.163.0",
-    "@mml-io/model-loader": "0.14.0",
+    "@gltf-transform/core": "3.10.1",
+    "@gltf-transform/extensions": "3.10.1",
+    "@gltf-transform/functions": "3.10.1",
+    "meshoptimizer": "0.20.0",
     "gltf-avatar-export-lib": "file:../../packages/gltf-avatar-export-lib",
     "yargs": "17.7.2"
   },
