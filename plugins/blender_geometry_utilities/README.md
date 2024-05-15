@@ -5,9 +5,9 @@ we have a workflow using Blender and a collection of addons.
 
 Blender 3.5+ https://www.blender.org/download/
 
-These tools are available below, they are specific versions, you can check the links for different versions:
-Game Rig Tools: https://toshicg.gumroad.com/l/game_rig_tools
-Surface Heat Skinning: http://www.mesh-online.net/shd-blender-addon.zip
+These tools are available below, they are specific versions, you can check the links for different versions
+Game Rig Tools: https://toshicg.gumroad.com/l/game_rig_tools \
+Surface Heat Skinning: http://www.mesh-online.net/shd-blender-addon.zip \
 Improbable Blender add-on for the geometry utilities: improbable_geometry_utilities.py
 
 Tips:
