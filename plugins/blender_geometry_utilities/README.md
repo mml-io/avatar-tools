@@ -8,7 +8,7 @@ Blender 3.5+ https://www.blender.org/download/
 These tools are available below, they are specific versions, you can check the links for different versions \
 Game Rig Tools: https://toshicg.gumroad.com/l/game_rig_tools \
 Surface Heat Skinning: http://www.mesh-online.net/shd-blender-addon.zip \
-Improbable Blender add-on for the geometry utilities: improbable_geometry_utilities.py
+Improbable Blender add-on for the geometry utilities: [improbable_geometry_utilities.py](https://github.com/mml-io/avatar-tools/blob/feature/blender_avatar_tools/plugins/blender_geometry_utilities/improbable_geometry_utils.py)
 
 Tips:
 It's better to install each Addon manually, in Blender you can install addons by pointing it to the zip files or python files, 
