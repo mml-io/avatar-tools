@@ -25,5 +25,5 @@ Combine the geometry in Blender, there is a button for that in the Improbable ad
 just keep in mind this will erase all other non geometry elements in your scene and it will unify all the geometry as one,
 it will also remove parent transform groups.
 
-Documentation: https://docs.msquared.io/tutorials-and-features/avatars/creating-mml-avatars-with-blender-and-free-rigging-tools
+Documentation: https://docs.msquared.io/tutorials-and-features/avatars/creating-mml-avatars-with-blender-and-free-rigging-tools \
 Video tutorial: https://www.youtube.com/watch?v=0m5xAzhoGkQ
