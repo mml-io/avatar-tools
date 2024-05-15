@@ -74,5 +74,5 @@ npm run draco-encode -- -i <input file> -o <output file>
 ## Blender avatar tools
 
 Blender tools are a collection of addons to create a custom avatar with the Unreal Engine 5 skeleton structure
-[https://github.com/mml-io/avatar-tools/tree/feature/blender_avatar_tools](https://github.com/mml-io/avatar-tools/tree/feature/blender_avatar_tools)
+[https://github.com/mml-io/avatar-tools/tree/feature/blender_avatar_tools/plugins/blender_geometry_utilities](https://github.com/mml-io/avatar-tools/tree/feature/blender_avatar_tools/plugins/blender_geometry_utilities)
 
