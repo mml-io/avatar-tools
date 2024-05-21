@@ -16,6 +16,8 @@ import { rotateWholeGroupCorrectionStep } from "./rotate-whole-group";
 import { Step } from "./types";
 import { zUpBonesCorrectionStep } from "./z-up-bones";
 import { zUpMeshCorrectionStep } from "./z-up-mesh";
+import { addMissingBonesCorrectionStep } from "./add-missing-bones";
+import { bonesRenamingCorrectionStep } from "./bone-renaming";
 
 export * from "./types";
 
@@ -29,6 +31,8 @@ const rawCorrectionSteps = [
   fixMeshScaleCorrectionStep,
   reposeBonesCorrectionStep,
   fixBonesScaleCorrectionStep,
+  bonesRenamingCorrectionStep,
+  addMissingBonesCorrectionStep,
   connectRootCorrectionStep,
   rotateRootCorrectionStep,
   rotatePelvisCorrectionStep,
