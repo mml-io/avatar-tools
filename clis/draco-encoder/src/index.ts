@@ -5,13 +5,9 @@ import fs from "fs";
 import process from "process";
 
 import { WebIO } from "@gltf-transform/core";
-import {
-  EXTMeshGPUInstancing,
-  EXTMeshoptCompression,
-  KHRONOS_EXTENSIONS,
-} from "@gltf-transform/extensions";
-import { quantize, reorder } from "@gltf-transform/functions";
-import { MeshoptEncoder, MeshoptDecoder } from "meshoptimizer";
+import { ALL_EXTENSIONS } from "@gltf-transform/extensions";
+import { draco } from "@gltf-transform/functions";
+import draco3d from "draco3dgltf";
 import yargs from "yargs/yargs";
 
 const argv = yargs(process.argv)
@@ -30,26 +26,16 @@ fs.readFile(argv.input, function (readFileErr, fileBuffer) {
   }
 
   (async () => {
-    await MeshoptEncoder.ready;
-
     try {
       const io = new WebIO();
-
-      io.registerExtensions(KHRONOS_EXTENSIONS);
-      io.registerExtensions([EXTMeshGPUInstancing]); // read instanced meshes
-      io.registerExtensions([EXTMeshoptCompression]);
-      io.registerDependencies({
-        "meshopt.encoder": MeshoptEncoder,
-        "meshopt.decoder": MeshoptDecoder,
+      io.registerExtensions(ALL_EXTENSIONS).registerDependencies({
+        "draco3d.decoder": await draco3d.createDecoderModule(), // Optional.
+        "draco3d.encoder": await draco3d.createEncoderModule(), // Optional.
       });
 
       const doc = await io.readBinary(new Uint8Array(fileBuffer.buffer)); // read GLB from ArrayBuffer
 
-      await doc.transform(reorder({ encoder: MeshoptEncoder }), quantize());
-
-      doc.createExtension(EXTMeshoptCompression).setRequired(true).setEncoderOptions({
-        method: EXTMeshoptCompression.EncoderMethod.QUANTIZE,
-      });
+      await doc.transform(draco());
 
       const compressedArrayBuffer = await io.writeBinary(doc);
 
