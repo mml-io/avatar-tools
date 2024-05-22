@@ -19,10 +19,11 @@
   },
   "dependencies": {
     "three": "0.163.0",
+    "@types/draco3dgltf": "1.4.3",
+    "draco3dgltf": "1.5.7",
     "@gltf-transform/core": "3.10.1",
     "@gltf-transform/extensions": "3.10.1",
     "@gltf-transform/functions": "3.10.1",
-    "meshoptimizer": "0.20.0",
     "gltf-avatar-export-lib": "file:../../packages/gltf-avatar-export-lib",
     "yargs": "17.7.2"
   },
