@@ -1,7 +1,7 @@
 ## Blender tools
 
-There is a worflow and a setup process in order to have any custom character for your avatars,
-we have a workflow using Blender and a collection of addons.
+In order to have your custom character in the metaverse, there is a process and an initial setup, \
+the workflow for this will be using Blender, with a collection of addons and custom tools.
 
 Blender 3.5+ https://www.blender.org/download/
 
@@ -12,7 +12,7 @@ Improbable Blender add-on for the geometry utilities: [improbable_geometry_utili
 
 Tips:
 It's better to install each Addon manually, in Blender you can install addons by pointing it to the zip files or python files, 
-the Improbable Blender addon (python script above) will be a python file (.py) if there is an update you can re-download, 
+the Improbable Blender addon (python script above: blender-geometry-utils.py) will be a python file (.py) if there is an update you can re-download, 
 replace it and it will be updated in Blender with the latest features, for the other addons (zip files), 
 you'll need to download the updates, remove the old one from Blender and point it to the newest zip file.
 Game Rig Tools is in active development and it has updates in a regular basis.
