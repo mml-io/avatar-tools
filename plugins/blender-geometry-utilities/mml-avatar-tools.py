@@ -1,9 +1,9 @@
 bl_info = {
-    "name": "Improbable Geometry Processor",
+    "name": "MML Avatar Tools",
     "author": "Felipe Pesantez",
     "version": (0,0,1),
     "blender": (3,5,0),
-    "location": "3D Viewport > Sidebar > Improbable geometry process",
+    "location": "3D Viewport > Sidebar > MML Avatar Tools",
     "description": "Metaverse Avatar geometry process",
     "category": "Development",
 }
@@ -359,7 +359,7 @@ class VIEW3D_PT_geometry_process_panel(bpy.types.Panel):
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
 
-    bl_category = "Improbable geometry process"
+    bl_category = "MML geometry process"
     bl_label = "Geometry Process Panel"
 
     def draw(self, context):
