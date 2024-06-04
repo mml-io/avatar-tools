@@ -3,7 +3,7 @@
 In order to have your custom character in the metaverse, there is a process and an initial setup, \
 the workflow for this will be using Blender, with a collection of addons and custom tools.
 
-Blender 3.5+ https://download.blender.org/release \
+Blender 4.0 [https://download.blender.org/release](https://www.blender.org/download/releases/4-0/) \
 
 These tools are available below, they are specific versions, you can check the links for different versions \
 Game Rig Tools: https://toshicg.gumroad.com/l/game_rig_tools \
