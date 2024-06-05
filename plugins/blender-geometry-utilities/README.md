@@ -6,7 +6,7 @@ the workflow for this will be using Blender, with a collection of addons and cus
 Blender 4.0 [https://download.blender.org/release](https://www.blender.org/download/releases/4-0/) \
 
 These tools are available below, they are specific versions, you can check the links for different versions \
-Game Rig Tools: https://toshicg.gumroad.com/l/game_rig_tools \
+Game Rig Tools (select the version for Blender 4.0/4.1): https://toshicg.gumroad.com/l/game_rig_tools \
 Surface Heat Skinning: http://www.mesh-online.net/shd-blender-addon.zip \
 MML Blender add-on for the geometry utilities: [mml-avatar-tools.py](./mml-avatar-tools.py)
 
