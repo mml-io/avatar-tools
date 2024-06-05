@@ -7,7 +7,7 @@ Blender 4.0 [https://download.blender.org/release](https://www.blender.org/downl
 
 These tools are available below, they are specific versions, you can check the links for different versions \
 Game Rig Tools (select the version for Blender 4.0/4.1): https://toshicg.gumroad.com/l/game_rig_tools \
-Surface Heat Skinning: http://www.mesh-online.net/shd-blender-addon.zip \
+Surface Heat Skinning (the zip file contains 2 folders, use the latest one): http://www.mesh-online.net/shd-blender-addon.zip \
 MML Blender add-on for the geometry utilities: [mml-avatar-tools.py](./mml-avatar-tools.py)
 
 Tips:
