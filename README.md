@@ -70,3 +70,8 @@ compression to reduce file size.
 ```bash
 npm run draco-encode -- -i <input file> -o <output file>
 ```
+
+## Blender Avatar Tools
+
+[Blender Tools](./plugins/blender-geometry-utilities) are a collection of addons to create a custom avatar with the Unreal Engine 5 skeleton structure.
+
