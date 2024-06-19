@@ -1,0 +1,29 @@
+{
+  "name": "skeleton-mapper",
+  "private": true,
+  "version": "0.1.0",
+  "files": [
+    "/build"
+  ],
+  "bin": {
+    "gltf-avatar-exporter": "./build/index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "rimraf ./build && tsx ./build.ts --build",
+    "iterate": "tsx ./build.ts --watch",
+    "iterate:start": "node --enable-source-maps ./build/index.js",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint \"./{src,test}/**/*.{js,jsx,ts,tsx}\" --max-warnings 0",
+    "lint-fix": "eslint \"./{src,test}/**/*.{js,jsx,ts,tsx}\" --fix"
+  },
+  "dependencies": {
+    "three": "0.163.0",
+    "@mml-io/model-loader": "0.14.0",
+    "threejs-nodejs-polyfills": "file:../../packages/threejs-nodejs-polyfills",
+    "yargs": "17.7.2"
+  },
+  "devDependencies": {
+    "@types/three": "0.163.0"
+  }
+}

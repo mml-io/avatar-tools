@@ -5,6 +5,7 @@ import { fixFlippedBitmapTexturesCorrectionStep } from "./fix-flipped-bitmap-tex
 import { fixMeshScaleCorrectionStep } from "./fix-mesh-scale";
 import { levelOfDetailDedupingCorrectionStep } from "./level-of-detail-deduping";
 import { mergeGeometryGroupsCorrectionStep } from "./merge-geometry-groups";
+import { mixamoToUe5SkeletonMapper } from "./mixamo-to-ue5-skeleton-mapper";
 import { placeholderMissingTexturesCorrectionStep } from "./placeholder-missing-textures";
 import { removeTransparencyFromMaterialsCorrectionStep } from "./remove-transparency-from-materials";
 import { removeVertexColorsCorrectionStep } from "./remove-vertex-colors";
@@ -29,6 +30,7 @@ const rawCorrectionSteps = [
   fixMeshScaleCorrectionStep,
   reposeBonesCorrectionStep,
   fixBonesScaleCorrectionStep,
+  mixamoToUe5SkeletonMapper,
   connectRootCorrectionStep,
   rotateRootCorrectionStep,
   rotatePelvisCorrectionStep,
