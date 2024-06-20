@@ -87,7 +87,12 @@ type BoneConfig = {
 
     const totalDistance = nearestNBones.reduce((acc, b) => acc + b.distance, 0);
 
-    const ratios = nearestNBones.map((b) => b.distance / totalDistance);
+    const ratios = nearestNBones.map((b) => 1 / (b.distance / totalDistance));
+
+    const totalRatio = ratios.reduce((acc, r) => acc + r, 0);
+    ratios.forEach((r, index) => {
+      ratios[index] = r / totalRatio;
+    });
 
     const derivedPosition = new THREE.Vector3();
     for (let i = 0; i < nearestNBones.length; i++) {
