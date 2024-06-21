@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import { Group } from "three";
 
+import { deltaXYZAndTriangleToWorldPos } from "../math-utils";
+
 import MixamoToUE5ConfigJSON from "./mixamo-to-ue5.json";
 import { LogMessage, Step, StepResult } from "./types";
 
@@ -59,14 +61,14 @@ export const mixamoToUe5SkeletonMapper = {
       }
       allUE5Bones.push(bone);
 
-      // TODO - apply positions
-
       if (boneConfig.boneConfig) {
         const sourceBones = boneConfig.boneConfig.sourceBones;
         const delta = boneConfig.boneConfig.delta;
         const originalPosition = boneConfig.boneConfig.originalPosition;
         const originalRotation = boneConfig.boneConfig.originalRotation;
-        const boneWorldPosition = new THREE.Vector3();
+
+        const points = [];
+
         for (const sourceBone of sourceBones) {
           const sourceBoneObject = bonesByName.get(sourceBone.name);
           if (!sourceBoneObject) {
@@ -74,7 +76,7 @@ export const mixamoToUe5SkeletonMapper = {
           } else {
             const sourceBoneWorldPosition = new THREE.Vector3();
             sourceBoneObject.getWorldPosition(sourceBoneWorldPosition);
-            boneWorldPosition.addScaledVector(sourceBoneWorldPosition, sourceBone.ratio);
+            points.push(sourceBoneWorldPosition);
 
             let influencedBones = originalBonesByInfluencedBone.get(sourceBoneObject);
             if (!influencedBones) {
@@ -87,49 +89,56 @@ export const mixamoToUe5SkeletonMapper = {
             });
           }
         }
-        boneWorldPosition.add(new THREE.Vector3(delta.x, delta.y, delta.z));
+        if (points.length < 3) {
+          console.error("Not enough points to calculate triangle");
+        } else {
+          const triangle = new THREE.Triangle(points[0], points[1], points[2]);
 
-        // boneWorldPosition.set(originalPosition.x, originalPosition.y, originalPosition.z);
+          const boneWorldPosition = deltaXYZAndTriangleToWorldPos(
+            new THREE.Vector3(delta.x, delta.y, delta.z),
+            triangle,
+          );
 
-        const parentPosition = parent
-          ? parent.getWorldPosition(new THREE.Vector3())
-          : new THREE.Vector3();
-        console.log("bone.name", bone.name);
-        console.log("boneWorldPosition", boneWorldPosition);
-        console.log("parentPosition", parentPosition);
-        bone.position.copy(boneWorldPosition).sub(parentPosition);
-        bone.rotation.set(originalRotation.x, originalRotation.y, originalRotation.z);
+          const parentPosition = parent
+            ? parent.getWorldPosition(new THREE.Vector3())
+            : new THREE.Vector3();
+          console.log("bone.name", bone.name);
+          console.log("boneWorldPosition", boneWorldPosition);
+          console.log("parentPosition", parentPosition);
+          bone.position.copy(boneWorldPosition).sub(parentPosition);
+          bone.rotation.set(originalRotation.x, originalRotation.y, originalRotation.z);
 
-        const matrixWorld = new THREE.Matrix4();
+          const matrixWorld = new THREE.Matrix4();
 
-        parent?.updateMatrixWorld(true);
+          parent?.updateMatrixWorld(true);
 
-        const parentQuaternion = new THREE.Quaternion();
-        if (parent) {
-          parent.getWorldQuaternion(parentQuaternion);
+          const parentQuaternion = new THREE.Quaternion();
+          if (parent) {
+            parent.getWorldQuaternion(parentQuaternion);
+          }
+          const combinedQuaternion = new THREE.Quaternion().multiplyQuaternions(
+            parentQuaternion,
+            new THREE.Quaternion().setFromEuler(bone.rotation),
+          );
+          matrixWorld.makeRotationFromQuaternion(combinedQuaternion);
+          matrixWorld.setPosition(boneWorldPosition);
+          console.log("matrixWorld", matrixWorld);
+          const parentMatrix = parent ? parent.matrixWorld : new THREE.Matrix4();
+          const localMatrix = parentMatrix.clone().invert().multiply(matrixWorld);
+          const localPosition = new THREE.Vector3();
+          const localQuaternion = new THREE.Quaternion();
+          const localScale = new THREE.Vector3();
+          console.log("localPosition", localPosition);
+          console.log("localQuaternion", localQuaternion);
+          console.log("localScale", localScale);
+
+          localMatrix.decompose(localPosition, localQuaternion, localScale);
+          bone.position.copy(localPosition);
+          bone.quaternion.copy(localQuaternion);
+          bone.scale.copy(localScale);
+
+          bone.updateMatrixWorld(true);
         }
-        const combinedQuaternion = new THREE.Quaternion().multiplyQuaternions(
-          parentQuaternion,
-          new THREE.Quaternion().setFromEuler(bone.rotation),
-        );
-        matrixWorld.makeRotationFromQuaternion(combinedQuaternion);
-        matrixWorld.setPosition(boneWorldPosition);
-        console.log("matrixWorld", matrixWorld);
-        const parentMatrix = parent ? parent.matrixWorld : new THREE.Matrix4();
-        const localMatrix = parentMatrix.clone().invert().multiply(matrixWorld);
-        const localPosition = new THREE.Vector3();
-        const localQuaternion = new THREE.Quaternion();
-        const localScale = new THREE.Vector3();
-        console.log("localPosition", localPosition);
-        console.log("localQuaternion", localQuaternion);
-        console.log("localScale", localScale);
-
-        localMatrix.decompose(localPosition, localQuaternion, localScale);
-        bone.position.copy(localPosition);
-        bone.quaternion.copy(localQuaternion);
-        bone.scale.copy(localScale);
-
-        bone.updateMatrixWorld(true);
       }
 
       for (const childConfig of boneConfig.children) {
@@ -181,6 +190,8 @@ export const mixamoToUe5SkeletonMapper = {
           "skinWeight",
         ) as THREE.BufferAttribute;
 
+        const vertexPositions = asSkinnedMesh.geometry.getAttribute("position");
+
         for (let i = 0; i < skinIndices.count; i++) {
           const indexX = skinIndices.getX(i);
           const indexY = skinIndices.getY(i);
@@ -202,6 +213,34 @@ export const mixamoToUe5SkeletonMapper = {
           const boneZName = originalBones[indexZ]?.name;
           const boneWName = originalBones[indexW]?.name;
 
+          // const bonesSortedByDistance = [...allUE5Bones]
+          //   .map((bone) => {
+          //     const worldPosition = new THREE.Vector3();
+          //     bone.getWorldPosition(worldPosition);
+          //
+          //     const vertexPosition = new THREE.Vector3(
+          //       vertexPositions.getX(i),
+          //       vertexPositions.getY(i),
+          //       vertexPositions.getZ(i),
+          //     );
+          //
+          //     return {
+          //       bone,
+          //       worldPosition,
+          //       distance: worldPosition.distanceTo(vertexPosition),
+          //     };
+          //   })
+          //   .sort((a, b) => a.distance - b.distance);
+          //
+          // skinIndices.setX(i, allUE5Bones.indexOf(bonesSortedByDistance[0].bone));
+          // skinWeights.setX(i, weightX);
+          // skinIndices.setY(i, allUE5Bones.indexOf(bonesSortedByDistance[1].bone));
+          // skinWeights.setY(i, weightY);
+          // skinIndices.setZ(i, allUE5Bones.indexOf(bonesSortedByDistance[2].bone));
+          // skinWeights.setZ(i, weightZ);
+          // skinIndices.setW(i, allUE5Bones.indexOf(bonesSortedByDistance[3].bone));
+          // skinWeights.setW(i, weightW);
+
           const mapOfBonesToSummedWeights = new Map<THREE.Bone, number>();
           addWeights(mapOfBonesToSummedWeights, boneX, weightX, boneXName);
           addWeights(mapOfBonesToSummedWeights, boneY, weightY, boneYName);
@@ -217,31 +256,48 @@ export const mixamoToUe5SkeletonMapper = {
           // console.log("summed", summed);
 
           if (summed === 0) {
-            console.warn("Summed weights are 0. Skipping normalization.");
+            console.warn("Summed weights are 0. Skipping normalization.", child.name);
             continue;
           }
 
           const normalized = sorted.map(([bone, weight]) => weight / summed);
-          // console.log("normalized", normalized);
-          //
-          // console.log("index", {
-          //   0: [indexX, weightX, boneXName],
-          //   1: [indexY, weightY, boneYName],
-          //   2: [indexZ, weightZ, boneZName],
-          //   3: [indexW, weightW, boneWName],
-          // });
-          // const newIndex = index;
-          // skinIndices.setX(i, newIndex);
+          console.log("normalized", normalized);
 
-          skinIndices.setX(i, allUE5Bones.indexOf(sorted[0][0]));
-          skinIndices.setY(i, allUE5Bones.indexOf(sorted[1][0]));
-          skinIndices.setZ(i, allUE5Bones.indexOf(sorted[2][0]));
-          skinIndices.setW(i, allUE5Bones.indexOf(sorted[3][0]));
+          const targetX = sorted.length >= 1 ? sorted[0][0] : undefined;
+          if (!targetX) {
+            skinIndices.setX(i, 0);
+            skinWeights.setX(i, 0);
+          } else {
+            skinIndices.setX(i, allUE5Bones.indexOf(targetX));
+            skinWeights.setX(i, normalized[0]);
+          }
 
-          skinWeights.setX(i, normalized[0]);
-          skinWeights.setY(i, normalized[1]);
-          skinWeights.setZ(i, normalized[2]);
-          skinWeights.setW(i, normalized[3]);
+          const targetY = sorted.length >= 2 ? sorted[1][0] : undefined;
+          if (!targetY) {
+            skinIndices.setY(i, 0);
+            skinWeights.setY(i, 0);
+          } else {
+            skinIndices.setY(i, allUE5Bones.indexOf(targetY));
+            skinWeights.setY(i, normalized[1]);
+          }
+
+          const targetZ = sorted.length >= 3 ? sorted[2][0] : undefined;
+          if (!targetZ) {
+            skinIndices.setZ(i, 0);
+            skinWeights.setZ(i, 0);
+          } else {
+            skinIndices.setZ(i, allUE5Bones.indexOf(targetZ));
+            skinWeights.setZ(i, normalized[2]);
+          }
+
+          const targetW = sorted.length >= 4 ? sorted[3][0] : undefined;
+          if (!targetW) {
+            skinIndices.setW(i, 0);
+            skinWeights.setW(i, 0);
+          } else {
+            skinIndices.setW(i, allUE5Bones.indexOf(targetW));
+            skinWeights.setW(i, normalized[3]);
+          }
         }
         // console.log("skinWeights", skinWeights);
       }

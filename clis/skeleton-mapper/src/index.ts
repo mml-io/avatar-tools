@@ -1,6 +1,7 @@
 import fs from "fs";
 
 import { ModelLoader, ModelLoadResult } from "@mml-io/model-loader";
+import { worldTriangleToDeltaXYZ } from "gltf-avatar-export-lib";
 import * as THREE from "three";
 import { LoadingManager } from "three";
 import { TGALoader } from "three/examples/jsm/loaders/TGALoader.js";
@@ -31,6 +32,18 @@ function loadFile(file: string): Promise<ModelLoadResult> {
   });
 }
 
+// const triangle = new THREE.Triangle(
+//   new THREE.Vector3(0, 1, 0),
+//   new THREE.Vector3(0, 0, 1),
+//   new THREE.Vector3(1, 0, 0),
+// );
+// const worldPos = new THREE.Vector3(3, 0.5, 0);
+// const deltaXYZ = worldTriangleToDeltaXYZ(triangle, worldPos);
+// console.log({ deltaXYZ });
+//
+// const derivedPosition = deltaXYZAndTriangleToWorldPos(deltaXYZ, triangle);
+// console.log({ derivedPosition });
+
 function parseBones(root: THREE.Group): THREE.Bone[] {
   const bones: THREE.Bone[] = [];
   root.traverse((child) => {
@@ -59,7 +72,7 @@ type BoneConfig = {
   const ueBones = parseBones(ueSkeleton.group);
   const mixamoBones = parseBones(mixamoSkeleton.group);
 
-  const nearestN = 4;
+  const nearestN = 3;
 
   // console.log("Mixamo Skeleton has", mixamoBones.length, "bones");
   // console.log("UE Skeleton has", ueBones.length, "bones");
@@ -94,15 +107,27 @@ type BoneConfig = {
       ratios[index] = r / totalRatio;
     });
 
-    const derivedPosition = new THREE.Vector3();
-    for (let i = 0; i < nearestNBones.length; i++) {
-      const mixamoBone = nearestNBones[i];
+    // Determine the triangle of the three closest points
 
-      const mixamoWorldPosition = mixamoBone.worldPosition.clone().multiplyScalar(ratios[i]);
-      derivedPosition.add(mixamoWorldPosition);
-    }
+    const triangle = new THREE.Triangle(
+      nearestNBones[0].worldPosition,
+      nearestNBones[1].worldPosition,
+      nearestNBones[2].worldPosition,
+    );
 
-    const worldPositionDelta = ueWorldPosition.clone().sub(derivedPosition);
+    const deltaXYZ = worldTriangleToDeltaXYZ(triangle, ueWorldPosition);
+
+    // Calculate the coordinates of the point of the bone based on the normal of the triangle plus the multiple of the area of the triangle in each axis (relative to the normal)
+
+    // This creates a point that is relative to the triangle formed by the three closest points, but without a possibility that a single axis is zero and therefore cannot be multiplied
+
+    // const derivedPosition = new THREE.Vector3();
+    // for (let i = 0; i < nearestNBones.length; i++) {
+    //   const mixamoBone = nearestNBones[i];
+    //
+    //   const mixamoWorldPosition = mixamoBone.worldPosition.clone().multiplyScalar(ratios[i]);
+    //   derivedPosition.add(mixamoWorldPosition);
+    // }
 
     // if (ueBone.name === "hand_r") {
     // console.log(
@@ -125,9 +150,9 @@ type BoneConfig = {
         };
       }),
       delta: {
-        x: worldPositionDelta.x,
-        y: worldPositionDelta.y,
-        z: worldPositionDelta.z,
+        x: deltaXYZ.x,
+        y: deltaXYZ.y,
+        z: deltaXYZ.z,
       },
       originalPosition: {
         x: ueWorldPosition.x,
@@ -167,68 +192,3 @@ type BoneConfig = {
 
   console.log(JSON.stringify(ueBoneConfigs, null, 2));
 })();
-
-// function alignSkeletons(canonical: THREE.Skeleton, ue: THREE.Skeleton) {
-//   const boneMapping = new Map<THREE.Bone, THREE.Bone>();
-//
-//   canonical.bones.forEach((canonicalBone) => {
-//     let closestBone: THREE.Bone | null = null;
-//     let closestDistance = Infinity;
-//
-//     ue.bones.forEach((ueBone) => {
-//       const distance = canonicalBone.position.distanceTo(ueBone.position);
-//       if (distance < closestDistance) {
-//         closestDistance = distance;
-//         closestBone = ueBone;
-//       }
-//     });
-//
-//     if (closestBone) {
-//       boneMapping.set(canonicalBone, closestBone);
-//     }
-//   });
-//
-//   boneMapping.forEach((ueBone, canonicalBone) => {
-//     ueBone.position.copy(canonicalBone.position);
-//     //ueBone.quaternion.copy(canonicalBone.quaternion);
-//     ueBone.scale.copy(canonicalBone.scale);
-//   });
-//
-//   canonical.update();
-//   ue.update();
-// }
-//
-// function applyTransformations(skeleton: THREE.Skeleton) {
-//   skeleton.bones.forEach((bone) => {
-//     bone.updateMatrixWorld(true);
-//   });
-// }
-//
-// function exportSkeleton(skeleton: THREE.Skeleton) {
-//   const scene = new THREE.Scene();
-//   skeleton.bones.forEach((bone) => scene.add(bone));
-//
-//   const options = {
-//     binary: true,
-//   };
-//
-//   exporter.parse(
-//     scene,
-//     (result) => {
-//       if (result instanceof ArrayBuffer) {
-//         console.log("Export successful. Result is an ArrayBuffer:", result);
-//
-//         // Proceed with blob creation and download
-//         const blob = new Blob([result], { type: "application/octet-stream" });
-//         const url = URL.createObjectURL(blob);
-//         const link = document.createElement("a");
-//         link.href = url;
-//         link.download = "posed_skeleton.glb";
-//         link.click();
-//       } else {
-//         console.error("Error exporting the model. Result is not an ArrayBuffer.");
-//       }
-//     },
-//     options as any,
-//   );
-// }

@@ -21,6 +21,7 @@
     "three": "0.163.0",
     "@mml-io/model-loader": "0.14.0",
     "threejs-nodejs-polyfills": "file:../../packages/threejs-nodejs-polyfills",
+    "gltf-avatar-export-lib": "file:../../packages/gltf-avatar-export-lib",
     "yargs": "17.7.2"
   },
   "devDependencies": {
