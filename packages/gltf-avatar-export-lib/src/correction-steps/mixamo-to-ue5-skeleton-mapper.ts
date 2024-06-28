@@ -5,6 +5,7 @@ import { deltaXYZAndTriangleToWorldPos } from "../math-utils";
 
 import MixamoToUE5ConfigJSON from "./mixamo-to-ue5.json";
 import { LogMessage, Step, StepResult } from "./types";
+import { hasUE5Skeleton } from "./skeleton-type-checker";
 
 type BoneConfig = {
   boneName: string;
@@ -22,10 +23,21 @@ const mixamoToUE5Config = MixamoToUE5ConfigJSON as unknown as BoneConfig;
 export const mixamoToUe5SkeletonMapper = {
   name: "mixamo-to-ue5-skeleton-mapper",
   action: (group: Group): StepResult => {
+    const hasSkeleton = hasUE5Skeleton(group);
+    if (hasSkeleton) {
+      //throw "stop execution";
+      return {
+        didApply: false,
+        topLevelMessage: {
+          level: "info",
+          message: "Skeleton is already a UE5 skeleton.",
+        },
+        logs: [],
+      };
+    }
+
     const logs: Array<LogMessage> = [];
-
     const bonesByName = new Map<string, THREE.Bone>();
-
     const originalBonesByInfluencedBone = new Map<
       THREE.Bone,
       Array<{
@@ -102,9 +114,6 @@ export const mixamoToUe5SkeletonMapper = {
           const parentPosition = parent
             ? parent.getWorldPosition(new THREE.Vector3())
             : new THREE.Vector3();
-          console.log("bone.name", bone.name);
-          console.log("boneWorldPosition", boneWorldPosition);
-          console.log("parentPosition", parentPosition);
           bone.position.copy(boneWorldPosition).sub(parentPosition);
           bone.rotation.set(originalRotation.x, originalRotation.y, originalRotation.z);
 
@@ -122,15 +131,12 @@ export const mixamoToUe5SkeletonMapper = {
           );
           matrixWorld.makeRotationFromQuaternion(combinedQuaternion);
           matrixWorld.setPosition(boneWorldPosition);
-          console.log("matrixWorld", matrixWorld);
+
           const parentMatrix = parent ? parent.matrixWorld : new THREE.Matrix4();
           const localMatrix = parentMatrix.clone().invert().multiply(matrixWorld);
           const localPosition = new THREE.Vector3();
           const localQuaternion = new THREE.Quaternion();
           const localScale = new THREE.Vector3();
-          console.log("localPosition", localPosition);
-          console.log("localQuaternion", localQuaternion);
-          console.log("localScale", localScale);
 
           localMatrix.decompose(localPosition, localQuaternion, localScale);
           bone.position.copy(localPosition);
@@ -157,6 +163,9 @@ export const mixamoToUe5SkeletonMapper = {
       weight: number,
       boneName: string,
     ) {
+      if (boneName === "root"){
+        return;
+      }
       const targetBoneInfluences = originalBonesByInfluencedBone.get(bone);
       if (targetBoneInfluences) {
         for (const targetBoneInfluence of targetBoneInfluences) {
@@ -170,7 +179,7 @@ export const mixamoToUe5SkeletonMapper = {
           );
         }
       } else {
-        // console.warn(`No influences for bone ${boneName}`);
+        console.warn(`No influences for bone ${boneName}`);
       }
     }
 
@@ -179,8 +188,6 @@ export const mixamoToUe5SkeletonMapper = {
       if (asSkinnedMesh.isSkinnedMesh) {
         const originalBones = [...asSkinnedMesh.skeleton.bones];
         asSkinnedMesh.skeleton = ue5Skeleton;
-
-        // console.log("asSkinnedMesh.geometry", asSkinnedMesh.geometry);
 
         const skinIndices = asSkinnedMesh.geometry.getAttribute(
           "skinIndex",
@@ -213,34 +220,6 @@ export const mixamoToUe5SkeletonMapper = {
           const boneZName = originalBones[indexZ]?.name;
           const boneWName = originalBones[indexW]?.name;
 
-          // const bonesSortedByDistance = [...allUE5Bones]
-          //   .map((bone) => {
-          //     const worldPosition = new THREE.Vector3();
-          //     bone.getWorldPosition(worldPosition);
-          //
-          //     const vertexPosition = new THREE.Vector3(
-          //       vertexPositions.getX(i),
-          //       vertexPositions.getY(i),
-          //       vertexPositions.getZ(i),
-          //     );
-          //
-          //     return {
-          //       bone,
-          //       worldPosition,
-          //       distance: worldPosition.distanceTo(vertexPosition),
-          //     };
-          //   })
-          //   .sort((a, b) => a.distance - b.distance);
-          //
-          // skinIndices.setX(i, allUE5Bones.indexOf(bonesSortedByDistance[0].bone));
-          // skinWeights.setX(i, weightX);
-          // skinIndices.setY(i, allUE5Bones.indexOf(bonesSortedByDistance[1].bone));
-          // skinWeights.setY(i, weightY);
-          // skinIndices.setZ(i, allUE5Bones.indexOf(bonesSortedByDistance[2].bone));
-          // skinWeights.setZ(i, weightZ);
-          // skinIndices.setW(i, allUE5Bones.indexOf(bonesSortedByDistance[3].bone));
-          // skinWeights.setW(i, weightW);
-
           const mapOfBonesToSummedWeights = new Map<THREE.Bone, number>();
           addWeights(mapOfBonesToSummedWeights, boneX, weightX, boneXName);
           addWeights(mapOfBonesToSummedWeights, boneY, weightY, boneYName);
@@ -250,10 +229,8 @@ export const mixamoToUe5SkeletonMapper = {
           const entries = Array.from(mapOfBonesToSummedWeights.entries());
           entries.sort((a, b) => b[1] - a[1]);
           const sorted = entries.slice(0, 4);
-          // console.log("entries", sorted);
 
           const summed = sorted.reduce((acc, [_, weight]) => acc + weight, 0);
-          // console.log("summed", summed);
 
           if (summed === 0) {
             console.warn("Summed weights are 0. Skipping normalization.", child.name);
@@ -261,7 +238,6 @@ export const mixamoToUe5SkeletonMapper = {
           }
 
           const normalized = sorted.map(([bone, weight]) => weight / summed);
-          console.log("normalized", normalized);
 
           const targetX = sorted.length >= 1 ? sorted[0][0] : undefined;
           if (!targetX) {
@@ -299,7 +275,6 @@ export const mixamoToUe5SkeletonMapper = {
             skinWeights.setW(i, normalized[3]);
           }
         }
-        // console.log("skinWeights", skinWeights);
       }
     });
     group.add(ue5SkeletonGroup);

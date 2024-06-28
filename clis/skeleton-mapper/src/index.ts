@@ -32,6 +32,7 @@ function loadFile(file: string): Promise<ModelLoadResult> {
   });
 }
 
+
 // const triangle = new THREE.Triangle(
 //   new THREE.Vector3(0, 1, 0),
 //   new THREE.Vector3(0, 0, 1),
@@ -72,8 +73,8 @@ type BoneConfig = {
   const ueBones = parseBones(ueSkeleton.group);
   const mixamoBones = parseBones(mixamoSkeleton.group);
 
-  const nearestN = 3;
-
+  const nearestN = 5;
+  const distanceThreshold = 3;
   // console.log("Mixamo Skeleton has", mixamoBones.length, "bones");
   // console.log("UE Skeleton has", ueBones.length, "bones");
 
@@ -90,8 +91,18 @@ type BoneConfig = {
     for (const mixamoBone of mixamoBones) {
       const mixamoWorldPosition = new THREE.Vector3();
       mixamoBone.getWorldPosition(mixamoWorldPosition);
-      const distance = ueWorldPosition.distanceTo(mixamoWorldPosition);
+      //distances
+      const distance = ueWorldPosition.distanceTo(mixamoWorldPosition) * 0.5;
+
+      //euclidean
+      //const distance = Math.sqrt(((mixamoWorldPosition.x-ueWorldPosition.x)**2) + ((mixamoWorldPosition.y-ueWorldPosition.y)**2) + ((mixamoWorldPosition.z-ueWorldPosition.z)**2));
+      //const distance = Math.sqrt(((ueWorldPosition.x-mixamoWorldPosition.x)**2) + ((ueWorldPosition.y-mixamoWorldPosition.y)**2) + ((ueWorldPosition.z-mixamoWorldPosition.z)**2));
+
+      //manhattan
+      //const distance = Math.abs(mixamoWorldPosition.x - ueWorldPosition.x) + Math.abs(mixamoWorldPosition.y - ueWorldPosition.y) + Math.abs(mixamoWorldPosition.z - ueWorldPosition.z);
+      if (distance <= distanceThreshold) { 
       bonesByDistance.push({ bone: mixamoBone, worldPosition: mixamoWorldPosition, distance });
+      }
     }
 
     const nearestNBones = bonesByDistance
@@ -99,13 +110,17 @@ type BoneConfig = {
       .slice(0, nearestN);
 
     const totalDistance = nearestNBones.reduce((acc, b) => acc + b.distance, 0);
+    //weights test
+    //const ratios = nearestNBones.map((b) => 1 / (b.distance / totalDistance));
+    //const totalRatio = ratios.reduce((acc, r) => acc + r, 0);
+    //ratios.forEach((r, index) => {
+    //  ratios[index] = r / totalRatio;
+    //});
+    const weights = nearestNBones.map((b) => 1 / b.distance);
+    const totalWeight = weights.reduce((acc, w) => acc + w, 0);
+    const normalizedWeights = weights.map((w) => w / totalWeight);
 
-    const ratios = nearestNBones.map((b) => 1 / (b.distance / totalDistance));
 
-    const totalRatio = ratios.reduce((acc, r) => acc + r, 0);
-    ratios.forEach((r, index) => {
-      ratios[index] = r / totalRatio;
-    });
 
     // Determine the triangle of the three closest points
 
@@ -146,7 +161,7 @@ type BoneConfig = {
       sourceBones: nearestNBones.map((b, boneIndex) => {
         return {
           name: b.bone.name,
-          ratio: ratios[boneIndex],
+          ratio: normalizedWeights[boneIndex],  //old ratios[boneIndex]
         };
       }),
       delta: {
@@ -168,7 +183,9 @@ type BoneConfig = {
 
     const childConfigs: Array<BoneConfig> = [];
     obj.children.forEach((child) => {
-      childConfigs.push(traverseChildren(child));
+        if (!child.name.startsWith('ik') && !child.name.startsWith('center') && !child.name.startsWith('inter')){
+          childConfigs.push(traverseChildren(child));
+        }
     });
 
     return {

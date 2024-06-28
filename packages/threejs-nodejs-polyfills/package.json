@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@napi-rs/canvas": "0.1.52",
-    "jimp": "0.22.12"
+    "jimp": "^0.3.11",
+    "lerna": "8.1.5"
   }
 }
-

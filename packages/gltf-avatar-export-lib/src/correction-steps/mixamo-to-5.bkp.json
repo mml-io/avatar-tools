@@ -4,23 +4,15 @@
     "sourceBones": [
       {
         "name": "RightToeBase",
-        "ratio": 0.21254651805074423
+        "ratio": 0.33542009772421605
       },
       {
         "name": "LeftToeBase",
-        "ratio": 0.21254606480525018
+        "ratio": 0.33541938245656877
       },
       {
         "name": "RightFoot",
-        "ratio": 0.208579995182251
-      },
-      {
-        "name": "LeftFoot",
-        "ratio": 0.20857996138264906
-      },
-      {
-        "name": "LeftToe_End",
-        "ratio": 0.15774746057910552
+        "ratio": 0.32916051981921507
       }
     ],
     "delta": {
@@ -46,23 +38,15 @@
         "sourceBones": [
           {
             "name": "Hips",
-            "ratio": 0.6753140269283595
+            "ratio": 0.7774230487646223
           },
           {
             "name": "LeftUpLeg",
-            "ratio": 0.096671525284606
+            "ratio": 0.11128848049747002
           },
           {
             "name": "RightUpLeg",
-            "ratio": 0.09667151680689313
-          },
-          {
-            "name": "Spine",
-            "ratio": 0.09231475475339629
-          },
-          {
-            "name": "Spine1",
-            "ratio": 0.03902817622674528
+            "ratio": 0.11128847073790761
           }
         ],
         "delta": {
@@ -88,23 +72,15 @@
             "sourceBones": [
               {
                 "name": "Hips",
-                "ratio": 0.4429549080013334
+                "ratio": 0.5560511308354755
               },
               {
                 "name": "Spine",
-                "ratio": 0.2208187023741244
+                "ratio": 0.2771986198748351
               },
               {
                 "name": "RightUpLeg",
-                "ratio": 0.13283462120171172
-              },
-              {
-                "name": "LeftUpLeg",
-                "ratio": 0.13283461624300685
-              },
-              {
-                "name": "Spine1",
-                "ratio": 0.07055715217982365
+                "ratio": 0.16675024928968948
               }
             ],
             "delta": {
@@ -130,23 +106,15 @@
                 "sourceBones": [
                   {
                     "name": "Spine",
-                    "ratio": 0.6239089702949013
+                    "ratio": 0.7451439027576909
                   },
                   {
                     "name": "Hips",
-                    "ratio": 0.12465900465589265
+                    "ratio": 0.1488821313136041
                   },
                   {
                     "name": "Spine1",
-                    "ratio": 0.0887319989010845
-                  },
-                  {
-                    "name": "RightUpLeg",
-                    "ratio": 0.08135001686652864
-                  },
-                  {
-                    "name": "LeftUpLeg",
-                    "ratio": 0.08135000928159289
+                    "ratio": 0.10597396592870494
                   }
                 ],
                 "delta": {
@@ -172,23 +140,15 @@
                     "sourceBones": [
                       {
                         "name": "Spine1",
-                        "ratio": 0.31893209360071895
+                        "ratio": 0.41311786473009565
                       },
                       {
                         "name": "Spine",
-                        "ratio": 0.31088515183061205
+                        "ratio": 0.4026945317749751
                       },
                       {
                         "name": "Hips",
-                        "ratio": 0.14219510462544616
-                      },
-                      {
-                        "name": "RightUpLeg",
-                        "ratio": 0.11399383005508905
-                      },
-                      {
-                        "name": "LeftUpLeg",
-                        "ratio": 0.11399381988813367
+                        "ratio": 0.18418760349492921
                       }
                     ],
                     "delta": {
@@ -214,23 +174,15 @@
                         "sourceBones": [
                           {
                             "name": "Spine1",
-                            "ratio": 0.5634027861836858
+                            "ratio": 0.6716130813130803
                           },
                           {
                             "name": "Spine2",
-                            "ratio": 0.13816624030003305
+                            "ratio": 0.16470322237827031
                           },
                           {
                             "name": "Spine",
-                            "ratio": 0.13731098026387015
-                          },
-                          {
-                            "name": "Hips",
-                            "ratio": 0.08590772896288022
-                          },
-                          {
-                            "name": "RightUpLeg",
-                            "ratio": 0.07521226428953078
+                            "ratio": 0.16368369630864943
                           }
                         ],
                         "delta": {
@@ -256,23 +208,15 @@
                             "sourceBones": [
                               {
                                 "name": "Spine2",
-                                "ratio": 0.3889976926580258
+                                "ratio": 0.5325402936673996
                               },
                               {
                                 "name": "RightShoulder",
-                                "ratio": 0.1707297060958368
+                                "ratio": 0.23373004400299977
                               },
                               {
                                 "name": "LeftShoulder",
-                                "ratio": 0.17072942729989718
-                              },
-                              {
-                                "name": "Neck",
-                                "ratio": 0.1679096869667689
-                              },
-                              {
-                                "name": "LeftArm",
-                                "ratio": 0.10163348697947142
+                                "ratio": 0.23372966232960074
                               }
                             ],
                             "delta": {
@@ -298,23 +242,15 @@
                                 "sourceBones": [
                                   {
                                     "name": "Neck",
-                                    "ratio": 0.5244222398226829
+                                    "ratio": 0.6105348175308472
                                   },
                                   {
                                     "name": "LeftShoulder",
-                                    "ratio": 0.16726663204529527
+                                    "ratio": 0.1947325931663446
                                   },
                                   {
                                     "name": "RightShoulder",
-                                    "ratio": 0.16726662872668954
-                                  },
-                                  {
-                                    "name": "Head",
-                                    "ratio": 0.08286152552459812
-                                  },
-                                  {
-                                    "name": "Spine2",
-                                    "ratio": 0.05818297388073417
+                                    "ratio": 0.19473258930280837
                                   }
                                 ],
                                 "delta": {
@@ -340,23 +276,15 @@
                                     "sourceBones": [
                                       {
                                         "name": "Head",
-                                        "ratio": 0.2706073089214586
+                                        "ratio": 0.37458023992999395
                                       },
                                       {
                                         "name": "Neck",
-                                        "ratio": 0.26822551497248465
+                                        "ratio": 0.3712833114308106
                                       },
                                       {
                                         "name": "LeftShoulder",
-                                        "ratio": 0.1835953238696253
-                                      },
-                                      {
-                                        "name": "RightShoulder",
-                                        "ratio": 0.18359508728659407
-                                      },
-                                      {
-                                        "name": "RightEye",
-                                        "ratio": 0.09397676494983725
+                                        "ratio": 0.25413644863919554
                                       }
                                     ],
                                     "delta": {
@@ -382,23 +310,15 @@
                                         "sourceBones": [
                                           {
                                             "name": "Head",
-                                            "ratio": 0.8925170070649789
+                                            "ratio": 0.9402265494883595
                                           },
                                           {
                                             "name": "RightEye",
-                                            "ratio": 0.028387514194288487
+                                            "ratio": 0.029904970222606086
                                           },
                                           {
                                             "name": "LeftEye",
-                                            "ratio": 0.02835287585492528
-                                          },
-                                          {
-                                            "name": "Neck",
-                                            "ratio": 0.02752506702194342
-                                          },
-                                          {
-                                            "name": "LeftShoulder",
-                                            "ratio": 0.02321753586386403
+                                            "ratio": 0.029868480289034313
                                           }
                                         ],
                                         "delta": {
@@ -429,23 +349,15 @@
                                 "sourceBones": [
                                   {
                                     "name": "LeftShoulder",
-                                    "ratio": 0.2722282672019332
+                                    "ratio": 0.3720018199383855
                                   },
                                   {
                                     "name": "Neck",
-                                    "ratio": 0.2549483038432703
+                                    "ratio": 0.3483886298609461
                                   },
                                   {
                                     "name": "RightShoulder",
-                                    "ratio": 0.20461626600871793
-                                  },
-                                  {
-                                    "name": "Spine2",
-                                    "ratio": 0.16648150076990753
-                                  },
-                                  {
-                                    "name": "LeftArm",
-                                    "ratio": 0.10172566217617104
+                                    "ratio": 0.2796095502006683
                                   }
                                 ],
                                 "delta": {
@@ -471,23 +383,15 @@
                                     "sourceBones": [
                                       {
                                         "name": "LeftArm",
-                                        "ratio": 0.5686001706625929
+                                        "ratio": 0.6945388297395414
                                       },
                                       {
                                         "name": "LeftShoulder",
-                                        "ratio": 0.14414633959606934
+                                        "ratio": 0.17607316209143534
                                       },
                                       {
                                         "name": "Neck",
-                                        "ratio": 0.10592646570126127
-                                      },
-                                      {
-                                        "name": "Spine2",
-                                        "ratio": 0.09520843267195804
-                                      },
-                                      {
-                                        "name": "RightShoulder",
-                                        "ratio": 0.08611859136811853
+                                        "ratio": 0.1293880081690234
                                       }
                                     ],
                                     "delta": {
@@ -513,23 +417,15 @@
                                         "sourceBones": [
                                           {
                                             "name": "LeftForeArm",
-                                            "ratio": 0.8626035743366371
+                                            "ratio": 0.9214523368949668
                                           },
                                           {
                                             "name": "LeftHand",
-                                            "ratio": 0.038810369724371276
+                                            "ratio": 0.04145810073391053
                                           },
                                           {
                                             "name": "LeftHandThumb1",
-                                            "ratio": 0.034720829055273086
-                                          },
-                                          {
-                                            "name": "LeftArm",
-                                            "ratio": 0.032532963300054424
-                                          },
-                                          {
-                                            "name": "LeftHandThumb2",
-                                            "ratio": 0.0313322635836641
+                                            "ratio": 0.03708956237112266
                                           }
                                         ],
                                         "delta": {
@@ -555,23 +451,15 @@
                                             "sourceBones": [
                                               {
                                                 "name": "LeftForeArm",
-                                                "ratio": 0.34956520459322515
+                                                "ratio": 0.48333590443299995
                                               },
                                               {
                                                 "name": "LeftHand",
-                                                "ratio": 0.20284338030788668
+                                                "ratio": 0.2804669554953168
                                               },
                                               {
                                                 "name": "LeftHandThumb1",
-                                                "ratio": 0.17082592217176767
-                                              },
-                                              {
-                                                "name": "LeftHandThumb2",
-                                                "ratio": 0.14639992843427635
-                                              },
-                                              {
-                                                "name": "LeftHandThumb3",
-                                                "ratio": 0.13036556449284414
+                                                "ratio": 0.23619714007168321
                                               }
                                             ],
                                             "delta": {
@@ -598,23 +486,15 @@
                                             "sourceBones": [
                                               {
                                                 "name": "LeftHand",
-                                                "ratio": 0.322967830515976
+                                                "ratio": 0.45166396009934096
                                               },
                                               {
                                                 "name": "LeftHandThumb1",
-                                                "ratio": 0.2241300568893515
+                                                "ratio": 0.31344133844602057
                                               },
                                               {
                                                 "name": "LeftHandThumb2",
-                                                "ratio": 0.16796432487510568
-                                              },
-                                              {
-                                                "name": "LeftHandPinky1",
-                                                "ratio": 0.14376720076097846
-                                              },
-                                              {
-                                                "name": "LeftHandRing1",
-                                                "ratio": 0.14117058695858836
+                                                "ratio": 0.23489470145463848
                                               }
                                             ],
                                             "delta": {
@@ -641,23 +521,15 @@
                                             "sourceBones": [
                                               {
                                                 "name": "LeftHand",
-                                                "ratio": 0.5215192996688931
+                                                "ratio": 0.6357934242180127
                                               },
                                               {
                                                 "name": "LeftHandThumb1",
-                                                "ratio": 0.20109582869283463
+                                                "ratio": 0.24515948997812778
                                               },
                                               {
                                                 "name": "LeftHandThumb2",
-                                                "ratio": 0.09765019651219681
-                                              },
-                                              {
-                                                "name": "LeftHandRing1",
-                                                "ratio": 0.0907751284198325
-                                              },
-                                              {
-                                                "name": "LeftHandPinky1",
-                                                "ratio": 0.08895954670624305
+                                                "ratio": 0.11904708580385953
                                               }
                                             ],
                                             "delta": {
@@ -683,23 +555,15 @@
                                                 "sourceBones": [
                                                   {
                                                     "name": "LeftHandThumb1",
-                                                    "ratio": 0.35261819693667945
+                                                    "ratio": 0.502385542543253
                                                   },
                                                   {
                                                     "name": "LeftHandThumb2",
-                                                    "ratio": 0.19590894257783895
+                                                    "ratio": 0.2791172470991804
                                                   },
                                                   {
                                                     "name": "LeftHandIndex1",
-                                                    "ratio": 0.15336048876316186
-                                                  },
-                                                  {
-                                                    "name": "LeftHand",
-                                                    "ratio": 0.15170318678229539
-                                                  },
-                                                  {
-                                                    "name": "LeftHandMiddle1",
-                                                    "ratio": 0.1464091849400243
+                                                    "ratio": 0.21849721035756664
                                                   }
                                                 ],
                                                 "delta": {
@@ -725,23 +589,15 @@
                                                     "sourceBones": [
                                                       {
                                                         "name": "LeftHandIndex1",
-                                                        "ratio": 0.5361983844588373
+                                                        "ratio": 0.6560278477860865
                                                       },
                                                       {
                                                         "name": "LeftHandMiddle1",
-                                                        "ratio": 0.17967111475551054
+                                                        "ratio": 0.2198239646718539
                                                       },
                                                       {
                                                         "name": "LeftHandIndex2",
-                                                        "ratio": 0.10147138999997331
-                                                      },
-                                                      {
-                                                        "name": "LeftHandRing1",
-                                                        "ratio": 0.09380331563072834
-                                                      },
-                                                      {
-                                                        "name": "LeftHandThumb3",
-                                                        "ratio": 0.08885579515495047
+                                                        "ratio": 0.12414818754205963
                                                       }
                                                     ],
                                                     "delta": {
@@ -767,23 +623,15 @@
                                                         "sourceBones": [
                                                           {
                                                             "name": "LeftHandIndex2",
-                                                            "ratio": 0.6184616039152812
+                                                            "ratio": 0.7403977511758199
                                                           },
                                                           {
                                                             "name": "LeftHandIndex3",
-                                                            "ratio": 0.10865965691221
+                                                            "ratio": 0.13008304009824495
                                                           },
                                                           {
                                                             "name": "LeftHandMiddle2",
-                                                            "ratio": 0.10818868296030007
-                                                          },
-                                                          {
-                                                            "name": "LeftHandIndex1",
-                                                            "ratio": 0.09075123815726423
-                                                          },
-                                                          {
-                                                            "name": "LeftHandMiddle1",
-                                                            "ratio": 0.07393881805494454
+                                                            "ratio": 0.12951920872593511
                                                           }
                                                         ],
                                                         "delta": {
@@ -809,23 +657,15 @@
                                                             "sourceBones": [
                                                               {
                                                                 "name": "LeftHandIndex3",
-                                                                "ratio": 0.7338232554553231
+                                                                "ratio": 0.829247197071804
                                                               },
                                                               {
                                                                 "name": "LeftHandIndex2",
-                                                                "ratio": 0.08610167127270539
+                                                                "ratio": 0.09729804695517147
                                                               },
                                                               {
                                                                 "name": "LeftHandMiddle3",
-                                                                "ratio": 0.06500209870728538
-                                                              },
-                                                              {
-                                                                "name": "LeftHandIndex4",
-                                                                "ratio": 0.062324917619069095
-                                                              },
-                                                              {
-                                                                "name": "LeftHandMiddle2",
-                                                                "ratio": 0.05274805694561702
+                                                                "ratio": 0.07345475597302445
                                                               }
                                                             ],
                                                             "delta": {
@@ -858,23 +698,15 @@
                                                 "sourceBones": [
                                                   {
                                                     "name": "LeftHandThumb1",
-                                                    "ratio": 0.28623254362345596
+                                                    "ratio": 0.4200464441530464
                                                   },
                                                   {
                                                     "name": "LeftHand",
-                                                    "ratio": 0.2244375092991915
+                                                    "ratio": 0.3293621910432066
                                                   },
                                                   {
                                                     "name": "LeftHandRing1",
-                                                    "ratio": 0.17076064981927466
-                                                  },
-                                                  {
-                                                    "name": "LeftHandMiddle1",
-                                                    "ratio": 0.16320471530216016
-                                                  },
-                                                  {
-                                                    "name": "LeftHandThumb2",
-                                                    "ratio": 0.15536458195591768
+                                                    "ratio": 0.25059136480374694
                                                   }
                                                 ],
                                                 "delta": {
@@ -900,23 +732,15 @@
                                                     "sourceBones": [
                                                       {
                                                         "name": "LeftHandMiddle1",
-                                                        "ratio": 0.47147712284836757
+                                                        "ratio": 0.5896250091961521
                                                       },
                                                       {
                                                         "name": "LeftHandRing1",
-                                                        "ratio": 0.1897147297423507
+                                                        "ratio": 0.23725551855663352
                                                       },
                                                       {
                                                         "name": "LeftHandIndex1",
-                                                        "ratio": 0.13843013680071203
-                                                      },
-                                                      {
-                                                        "name": "LeftHandRing2",
-                                                        "ratio": 0.10057496863574575
-                                                      },
-                                                      {
-                                                        "name": "LeftHandMiddle2",
-                                                        "ratio": 0.09980304197282398
+                                                        "ratio": 0.17311947224721433
                                                       }
                                                     ],
                                                     "delta": {
@@ -942,23 +766,15 @@
                                                         "sourceBones": [
                                                           {
                                                             "name": "LeftHandMiddle2",
-                                                            "ratio": 0.6136063517747046
+                                                            "ratio": 0.7442632944070875
                                                           },
                                                           {
                                                             "name": "LeftHandMiddle3",
-                                                            "ratio": 0.10629877085773132
+                                                            "ratio": 0.12893326993956428
                                                           },
                                                           {
                                                             "name": "LeftHandIndex2",
-                                                            "ratio": 0.10454283333391348
-                                                          },
-                                                          {
-                                                            "name": "LeftHandRing2",
-                                                            "ratio": 0.09520166122413498
-                                                          },
-                                                          {
-                                                            "name": "LeftHandIndex3",
-                                                            "ratio": 0.08035038280951559
+                                                            "ratio": 0.12680343565334826
                                                           }
                                                         ],
                                                         "delta": {
@@ -984,23 +800,15 @@
                                                             "sourceBones": [
                                                               {
                                                                 "name": "LeftHandMiddle3",
-                                                                "ratio": 0.6763368747516618
+                                                                "ratio": 0.8043990445504778
                                                               },
                                                               {
                                                                 "name": "LeftHandMiddle2",
-                                                                "ratio": 0.08240756345223355
+                                                                "ratio": 0.09801116541080131
                                                               },
                                                               {
                                                                 "name": "LeftHandMiddle4",
-                                                                "ratio": 0.08205327200425021
-                                                              },
-                                                              {
-                                                                "name": "LeftHandIndex3",
-                                                                "ratio": 0.08011945002990088
-                                                              },
-                                                              {
-                                                                "name": "LeftHandRing3",
-                                                                "ratio": 0.07908283976195342
+                                                                "ratio": 0.09758979003872087
                                                               }
                                                             ],
                                                             "delta": {
@@ -1033,23 +841,15 @@
                                                 "sourceBones": [
                                                   {
                                                     "name": "LeftHandThumb1",
-                                                    "ratio": 0.3694763894316621
+                                                    "ratio": 0.4716951942536772
                                                   },
                                                   {
                                                     "name": "LeftHandThumb2",
-                                                    "ratio": 0.2838073537767207
+                                                    "ratio": 0.3623250867971712
                                                   },
                                                   {
                                                     "name": "LeftHandThumb3",
-                                                    "ratio": 0.13001104955763815
-                                                  },
-                                                  {
-                                                    "name": "LeftHand",
-                                                    "ratio": 0.11415755888937879
-                                                  },
-                                                  {
-                                                    "name": "LeftHandIndex1",
-                                                    "ratio": 0.1025476483446
+                                                    "ratio": 0.16597971894915162
                                                   }
                                                 ],
                                                 "delta": {
@@ -1075,23 +875,15 @@
                                                     "sourceBones": [
                                                       {
                                                         "name": "LeftHandThumb2",
-                                                        "ratio": 0.7456892854998463
+                                                        "ratio": 0.8200201937238343
                                                       },
                                                       {
                                                         "name": "LeftHandThumb3",
-                                                        "ratio": 0.09577827570928213
+                                                        "ratio": 0.10532553132906255
                                                       },
                                                       {
                                                         "name": "LeftHandThumb1",
-                                                        "ratio": 0.0678872220109772
-                                                      },
-                                                      {
-                                                        "name": "LeftHandIndex1",
-                                                        "ratio": 0.04655670817099116
-                                                      },
-                                                      {
-                                                        "name": "LeftHandThumb4",
-                                                        "ratio": 0.04408850860890321
+                                                        "ratio": 0.07465427494710321
                                                       }
                                                     ],
                                                     "delta": {
@@ -1117,23 +909,15 @@
                                                         "sourceBones": [
                                                           {
                                                             "name": "LeftHandThumb3",
-                                                            "ratio": 0.8262508865790064
+                                                            "ratio": 0.8779825360520109
                                                           },
                                                           {
                                                             "name": "LeftHandThumb2",
-                                                            "ratio": 0.057791613901561824
+                                                            "ratio": 0.061409952545908864
                                                           },
                                                           {
                                                             "name": "LeftHandThumb4",
-                                                            "ratio": 0.057036453429353304
-                                                          },
-                                                          {
-                                                            "name": "LeftHandIndex1",
-                                                            "ratio": 0.03251148384570475
-                                                          },
-                                                          {
-                                                            "name": "LeftHandThumb1",
-                                                            "ratio": 0.026409562244373685
+                                                            "ratio": 0.06060751140208024
                                                           }
                                                         ],
                                                         "delta": {
@@ -1164,23 +948,15 @@
                                                 "sourceBones": [
                                                   {
                                                     "name": "LeftHand",
-                                                    "ratio": 0.2335166538084058
+                                                    "ratio": 0.3535428213346012
                                                   },
                                                   {
                                                     "name": "LeftHandPinky1",
-                                                    "ratio": 0.2290528381205065
+                                                    "ratio": 0.34678463100222173
                                                   },
                                                   {
                                                     "name": "LeftHandRing1",
-                                                    "ratio": 0.1979350911563717
-                                                  },
-                                                  {
-                                                    "name": "LeftHandThumb1",
-                                                    "ratio": 0.18188901498882315
-                                                  },
-                                                  {
-                                                    "name": "LeftHandMiddle1",
-                                                    "ratio": 0.1576064019258928
+                                                    "ratio": 0.29967254766317714
                                                   }
                                                 ],
                                                 "delta": {
@@ -1206,23 +982,15 @@
                                                     "sourceBones": [
                                                       {
                                                         "name": "LeftHandPinky1",
-                                                        "ratio": 0.5526224035018251
+                                                        "ratio": 0.6556196802793081
                                                       },
                                                       {
                                                         "name": "LeftHandPinky2",
-                                                        "ratio": 0.16344773258511908
+                                                        "ratio": 0.1939109770085166
                                                       },
                                                       {
                                                         "name": "LeftHandRing1",
-                                                        "ratio": 0.12683074093736385
-                                                      },
-                                                      {
-                                                        "name": "LeftHandPinky3",
-                                                        "ratio": 0.08120891455584325
-                                                      },
-                                                      {
-                                                        "name": "LeftHandRing2",
-                                                        "ratio": 0.07589020841984886
+                                                        "ratio": 0.15046934271217544
                                                       }
                                                     ],
                                                     "delta": {
@@ -1248,23 +1016,15 @@
                                                         "sourceBones": [
                                                           {
                                                             "name": "LeftHandPinky2",
-                                                            "ratio": 0.6300574082775727
+                                                            "ratio": 0.7334697129827562
                                                           },
                                                           {
                                                             "name": "LeftHandPinky3",
-                                                            "ratio": 0.14607184949158333
+                                                            "ratio": 0.1700468498804662
                                                           },
                                                           {
                                                             "name": "LeftHandPinky1",
-                                                            "ratio": 0.08288018341875206
-                                                          },
-                                                          {
-                                                            "name": "LeftHandRing2",
-                                                            "ratio": 0.079145866695768
-                                                          },
-                                                          {
-                                                            "name": "LeftHandRing1",
-                                                            "ratio": 0.06184469211632379
+                                                            "ratio": 0.09648343713677768
                                                           }
                                                         ],
                                                         "delta": {
@@ -1290,23 +1050,15 @@
                                                             "sourceBones": [
                                                               {
                                                                 "name": "LeftHandPinky3",
-                                                                "ratio": 0.6058360576776217
+                                                                "ratio": 0.7140251739173621
                                                               },
                                                               {
                                                                 "name": "LeftHandPinky4",
-                                                                "ratio": 0.13502830555809073
+                                                                "ratio": 0.15914141810817437
                                                               },
                                                               {
                                                                 "name": "LeftHandPinky2",
-                                                                "ratio": 0.10761560611021193
-                                                              },
-                                                              {
-                                                                "name": "LeftHandRing2",
-                                                                "ratio": 0.0816369511384371
-                                                              },
-                                                              {
-                                                                "name": "LeftHandRing3",
-                                                                "ratio": 0.06988307951563853
+                                                                "ratio": 0.12683340797446352
                                                               }
                                                             ],
                                                             "delta": {
@@ -1339,23 +1091,15 @@
                                                 "sourceBones": [
                                                   {
                                                     "name": "LeftHand",
-                                                    "ratio": 0.2373720212963847
+                                                    "ratio": 0.36773409398471885
                                                   },
                                                   {
                                                     "name": "LeftHandThumb1",
-                                                    "ratio": 0.2075499786724664
+                                                    "ratio": 0.3215341174028652
                                                   },
                                                   {
                                                     "name": "LeftHandPinky1",
-                                                    "ratio": 0.20057708531925023
-                                                  },
-                                                  {
-                                                    "name": "LeftHandRing1",
-                                                    "ratio": 0.1932954096521876
-                                                  },
-                                                  {
-                                                    "name": "LeftHandMiddle1",
-                                                    "ratio": 0.16120550505971112
+                                                    "ratio": 0.31073178861241596
                                                   }
                                                 ],
                                                 "delta": {
@@ -1381,23 +1125,15 @@
                                                     "sourceBones": [
                                                       {
                                                         "name": "LeftHandRing1",
-                                                        "ratio": 0.4480514468649938
+                                                        "ratio": 0.5891568593690905
                                                       },
                                                       {
                                                         "name": "LeftHandPinky1",
-                                                        "ratio": 0.17694651034247705
+                                                        "ratio": 0.23267250008704082
                                                       },
                                                       {
                                                         "name": "LeftHandMiddle1",
-                                                        "ratio": 0.13549806306257756
-                                                      },
-                                                      {
-                                                        "name": "LeftHandPinky2",
-                                                        "ratio": 0.12437770331714376
-                                                      },
-                                                      {
-                                                        "name": "LeftHandRing2",
-                                                        "ratio": 0.11512627641280777
+                                                        "ratio": 0.1781706405438688
                                                       }
                                                     ],
                                                     "delta": {
@@ -1423,23 +1159,15 @@
                                                         "sourceBones": [
                                                           {
                                                             "name": "LeftHandRing2",
-                                                            "ratio": 0.6626463623702807
+                                                            "ratio": 0.7917597189477645
                                                           },
                                                           {
                                                             "name": "LeftHandRing3",
-                                                            "ratio": 0.08719221862801148
+                                                            "ratio": 0.10418118990106234
                                                           },
                                                           {
                                                             "name": "LeftHandMiddle2",
-                                                            "ratio": 0.08709003069077771
-                                                          },
-                                                          {
-                                                            "name": "LeftHandPinky3",
-                                                            "ratio": 0.08542054091294625
-                                                          },
-                                                          {
-                                                            "name": "LeftHandPinky2",
-                                                            "ratio": 0.07765084739798395
+                                                            "ratio": 0.10405909115117311
                                                           }
                                                         ],
                                                         "delta": {
@@ -1465,23 +1193,15 @@
                                                             "sourceBones": [
                                                               {
                                                                 "name": "LeftHandRing3",
-                                                                "ratio": 0.6538282087225111
+                                                                "ratio": 0.7800954605264018
                                                               },
                                                               {
                                                                 "name": "LeftHandRing2",
-                                                                "ratio": 0.09426324206078918
+                                                                "ratio": 0.11246735189018355
                                                               },
                                                               {
                                                                 "name": "LeftHandPinky4",
-                                                                "ratio": 0.0900472666004842
-                                                              },
-                                                              {
-                                                                "name": "LeftHandRing4",
-                                                                "ratio": 0.08735937954485495
-                                                              },
-                                                              {
-                                                                "name": "LeftHandMiddle3",
-                                                                "ratio": 0.0745019030713605
+                                                                "ratio": 0.10743718758341465
                                                               }
                                                             ],
                                                             "delta": {
@@ -1518,23 +1238,15 @@
                                         "sourceBones": [
                                           {
                                             "name": "LeftArm",
-                                            "ratio": 0.3012676890752517
+                                            "ratio": 0.4325538605149238
                                           },
                                           {
                                             "name": "LeftForeArm",
-                                            "ratio": 0.2200926299656072
+                                            "ratio": 0.3160044047694942
                                           },
                                           {
                                             "name": "LeftShoulder",
-                                            "ratio": 0.1751256369892516
-                                          },
-                                          {
-                                            "name": "Spine2",
-                                            "ratio": 0.1614302162414384
-                                          },
-                                          {
-                                            "name": "Neck",
-                                            "ratio": 0.14208382772845116
+                                            "ratio": 0.2514417347155821
                                           }
                                         ],
                                         "delta": {
@@ -1561,23 +1273,15 @@
                                         "sourceBones": [
                                           {
                                             "name": "LeftForeArm",
-                                            "ratio": 0.45308243223702993
+                                            "ratio": 0.599169738017838
                                           },
                                           {
                                             "name": "LeftArm",
-                                            "ratio": 0.1717401381370804
+                                            "ratio": 0.227114287055184
                                           },
                                           {
                                             "name": "Spine2",
-                                            "ratio": 0.13136120108255342
-                                          },
-                                          {
-                                            "name": "LeftShoulder",
-                                            "ratio": 0.12397263607373125
-                                          },
-                                          {
-                                            "name": "Spine1",
-                                            "ratio": 0.11984359246960496
+                                            "ratio": 0.17371597492697796
                                           }
                                         ],
                                         "delta": {
@@ -1608,23 +1312,15 @@
                                 "sourceBones": [
                                   {
                                     "name": "RightShoulder",
-                                    "ratio": 0.2722285772751724
+                                    "ratio": 0.37200228172592253
                                   },
                                   {
                                     "name": "Neck",
-                                    "ratio": 0.2549480491073338
+                                    "ratio": 0.34838831741619053
                                   },
                                   {
                                     "name": "LeftShoulder",
-                                    "ratio": 0.20461613578055043
-                                  },
-                                  {
-                                    "name": "Spine2",
-                                    "ratio": 0.1664820779287335
-                                  },
-                                  {
-                                    "name": "RightArm",
-                                    "ratio": 0.10172515990820992
+                                    "ratio": 0.27960940085788694
                                   }
                                 ],
                                 "delta": {
@@ -1650,23 +1346,15 @@
                                     "sourceBones": [
                                       {
                                         "name": "RightArm",
-                                        "ratio": 0.568566315834967
+                                        "ratio": 0.6945101918162584
                                       },
                                       {
                                         "name": "RightShoulder",
-                                        "ratio": 0.14415721462762765
+                                        "ratio": 0.176089669743629
                                       },
                                       {
                                         "name": "Neck",
-                                        "ratio": 0.10593445689979751
-                                      },
-                                      {
-                                        "name": "Spine2",
-                                        "ratio": 0.09521680592089914
-                                      },
-                                      {
-                                        "name": "LeftShoulder",
-                                        "ratio": 0.08612520671670887
+                                        "ratio": 0.12940013844011267
                                       }
                                     ],
                                     "delta": {
@@ -1692,23 +1380,15 @@
                                         "sourceBones": [
                                           {
                                             "name": "RightForeArm",
-                                            "ratio": 0.8625453277344575
+                                            "ratio": 0.9214169503599343
                                           },
                                           {
                                             "name": "RightHand",
-                                            "ratio": 0.03882669450196306
+                                            "ratio": 0.04147674712298653
                                           },
                                           {
                                             "name": "RightHandThumb1",
-                                            "ratio": 0.034735488481197764
-                                          },
-                                          {
-                                            "name": "RightArm",
-                                            "ratio": 0.03254689040793131
-                                          },
-                                          {
-                                            "name": "RightHandThumb2",
-                                            "ratio": 0.03134559887445037
+                                            "ratio": 0.037106302517079054
                                           }
                                         ],
                                         "delta": {
@@ -1734,23 +1414,15 @@
                                             "sourceBones": [
                                               {
                                                 "name": "RightForeArm",
-                                                "ratio": 0.3495677257364654
+                                                "ratio": 0.4833398067269946
                                               },
                                               {
                                                 "name": "RightHand",
-                                                "ratio": 0.2028411838493505
+                                                "ratio": 0.2804641601036471
                                               },
                                               {
                                                 "name": "RightHandThumb1",
-                                                "ratio": 0.170824974466925
-                                              },
-                                              {
-                                                "name": "RightHandThumb2",
-                                                "ratio": 0.14640010235263515
-                                              },
-                                              {
-                                                "name": "RightHandThumb3",
-                                                "ratio": 0.13036601359462394
+                                                "ratio": 0.23619603316935822
                                               }
                                             ],
                                             "delta": {
@@ -1777,23 +1449,15 @@
                                             "sourceBones": [
                                               {
                                                 "name": "RightHand",
-                                                "ratio": 0.3229609049007663
+                                                "ratio": 0.4516551403873395
                                               },
                                               {
                                                 "name": "RightHandThumb1",
-                                                "ratio": 0.22413164249520764
+                                                "ratio": 0.31344415661555763
                                               },
                                               {
                                                 "name": "RightHandThumb2",
-                                                "ratio": 0.16796829443081224
-                                              },
-                                              {
-                                                "name": "RightHandPinky1",
-                                                "ratio": 0.14376789208793384
-                                              },
-                                              {
-                                                "name": "RightHandRing1",
-                                                "ratio": 0.14117126608527997
+                                                "ratio": 0.2349007029971029
                                               }
                                             ],
                                             "delta": {
@@ -1820,23 +1484,15 @@
                                             "sourceBones": [
                                               {
                                                 "name": "RightHand",
-                                                "ratio": 0.5214793168478091
+                                                "ratio": 0.6357478031826388
                                               },
                                               {
                                                 "name": "RightHandThumb1",
-                                                "ratio": 0.20112130699784422
+                                                "ratio": 0.2451917553892487
                                               },
                                               {
                                                 "name": "RightHandThumb2",
-                                                "ratio": 0.09766067196569465
-                                              },
-                                              {
-                                                "name": "RightHandRing1",
-                                                "ratio": 0.09077698015746696
-                                              },
-                                              {
-                                                "name": "RightHandPinky1",
-                                                "ratio": 0.08896172403118505
+                                                "ratio": 0.1190604414281125
                                               }
                                             ],
                                             "delta": {
@@ -1862,23 +1518,15 @@
                                                 "sourceBones": [
                                                   {
                                                     "name": "RightHand",
-                                                    "ratio": 0.23350447465504404
+                                                    "ratio": 0.35352619917998973
                                                   },
                                                   {
                                                     "name": "RightHandPinky1",
-                                                    "ratio": 0.22905913911319628
+                                                    "ratio": 0.3467959530872294
                                                   },
                                                   {
                                                     "name": "RightHandRing1",
-                                                    "ratio": 0.1979375745359414
-                                                  },
-                                                  {
-                                                    "name": "RightHandThumb1",
-                                                    "ratio": 0.1818913735623485
-                                                  },
-                                                  {
-                                                    "name": "RightHandMiddle1",
-                                                    "ratio": 0.1576074381334698
+                                                    "ratio": 0.29967784773278094
                                                   }
                                                 ],
                                                 "delta": {
@@ -1904,23 +1552,15 @@
                                                     "sourceBones": [
                                                       {
                                                         "name": "RightHandPinky1",
-                                                        "ratio": 0.5526236507565091
+                                                        "ratio": 0.6556207651253806
                                                       },
                                                       {
                                                         "name": "RightHandPinky2",
-                                                        "ratio": 0.16345258452364897
+                                                        "ratio": 0.19391661645392122
                                                       },
                                                       {
                                                         "name": "RightHandRing1",
-                                                        "ratio": 0.12682514941107512
-                                                      },
-                                                      {
-                                                        "name": "RightHandPinky3",
-                                                        "ratio": 0.08121146337486534
-                                                      },
-                                                      {
-                                                        "name": "RightHandRing2",
-                                                        "ratio": 0.07588715193390137
+                                                        "ratio": 0.15046261842069814
                                                       }
                                                     ],
                                                     "delta": {
@@ -1946,23 +1586,15 @@
                                                         "sourceBones": [
                                                           {
                                                             "name": "RightHandPinky2",
-                                                            "ratio": 0.6297830429585978
+                                                            "ratio": 0.733226997017351
                                                           },
                                                           {
                                                             "name": "RightHandPinky3",
-                                                            "ratio": 0.14620440895846595
+                                                            "ratio": 0.17021896815084642
                                                           },
                                                           {
                                                             "name": "RightHandPinky1",
-                                                            "ratio": 0.0829321534990673
-                                                          },
-                                                          {
-                                                            "name": "RightHandRing2",
-                                                            "ratio": 0.07919608922291227
-                                                          },
-                                                          {
-                                                            "name": "RightHandRing1",
-                                                            "ratio": 0.06188430536095675
+                                                            "ratio": 0.09655403483180265
                                                           }
                                                         ],
                                                         "delta": {
@@ -1988,23 +1620,15 @@
                                                             "sourceBones": [
                                                               {
                                                                 "name": "RightHandPinky3",
-                                                                "ratio": 0.6054335983676659
+                                                                "ratio": 0.7136687014869005
                                                               },
                                                               {
                                                                 "name": "RightHandPinky4",
-                                                                "ratio": 0.13520480202882743
+                                                                "ratio": 0.15937575278091798
                                                               },
                                                               {
                                                                 "name": "RightHandPinky2",
-                                                                "ratio": 0.10770144848054007
-                                                              },
-                                                              {
-                                                                "name": "RightHandRing2",
-                                                                "ratio": 0.08170696913122347
-                                                              },
-                                                              {
-                                                                "name": "RightHandRing3",
-                                                                "ratio": 0.06995318199174329
+                                                                "ratio": 0.12695554573218137
                                                               }
                                                             ],
                                                             "delta": {
@@ -2037,23 +1661,15 @@
                                                 "sourceBones": [
                                                   {
                                                     "name": "RightHand",
-                                                    "ratio": 0.23738738953395833
+                                                    "ratio": 0.3677477199989518
                                                   },
                                                   {
                                                     "name": "RightHandThumb1",
-                                                    "ratio": 0.20756744648465913
+                                                    "ratio": 0.32155227512545886
                                                   },
                                                   {
                                                     "name": "RightHandPinky1",
-                                                    "ratio": 0.20056212200530982
-                                                  },
-                                                  {
-                                                    "name": "RightHandRing1",
-                                                    "ratio": 0.19328296933912628
-                                                  },
-                                                  {
-                                                    "name": "RightHandMiddle1",
-                                                    "ratio": 0.16120007263694655
+                                                    "ratio": 0.3107000048755894
                                                   }
                                                 ],
                                                 "delta": {
@@ -2079,23 +1695,15 @@
                                                     "sourceBones": [
                                                       {
                                                         "name": "RightHandRing1",
-                                                        "ratio": 0.44791588139194305
+                                                        "ratio": 0.589024364344298
                                                       },
                                                       {
                                                         "name": "RightHandPinky1",
-                                                        "ratio": 0.1769831473741163
+                                                        "ratio": 0.23273875790635729
                                                       },
                                                       {
                                                         "name": "RightHandMiddle1",
-                                                        "ratio": 0.1355379047563138
-                                                      },
-                                                      {
-                                                        "name": "RightHandPinky2",
-                                                        "ratio": 0.12440982808529069
-                                                      },
-                                                      {
-                                                        "name": "RightHandRing2",
-                                                        "ratio": 0.11515323839233606
+                                                        "ratio": 0.1782368777493447
                                                       }
                                                     ],
                                                     "delta": {
@@ -2121,23 +1729,15 @@
                                                         "sourceBones": [
                                                           {
                                                             "name": "RightHandRing2",
-                                                            "ratio": 0.6621123769156251
+                                                            "ratio": 0.7913625357757017
                                                           },
                                                           {
                                                             "name": "RightHandRing3",
-                                                            "ratio": 0.08733824913484993
+                                                            "ratio": 0.10438744345413814
                                                           },
                                                           {
                                                             "name": "RightHandMiddle2",
-                                                            "ratio": 0.08722327116228053
-                                                          },
-                                                          {
-                                                            "name": "RightHandPinky3",
-                                                            "ratio": 0.08555670611691041
-                                                          },
-                                                          {
-                                                            "name": "RightHandPinky2",
-                                                            "ratio": 0.07776939667033407
+                                                            "ratio": 0.10425002077016005
                                                           }
                                                         ],
                                                         "delta": {
@@ -2163,23 +1763,15 @@
                                                             "sourceBones": [
                                                               {
                                                                 "name": "RightHandRing3",
-                                                                "ratio": 0.6539125831306097
+                                                                "ratio": 0.7801676800756285
                                                               },
                                                               {
                                                                 "name": "RightHandRing2",
-                                                                "ratio": 0.09422651144983546
+                                                                "ratio": 0.11241942843108542
                                                               },
                                                               {
                                                                 "name": "RightHandPinky4",
-                                                                "ratio": 0.09003018598654808
-                                                              },
-                                                              {
-                                                                "name": "RightHandRing4",
-                                                                "ratio": 0.08734959918297876
-                                                              },
-                                                              {
-                                                                "name": "RightHandMiddle3",
-                                                                "ratio": 0.0744811202500278
+                                                                "ratio": 0.10741289149328603
                                                               }
                                                             ],
                                                             "delta": {
@@ -2212,23 +1804,15 @@
                                                 "sourceBones": [
                                                   {
                                                     "name": "RightHandThumb1",
-                                                    "ratio": 0.2862554659524201
+                                                    "ratio": 0.4200774352430544
                                                   },
                                                   {
                                                     "name": "RightHand",
-                                                    "ratio": 0.22443383265388347
+                                                    "ratio": 0.3293547198804683
                                                   },
                                                   {
                                                     "name": "RightHandRing1",
-                                                    "ratio": 0.1707456986979298
-                                                  },
-                                                  {
-                                                    "name": "RightHandMiddle1",
-                                                    "ratio": 0.16319188454319947
-                                                  },
-                                                  {
-                                                    "name": "RightHandThumb2",
-                                                    "ratio": 0.15537311815256702
+                                                    "ratio": 0.2505678448764772
                                                   }
                                                 ],
                                                 "delta": {
@@ -2254,23 +1838,15 @@
                                                     "sourceBones": [
                                                       {
                                                         "name": "RightHandMiddle1",
-                                                        "ratio": 0.47127659752488055
+                                                        "ratio": 0.5894375658661513
                                                       },
                                                       {
                                                         "name": "RightHandRing1",
-                                                        "ratio": 0.1897648268683953
+                                                        "ratio": 0.23734367083740732
                                                       },
                                                       {
                                                         "name": "RightHandIndex1",
-                                                        "ratio": 0.13849465002091824
-                                                      },
-                                                      {
-                                                        "name": "RightHandRing2",
-                                                        "ratio": 0.10061642276773415
-                                                      },
-                                                      {
-                                                        "name": "RightHandMiddle2",
-                                                        "ratio": 0.09984750281807167
+                                                        "ratio": 0.17321876329644137
                                                       }
                                                     ],
                                                     "delta": {
@@ -2296,23 +1872,15 @@
                                                         "sourceBones": [
                                                           {
                                                             "name": "RightHandMiddle2",
-                                                            "ratio": 0.6132145991305592
+                                                            "ratio": 0.7439452115768634
                                                           },
                                                           {
                                                             "name": "RightHandMiddle3",
-                                                            "ratio": 0.10640707097465038
+                                                            "ratio": 0.1290918889435254
                                                           },
                                                           {
                                                             "name": "RightHandIndex2",
-                                                            "ratio": 0.10465220058856357
-                                                          },
-                                                          {
-                                                            "name": "RightHandRing2",
-                                                            "ratio": 0.09528975091176574
-                                                          },
-                                                          {
-                                                            "name": "RightHandIndex3",
-                                                            "ratio": 0.08043637839446115
+                                                            "ratio": 0.12696289947961123
                                                           }
                                                         ],
                                                         "delta": {
@@ -2338,23 +1906,15 @@
                                                             "sourceBones": [
                                                               {
                                                                 "name": "RightHandMiddle3",
-                                                                "ratio": 0.6759068730856007
+                                                                "ratio": 0.8040908430936573
                                                               },
                                                               {
                                                                 "name": "RightHandMiddle2",
-                                                                "ratio": 0.08250243539341343
+                                                                "ratio": 0.09814880640275449
                                                               },
                                                               {
                                                                 "name": "RightHandMiddle4",
-                                                                "ratio": 0.08217590510844344
-                                                              },
-                                                              {
-                                                                "name": "RightHandIndex3",
-                                                                "ratio": 0.08022954940369259
-                                                              },
-                                                              {
-                                                                "name": "RightHandRing3",
-                                                                "ratio": 0.07918523700884982
+                                                                "ratio": 0.09776035050358825
                                                               }
                                                             ],
                                                             "delta": {
@@ -2387,23 +1947,15 @@
                                                 "sourceBones": [
                                                   {
                                                     "name": "RightHandThumb1",
-                                                    "ratio": 0.3526488068930629
+                                                    "ratio": 0.5024072587374541
                                                   },
                                                   {
                                                     "name": "RightHandThumb2",
-                                                    "ratio": 0.1959266865383542
+                                                    "ratio": 0.2791303630501049
                                                   },
                                                   {
                                                     "name": "RightHandIndex1",
-                                                    "ratio": 0.15334272283653022
-                                                  },
-                                                  {
-                                                    "name": "RightHand",
-                                                    "ratio": 0.1516931341448658
-                                                  },
-                                                  {
-                                                    "name": "RightHandMiddle1",
-                                                    "ratio": 0.14638864958718686
+                                                    "ratio": 0.21846237821244088
                                                   }
                                                 ],
                                                 "delta": {
@@ -2429,23 +1981,15 @@
                                                     "sourceBones": [
                                                       {
                                                         "name": "RightHandIndex1",
-                                                        "ratio": 0.535917489093602
+                                                        "ratio": 0.6557899990464987
                                                       },
                                                       {
                                                         "name": "RightHandMiddle1",
-                                                        "ratio": 0.17975332613808634
+                                                        "ratio": 0.2199600423118715
                                                       },
                                                       {
                                                         "name": "RightHandIndex2",
-                                                        "ratio": 0.10153818440662853
-                                                      },
-                                                      {
-                                                        "name": "RightHandRing1",
-                                                        "ratio": 0.09385997727707561
-                                                      },
-                                                      {
-                                                        "name": "RightHandThumb3",
-                                                        "ratio": 0.08893102308460754
+                                                        "ratio": 0.12424995864162978
                                                       }
                                                     ],
                                                     "delta": {
@@ -2471,23 +2015,15 @@
                                                         "sourceBones": [
                                                           {
                                                             "name": "RightHandIndex2",
-                                                            "ratio": 0.618280775065586
+                                                            "ratio": 0.7402508913881506
                                                           },
                                                           {
                                                             "name": "RightHandIndex3",
-                                                            "ratio": 0.10872094689355163
+                                                            "ratio": 0.13016865653307455
                                                           },
                                                           {
                                                             "name": "RightHandMiddle2",
-                                                            "ratio": 0.10822966007426867
-                                                          },
-                                                          {
-                                                            "name": "RightHandIndex1",
-                                                            "ratio": 0.0907949711117095
-                                                          },
-                                                          {
-                                                            "name": "RightHandMiddle1",
-                                                            "ratio": 0.07397364685488411
+                                                            "ratio": 0.12958045207877483
                                                           }
                                                         ],
                                                         "delta": {
@@ -2513,23 +2049,15 @@
                                                             "sourceBones": [
                                                               {
                                                                 "name": "RightHandIndex3",
-                                                                "ratio": 0.733593046607875
+                                                                "ratio": 0.8290897136189038
                                                               },
                                                               {
                                                                 "name": "RightHandIndex2",
-                                                                "ratio": 0.08616943757673551
+                                                                "ratio": 0.09738668414803747
                                                               },
                                                               {
                                                                 "name": "RightHandMiddle3",
-                                                                "ratio": 0.06505496627657756
-                                                              },
-                                                              {
-                                                                "name": "RightHandIndex4",
-                                                                "ratio": 0.062391742278824845
-                                                              },
-                                                              {
-                                                                "name": "RightHandMiddle2",
-                                                                "ratio": 0.052790807259986985
+                                                                "ratio": 0.07352360223305875
                                                               }
                                                             ],
                                                             "delta": {
@@ -2562,23 +2090,15 @@
                                                 "sourceBones": [
                                                   {
                                                     "name": "RightHandThumb1",
-                                                    "ratio": 0.36933962552247623
+                                                    "ratio": 0.47152703511891114
                                                   },
                                                   {
                                                     "name": "RightHandThumb2",
-                                                    "ratio": 0.2838988207073556
+                                                    "ratio": 0.3624468103375718
                                                   },
                                                   {
                                                     "name": "RightHandThumb3",
-                                                    "ratio": 0.13004564569786647
-                                                  },
-                                                  {
-                                                    "name": "RightHand",
-                                                    "ratio": 0.11415938220928357
-                                                  },
-                                                  {
-                                                    "name": "RightHandIndex1",
-                                                    "ratio": 0.10255652586301826
+                                                    "ratio": 0.16602615454351707
                                                   }
                                                 ],
                                                 "delta": {
@@ -2604,23 +2124,15 @@
                                                     "sourceBones": [
                                                       {
                                                         "name": "RightHandThumb2",
-                                                        "ratio": 0.7452101418410599
+                                                        "ratio": 0.8196445973718199
                                                       },
                                                       {
                                                         "name": "RightHandThumb3",
-                                                        "ratio": 0.09597119364375394
+                                                        "ratio": 0.10555716563262356
                                                       },
                                                       {
                                                         "name": "RightHandThumb1",
-                                                        "ratio": 0.0680055782465362
-                                                      },
-                                                      {
-                                                        "name": "RightHandIndex1",
-                                                        "ratio": 0.046638522040092986
-                                                      },
-                                                      {
-                                                        "name": "RightHandThumb4",
-                                                        "ratio": 0.044174564228556874
+                                                        "ratio": 0.0747982369955566
                                                       }
                                                     ],
                                                     "delta": {
@@ -2646,23 +2158,15 @@
                                                         "sourceBones": [
                                                           {
                                                             "name": "RightHandThumb3",
-                                                            "ratio": 0.8258601170235006
+                                                            "ratio": 0.8776863954641984
                                                           },
                                                           {
                                                             "name": "RightHandThumb2",
-                                                            "ratio": 0.057915683073197964
+                                                            "ratio": 0.06155014156703191
                                                           },
                                                           {
                                                             "name": "RightHandThumb4",
-                                                            "ratio": 0.05717545685734434
-                                                          },
-                                                          {
-                                                            "name": "RightHandIndex1",
-                                                            "ratio": 0.03258028185554249
-                                                          },
-                                                          {
-                                                            "name": "RightHandThumb1",
-                                                            "ratio": 0.026468461190414693
+                                                            "ratio": 0.060763462968769735
                                                           }
                                                         ],
                                                         "delta": {
@@ -2697,23 +2201,15 @@
                                         "sourceBones": [
                                           {
                                             "name": "RightArm",
-                                            "ratio": 0.3012607650064598
+                                            "ratio": 0.43254490026252196
                                           },
                                           {
                                             "name": "RightForeArm",
-                                            "ratio": 0.22009771759690872
+                                            "ratio": 0.3160124263241589
                                           },
                                           {
                                             "name": "RightShoulder",
-                                            "ratio": 0.1751258935240979
-                                          },
-                                          {
-                                            "name": "Spine2",
-                                            "ratio": 0.1614315063328362
-                                          },
-                                          {
-                                            "name": "Neck",
-                                            "ratio": 0.14208411753969735
+                                            "ratio": 0.2514426734133192
                                           }
                                         ],
                                         "delta": {
@@ -2740,23 +2236,15 @@
                                         "sourceBones": [
                                           {
                                             "name": "RightForeArm",
-                                            "ratio": 0.45308472159851265
+                                            "ratio": 0.5991724334434947
                                           },
                                           {
                                             "name": "RightArm",
-                                            "ratio": 0.1717383483322836
+                                            "ratio": 0.2271117942860219
                                           },
                                           {
                                             "name": "Spine2",
-                                            "ratio": 0.13136112064452177
-                                          },
-                                          {
-                                            "name": "RightShoulder",
-                                            "ratio": 0.12397241928186571
-                                          },
-                                          {
-                                            "name": "Spine1",
-                                            "ratio": 0.11984339014281621
+                                            "ratio": 0.1737157722704834
                                           }
                                         ],
                                         "delta": {
@@ -2797,23 +2285,15 @@
             "sourceBones": [
               {
                 "name": "RightUpLeg",
-                "ratio": 0.7850650861907362
+                "ratio": 0.848008400077122
               },
               {
                 "name": "Hips",
-                "ratio": 0.08705161796418673
+                "ratio": 0.09403106133801459
               },
               {
                 "name": "Spine",
-                "ratio": 0.05365842510009215
-              },
-              {
-                "name": "LeftUpLeg",
-                "ratio": 0.04455156428808488
-              },
-              {
-                "name": "Spine1",
-                "ratio": 0.029673306456900056
+                "ratio": 0.05796053858486334
               }
             ],
             "delta": {
@@ -2839,23 +2319,15 @@
                 "sourceBones": [
                   {
                     "name": "RightLeg",
-                    "ratio": 0.9295821604891779
+                    "ratio": 0.9572122984127888
                   },
                   {
                     "name": "LeftLeg",
-                    "ratio": 0.025928610759018974
+                    "ratio": 0.026699291524947523
                   },
                   {
                     "name": "RightUpLeg",
-                    "ratio": 0.015624014661442982
-                  },
-                  {
-                    "name": "RightFoot",
-                    "ratio": 0.014540166919978854
-                  },
-                  {
-                    "name": "Hips",
-                    "ratio": 0.014325047170381227
+                    "ratio": 0.016088410062263733
                   }
                 ],
                 "delta": {
@@ -2881,23 +2353,15 @@
                     "sourceBones": [
                       {
                         "name": "RightFoot",
-                        "ratio": 0.7275538328607632
+                        "ratio": 0.8134546587446546
                       },
                       {
                         "name": "RightToeBase",
-                        "ratio": 0.10204189560763668
+                        "ratio": 0.11408977813062149
                       },
                       {
                         "name": "RightToe_End",
-                        "ratio": 0.06480425441883822
-                      },
-                      {
-                        "name": "LeftFoot",
-                        "ratio": 0.05695736359282392
-                      },
-                      {
-                        "name": "LeftToeBase",
-                        "ratio": 0.04864265351993779
+                        "ratio": 0.07245556312472384
                       }
                     ],
                     "delta": {
@@ -2923,23 +2387,15 @@
                         "sourceBones": [
                           {
                             "name": "RightToeBase",
-                            "ratio": 0.6509862471364223
+                            "ratio": 0.7200972489521208
                           },
                           {
                             "name": "RightToe_End",
-                            "ratio": 0.15311958086569716
+                            "ratio": 0.16937529698531978
                           },
                           {
                             "name": "RightFoot",
-                            "ratio": 0.09991963256411893
-                          },
-                          {
-                            "name": "LeftToeBase",
-                            "ratio": 0.04932587573059788
-                          },
-                          {
-                            "name": "LeftToe_End",
-                            "ratio": 0.046648663703163736
+                            "ratio": 0.1105274540625593
                           }
                         ],
                         "delta": {
@@ -2968,23 +2424,15 @@
                     "sourceBones": [
                       {
                         "name": "RightLeg",
-                        "ratio": 0.3552824938430485
+                        "ratio": 0.49487094770530604
                       },
                       {
                         "name": "RightFoot",
-                        "ratio": 0.18308739661236959
+                        "ratio": 0.25502138451687006
                       },
                       {
                         "name": "LeftLeg",
-                        "ratio": 0.1795596939957952
-                      },
-                      {
-                        "name": "RightToeBase",
-                        "ratio": 0.14955199681791698
-                      },
-                      {
-                        "name": "RightToe_End",
-                        "ratio": 0.1325184187308698
+                        "ratio": 0.25010766777782384
                       }
                     ],
                     "delta": {
@@ -3011,23 +2459,15 @@
                     "sourceBones": [
                       {
                         "name": "RightFoot",
-                        "ratio": 0.33310684828369147
+                        "ratio": 0.47846191808180377
                       },
                       {
                         "name": "RightToeBase",
-                        "ratio": 0.2029549444235963
+                        "ratio": 0.29151670850789285
                       },
                       {
                         "name": "RightLeg",
-                        "ratio": 0.1601416786560056
-                      },
-                      {
-                        "name": "RightToe_End",
-                        "ratio": 0.15623469814248794
-                      },
-                      {
-                        "name": "LeftFoot",
-                        "ratio": 0.14756183049421873
+                        "ratio": 0.2300213734103035
                       }
                     ],
                     "delta": {
@@ -3056,23 +2496,15 @@
                 "sourceBones": [
                   {
                     "name": "RightUpLeg",
-                    "ratio": 0.296162838017191
+                    "ratio": 0.42950558878907974
                   },
                   {
                     "name": "Hips",
-                    "ratio": 0.21978880905289874
+                    "ratio": 0.3187453310264278
                   },
                   {
                     "name": "LeftUpLeg",
-                    "ratio": 0.1735919717968343
-                  },
-                  {
-                    "name": "RightLeg",
-                    "ratio": 0.15841711779279313
-                  },
-                  {
-                    "name": "Spine",
-                    "ratio": 0.15203926334028267
+                    "ratio": 0.2517490801844924
                   }
                 ],
                 "delta": {
@@ -3099,23 +2531,15 @@
                 "sourceBones": [
                   {
                     "name": "RightLeg",
-                    "ratio": 0.3610926623550813
+                    "ratio": 0.5077004847891717
                   },
                   {
                     "name": "LeftLeg",
-                    "ratio": 0.17721242993886027
+                    "ratio": 0.24916273846116943
                   },
                   {
                     "name": "RightUpLeg",
-                    "ratio": 0.1729265751428722
-                  },
-                  {
-                    "name": "Hips",
-                    "ratio": 0.1506677792934466
-                  },
-                  {
-                    "name": "LeftUpLeg",
-                    "ratio": 0.13810055326973963
+                    "ratio": 0.24313677674965883
                   }
                 ],
                 "delta": {
@@ -3144,23 +2568,15 @@
             "sourceBones": [
               {
                 "name": "LeftUpLeg",
-                "ratio": 0.7855127752268339
+                "ratio": 0.848351199207533
               },
               {
                 "name": "Hips",
-                "ratio": 0.08687015043024982
+                "ratio": 0.09381947514674065
               },
               {
                 "name": "Spine",
-                "ratio": 0.05354583587540654
-              },
-              {
-                "name": "RightUpLeg",
-                "ratio": 0.044459433345195504
-              },
-              {
-                "name": "Spine1",
-                "ratio": 0.029611805122314285
+                "ratio": 0.05782932564572641
               }
             ],
             "delta": {
@@ -3186,23 +2602,15 @@
                 "sourceBones": [
                   {
                     "name": "LeftLeg",
-                    "ratio": 0.9298690366100123
+                    "ratio": 0.9573920730662409
                   },
                   {
                     "name": "RightLeg",
-                    "ratio": 0.025822680805933456
+                    "ratio": 0.026587001970782967
                   },
                   {
                     "name": "LeftUpLeg",
-                    "ratio": 0.015560356597911032
-                  },
-                  {
-                    "name": "LeftFoot",
-                    "ratio": 0.014481287912304812
-                  },
-                  {
-                    "name": "Hips",
-                    "ratio": 0.014266638073838508
+                    "ratio": 0.01602092496297623
                   }
                 ],
                 "delta": {
@@ -3228,23 +2636,15 @@
                     "sourceBones": [
                       {
                         "name": "LeftFoot",
-                        "ratio": 0.7268639144546348
+                        "ratio": 0.8129474644086089
                       },
                       {
                         "name": "LeftToeBase",
-                        "ratio": 0.10227869565063392
+                        "ratio": 0.11439171024824905
                       },
                       {
                         "name": "LeftToe_End",
-                        "ratio": 0.06496672201916699
-                      },
-                      {
-                        "name": "RightFoot",
-                        "ratio": 0.05711648129870452
-                      },
-                      {
-                        "name": "RightToeBase",
-                        "ratio": 0.04877418657685962
+                        "ratio": 0.07266082534314201
                       }
                     ],
                     "delta": {
@@ -3270,23 +2670,15 @@
                         "sourceBones": [
                           {
                             "name": "LeftToeBase",
-                            "ratio": 0.65082373862295
+                            "ratio": 0.7199748419344554
                           },
                           {
                             "name": "LeftToe_End",
-                            "ratio": 0.15306095311841658
+                            "ratio": 0.1693239336366811
                           },
                           {
                             "name": "LeftFoot",
-                            "ratio": 0.10006875317942036
-                          },
-                          {
-                            "name": "RightToeBase",
-                            "ratio": 0.04936546645508332
-                          },
-                          {
-                            "name": "RightToe_End",
-                            "ratio": 0.04668108862412987
+                            "ratio": 0.11070122442886356
                           }
                         ],
                         "delta": {
@@ -3315,23 +2707,15 @@
                     "sourceBones": [
                       {
                         "name": "LeftLeg",
-                        "ratio": 0.3552123836748376
+                        "ratio": 0.4947304404989104
                       },
                       {
                         "name": "LeftFoot",
-                        "ratio": 0.1830672004293609
+                        "ratio": 0.25497116900132366
                       },
                       {
                         "name": "RightLeg",
-                        "ratio": 0.17971218393138882
-                      },
-                      {
-                        "name": "LeftToeBase",
-                        "ratio": 0.14952138294280018
-                      },
-                      {
-                        "name": "LeftToe_End",
-                        "ratio": 0.13248684902161248
+                        "ratio": 0.250298390499766
                       }
                     ],
                     "delta": {
@@ -3358,23 +2742,15 @@
                     "sourceBones": [
                       {
                         "name": "LeftFoot",
-                        "ratio": 0.33314286728979525
+                        "ratio": 0.478505173450128
                       },
                       {
                         "name": "LeftToeBase",
-                        "ratio": 0.2029236838076977
+                        "ratio": 0.2914666410464544
                       },
                       {
                         "name": "LeftLeg",
-                        "ratio": 0.16014925966952873
-                      },
-                      {
-                        "name": "LeftToe_End",
-                        "ratio": 0.15621012278988586
-                      },
-                      {
-                        "name": "RightFoot",
-                        "ratio": 0.1475740664430923
+                        "ratio": 0.23002818550341758
                       }
                     ],
                     "delta": {
@@ -3403,23 +2779,15 @@
                 "sourceBones": [
                   {
                     "name": "LeftUpLeg",
-                    "ratio": 0.29616043010560406
+                    "ratio": 0.42950525362798486
                   },
                   {
                     "name": "Hips",
-                    "ratio": 0.2197861507666132
+                    "ratio": 0.3187438186636618
                   },
                   {
                     "name": "RightUpLeg",
-                    "ratio": 0.17359196982994193
-                  },
-                  {
-                    "name": "LeftLeg",
-                    "ratio": 0.15842300841149803
-                  },
-                  {
-                    "name": "Spine",
-                    "ratio": 0.1520384408863428
+                    "ratio": 0.2517509277083532
                   }
                 ],
                 "delta": {
@@ -3446,23 +2814,15 @@
                 "sourceBones": [
                   {
                     "name": "LeftLeg",
-                    "ratio": 0.36110735176970676
+                    "ratio": 0.5077152538349096
                   },
                   {
                     "name": "RightLeg",
-                    "ratio": 0.17721078052568698
+                    "ratio": 0.24915753162029472
                   },
                   {
                     "name": "LeftUpLeg",
-                    "ratio": 0.17292177834775915
-                  },
-                  {
-                    "name": "Hips",
-                    "ratio": 0.15066325091795868
-                  },
-                  {
-                    "name": "RightUpLeg",
-                    "ratio": 0.13809683843888843
+                    "ratio": 0.24312721454479572
                   }
                 ],
                 "delta": {
@@ -3486,6 +2846,324 @@
           ]
         }
       ]
+    },
+    {
+      "boneName": "ik_foot_root",
+      "boneConfig": {
+        "sourceBones": [
+          {
+            "name": "RightToeBase",
+            "ratio": 0.33542009772421605
+          },
+          {
+            "name": "LeftToeBase",
+            "ratio": 0.33541938245656877
+          },
+          {
+            "name": "RightFoot",
+            "ratio": 0.32916051981921507
+          }
+        ],
+        "delta": {
+          "x": 0.14401633744700648,
+          "y": -0.17514837831927557,
+          "z": -0.09886665553147984
+        },
+        "originalPosition": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "originalRotation": {
+          "x": -1.5707962925663537,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "children": [
+        {
+          "boneName": "ik_foot_l",
+          "boneConfig": {
+            "sourceBones": [
+              {
+                "name": "LeftFoot",
+                "ratio": 0.812948973310694
+              },
+              {
+                "name": "LeftToeBase",
+                "ratio": 0.11439078279593184
+              },
+              {
+                "name": "LeftToe_End",
+                "ratio": 0.07266024389337418
+              }
+            ],
+            "delta": {
+              "x": 0.021572117182992814,
+              "y": 0.13249204238047183,
+              "z": -0.5960701560061432
+            },
+            "originalPosition": {
+              "x": 0.15787062048912048,
+              "y": 0.08979072394709961,
+              "z": -0.08187942364315745
+            },
+            "originalRotation": {
+              "x": 1.5606780963929974,
+              "y": -1.4863777896003325,
+              "z": 1.5789067619085173
+            }
+          },
+          "children": []
+        },
+        {
+          "boneName": "ik_foot_r",
+          "boneConfig": {
+            "sourceBones": [
+              {
+                "name": "RightFoot",
+                "ratio": 0.8134303530847511
+              },
+              {
+                "name": "RightToeBase",
+                "ratio": 0.11410451261121064
+              },
+              {
+                "name": "RightToe_End",
+                "ratio": 0.07246513430403813
+              }
+            ],
+            "delta": {
+              "x": -0.021540877844443362,
+              "y": 0.13253800882715724,
+              "z": -0.5956786696102856
+            },
+            "originalPosition": {
+              "x": -0.15786314010620117,
+              "y": 0.08980160924165592,
+              "z": -0.08178233513034955
+            },
+            "originalRotation": {
+              "x": -1.5811757651049807,
+              "y": -1.486378519708332,
+              "z": 1.5786507796608957
+            }
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "boneName": "ik_hand_root",
+      "boneConfig": {
+        "sourceBones": [
+          {
+            "name": "RightToeBase",
+            "ratio": 0.33542009772421605
+          },
+          {
+            "name": "LeftToeBase",
+            "ratio": 0.33541938245656877
+          },
+          {
+            "name": "RightFoot",
+            "ratio": 0.32916051981921507
+          }
+        ],
+        "delta": {
+          "x": 0.14401633744700648,
+          "y": -0.17514837831927557,
+          "z": -0.09886665553147984
+        },
+        "originalPosition": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "originalRotation": {
+          "x": -1.5707962925663537,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "children": [
+        {
+          "boneName": "ik_hand_gun",
+          "boneConfig": {
+            "sourceBones": [
+              {
+                "name": "RightHand",
+                "ratio": 0.6357216261886748
+              },
+              {
+                "name": "RightHandThumb1",
+                "ratio": 0.24520815191590184
+              },
+              {
+                "name": "RightHandThumb2",
+                "ratio": 0.11907022189542334
+              }
+            ],
+            "delta": {
+              "x": -0.07157771323969402,
+              "y": 0.05198152764944387,
+              "z": -0.4356933283745047
+            },
+            "originalPosition": {
+              "x": -0.4536918103694916,
+              "y": 1.0549859628425644,
+              "z": 0.03236595316227906
+            },
+            "originalRotation": {
+              "x": 1.290841223135959,
+              "y": 0.426961667647869,
+              "z": 0.9636536342093576
+            }
+          },
+          "children": [
+            {
+              "boneName": "ik_hand_l",
+              "boneConfig": {
+                "sourceBones": [
+                  {
+                    "name": "LeftHand",
+                    "ratio": 0.6358125489130426
+                  },
+                  {
+                    "name": "LeftHandThumb1",
+                    "ratio": 0.24514674935615086
+                  },
+                  {
+                    "name": "LeftHandThumb2",
+                    "ratio": 0.11904070173080655
+                  }
+                ],
+                "delta": {
+                  "x": 0.07169437878308531,
+                  "y": 0.05207520427328522,
+                  "z": -0.4357001906520581
+                },
+                "originalPosition": {
+                  "x": 0.4536946715580894,
+                  "y": 1.0549871985331343,
+                  "z": 0.032366210018279974
+                },
+                "originalRotation": {
+                  "x": 2.3858819937730096,
+                  "y": 0.44460044627408246,
+                  "z": 2.106267057265288
+                }
+              },
+              "children": []
+            },
+            {
+              "boneName": "ik_hand_r",
+              "boneConfig": {
+                "sourceBones": [
+                  {
+                    "name": "RightHand",
+                    "ratio": 0.6357261078511198
+                  },
+                  {
+                    "name": "RightHandThumb1",
+                    "ratio": 0.24520511085777716
+                  },
+                  {
+                    "name": "RightHandThumb2",
+                    "ratio": 0.11906878129110303
+                  }
+                ],
+                "delta": {
+                  "x": -0.07157630681463846,
+                  "y": 0.05198428139492501,
+                  "z": -0.4356939917307286
+                },
+                "originalPosition": {
+                  "x": -0.4536916934704181,
+                  "y": 1.0549861917280596,
+                  "z": 0.032365898025513935
+                },
+                "originalRotation": {
+                  "x": -7.450579997403456e-8,
+                  "y": -1.1920929329778425e-7,
+                  "z": 1.0058283361758047e-7
+                }
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "boneName": "interaction",
+      "boneConfig": {
+        "sourceBones": [
+          {
+            "name": "RightToeBase",
+            "ratio": 0.33542009772421605
+          },
+          {
+            "name": "LeftToeBase",
+            "ratio": 0.33541938245656877
+          },
+          {
+            "name": "RightFoot",
+            "ratio": 0.32916051981921507
+          }
+        ],
+        "delta": {
+          "x": 0.14401633744700648,
+          "y": -0.17514837831927557,
+          "z": -0.09886665553147984
+        },
+        "originalPosition": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "originalRotation": {
+          "x": -1.5707962925663537,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "children": []
+    },
+    {
+      "boneName": "center_of_mass",
+      "boneConfig": {
+        "sourceBones": [
+          {
+            "name": "RightToeBase",
+            "ratio": 0.33542009772421605
+          },
+          {
+            "name": "LeftToeBase",
+            "ratio": 0.33541938245656877
+          },
+          {
+            "name": "RightFoot",
+            "ratio": 0.32916051981921507
+          }
+        ],
+        "delta": {
+          "x": 0.14401633744700648,
+          "y": -0.17514837831927557,
+          "z": -0.09886665553147984
+        },
+        "originalPosition": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "originalRotation": {
+          "x": -1.5707962925663537,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "children": []
     }
   ]
 }
