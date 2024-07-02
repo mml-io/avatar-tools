@@ -163,11 +163,11 @@ export const mixamoToUe5SkeletonMapper = {
       weight: number,
       boneName: string,
     ) {
+      const targetBoneInfluences = originalBonesByInfluencedBone.get(bone);
+      if (targetBoneInfluences) {
       if (boneName === "root"){
         return;
       }
-      const targetBoneInfluences = originalBonesByInfluencedBone.get(bone);
-      if (targetBoneInfluences) {
         for (const targetBoneInfluence of targetBoneInfluences) {
           let existing = mapOfBonesToSummedWeights.get(targetBoneInfluence.targetBone);
           if (!existing) {

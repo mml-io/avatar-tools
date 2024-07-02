@@ -45,6 +45,39 @@ function loadFile(file: string): Promise<ModelLoadResult> {
 // const derivedPosition = deltaXYZAndTriangleToWorldPos(deltaXYZ, triangle);
 // console.log({ derivedPosition });
 
+function isTriangleValid(triangle: THREE.Triangle): boolean {
+  const side1 = triangle.a.distanceTo(triangle.b);
+  const side2 = triangle.b.distanceTo(triangle.c);
+  const side3 = triangle.c.distanceTo(triangle.a);
+
+  const sides = [side1, side2, side3].sort((a, b) => a - b);
+  const longestSide = sides[2];
+  const sumOfOtherSides = sides[0] + sides[1];
+
+  return longestSide < sumOfOtherSides * 1.5; 
+}
+
+function getHierarchyDistance(bone: THREE.Bone, targetBone: THREE.Bone): number {
+  let distance = 0;
+  let currentBone: THREE.Object3D | null = bone;
+
+  while (currentBone && currentBone !== targetBone) {
+    currentBone = currentBone.parent;
+    distance++;
+  }
+
+  return currentBone === targetBone ? distance : Infinity;
+}
+
+function getBoneSide(boneName: string): string {
+  if (boneName.toLowerCase().includes("left") || boneName.toLowerCase().includes("_l")) {
+    return "left";
+  } else if (boneName.toLowerCase().includes("right") || boneName.toLowerCase().includes("_r")) {
+    return "right";
+  }
+  return "center";
+}
+
 function parseBones(root: THREE.Group): THREE.Bone[] {
   const bones: THREE.Bone[] = [];
   root.traverse((child) => {
@@ -83,6 +116,8 @@ type BoneConfig = {
     const ueWorldPosition = new THREE.Vector3();
     ueBone.getWorldPosition(ueWorldPosition);
 
+    const ueBoneSide = getBoneSide(ueBone.name);
+
     const bonesByDistance: {
       bone: THREE.Bone;
       worldPosition: THREE.Vector3;
@@ -93,6 +128,8 @@ type BoneConfig = {
       mixamoBone.getWorldPosition(mixamoWorldPosition);
       //distances
       const distance = ueWorldPosition.distanceTo(mixamoWorldPosition) * 0.5;
+      const hierarchyDistance = getHierarchyDistance(ueBone, mixamoBone);
+      const mixamoBoneSide = getBoneSide(mixamoBone.name);
 
       //euclidean
       //const distance = Math.sqrt(((mixamoWorldPosition.x-ueWorldPosition.x)**2) + ((mixamoWorldPosition.y-ueWorldPosition.y)**2) + ((mixamoWorldPosition.z-ueWorldPosition.z)**2));
@@ -100,8 +137,8 @@ type BoneConfig = {
 
       //manhattan
       //const distance = Math.abs(mixamoWorldPosition.x - ueWorldPosition.x) + Math.abs(mixamoWorldPosition.y - ueWorldPosition.y) + Math.abs(mixamoWorldPosition.z - ueWorldPosition.z);
-      if (distance <= distanceThreshold) { 
-      bonesByDistance.push({ bone: mixamoBone, worldPosition: mixamoWorldPosition, distance });
+      if (distance <= distanceThreshold && ueBoneSide === mixamoBoneSide) { 
+      bonesByDistance.push({ bone: mixamoBone, worldPosition: mixamoWorldPosition, distance});
       }
     }
 
@@ -129,6 +166,28 @@ type BoneConfig = {
       nearestNBones[1].worldPosition,
       nearestNBones[2].worldPosition,
     );
+
+    // let triangle: THREE.Triangle;
+    // for (let i = 0; i < nearestNBones.length - 2; i++) {
+    //   for (let j = i + 1; j < nearestNBones.length - 1; j++) {
+    //     for (let k = j + 1; k < nearestNBones.length; k++) {
+    //       triangle = new THREE.Triangle(
+    //         nearestNBones[i].worldPosition,
+    //         nearestNBones[j].worldPosition,
+    //         nearestNBones[k].worldPosition,
+    //       );
+    //       if (isTriangleValid(triangle)) {
+    //         break;
+    //       }
+    //       }
+    //       if (isTriangleValid(triangle)) {
+    //         break;
+    //       }
+    //     }
+    //     if (isTriangleValid(triangle)) {
+    //       break;
+    //     }
+    //   }
 
     const deltaXYZ = worldTriangleToDeltaXYZ(triangle, ueWorldPosition);
 
@@ -183,7 +242,7 @@ type BoneConfig = {
 
     const childConfigs: Array<BoneConfig> = [];
     obj.children.forEach((child) => {
-        if (!child.name.startsWith('ik') && !child.name.startsWith('center') && !child.name.startsWith('inter')){
+        if (!child.name.startsWith('ik') && !child.name.startsWith('center') && !child.name.startsWith('inter') && !child.name.includes('twist')){
           childConfigs.push(traverseChildren(child));
         }
     });
@@ -209,3 +268,4 @@ type BoneConfig = {
 
   console.log(JSON.stringify(ueBoneConfigs, null, 2));
 })();
+
