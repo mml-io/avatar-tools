@@ -4,8 +4,8 @@ import { Group } from "three";
 import { deltaXYZAndTriangleToWorldPos } from "../math-utils";
 
 import MixamoToUE5ConfigJSON from "./mixamo-to-ue5.json";
-import { LogMessage, Step, StepResult } from "./types";
 import { hasUE5Skeleton } from "./skeleton-type-checker";
+import { LogMessage, Step, StepResult } from "./types";
 
 type BoneConfig = {
   boneName: string;
@@ -50,6 +50,9 @@ export const mixamoToUe5SkeletonMapper = {
       const asBone = child as THREE.Bone;
       if (asBone.isBone) {
         let name = asBone.name;
+        if (name.startsWith("mixamorig9")) {
+          name = name.replace("mixamorig9", "");
+        }
         if (name.startsWith("mixamorig")) {
           name = name.replace("mixamorig", "");
         }
@@ -165,9 +168,9 @@ export const mixamoToUe5SkeletonMapper = {
     ) {
       const targetBoneInfluences = originalBonesByInfluencedBone.get(bone);
       if (targetBoneInfluences) {
-      if (boneName === "root"){
-        return;
-      }
+        if (boneName === "root") {
+          return;
+        }
         for (const targetBoneInfluence of targetBoneInfluences) {
           let existing = mapOfBonesToSummedWeights.get(targetBoneInfluence.targetBone);
           if (!existing) {
