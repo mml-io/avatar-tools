@@ -2,7 +2,7 @@ import { ModelLoader } from "@mml-io/model-loader";
 import { AnimationClip, AnimationMixer, Bone, SkeletonHelper, Vector3 } from "three";
 
 // Jump animation for UE5 Manny exported as GLB from UE5
-import sampleJumpAnimationBase64 from "../assets/SampleJumpAnimation.glb";
+import sampleRunAnimationBase64 from "../assets/SampleRunAnimation.glb";
 
 import { Lights } from "./elements/Lights";
 import { Room } from "./elements/Room";
@@ -144,7 +144,7 @@ export class AnimationView extends QuadrantScene {
 
   private useSampleAnimation() {
     // Decode base64 string to ArrayBuffer in browser
-    const base64String = sampleJumpAnimationBase64;
+    const base64String = sampleRunAnimationBase64;
     const binaryString = window.atob(base64String);
     const bytes = new Uint8Array(binaryString.length);
     for (let i = 0; i < binaryString.length; i++) {
