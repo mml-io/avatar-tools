@@ -77,7 +77,11 @@ fs.readFile(argv.input, function (readFileErr, fileBuffer) {
         if (argv[stepNameToSkipArgName(step.name)]) {
           continue;
         }
-        step.action(group);
+        const result = step.action(group);
+        if (result.topLevelMessage.level == "error") {
+          console.error(`[${step.name}] ${result.topLevelMessage.message}`);
+          process.exit(1);
+        }
       }
 
       new GLTFExporter().parse(
